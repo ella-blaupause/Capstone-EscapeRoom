@@ -1,7 +1,1 @@
-<<<<<<< HEAD
-{
-  "template": "create-react-app"
-}
-=======
 { "template": "next" }
->>>>>>> d32d1a7 ( "initial commit")
