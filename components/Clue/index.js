@@ -22,7 +22,7 @@ export default function Clue() {
       <StyledClue>
         <StyledColorDiv style={{ backgroundColor: "red" }}>△</StyledColorDiv>
         <StyledColorDiv style={{ backgroundColor: "green" }}>☆</StyledColorDiv>
-        <StyledColorDiv style={{ backgroundColor: "yellow" }}>◇</StyledColorDiv>
+        <StyledColorDiv style={{ backgroundColor: "purple" }}>◇</StyledColorDiv>
       </StyledClue>
     </>
   );
