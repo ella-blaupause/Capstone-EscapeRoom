@@ -1,5 +1,6 @@
 {
   "env": {
+<<<<<<< HEAD
     "browser": true,
     "es2022": true,
     "jest": true,
@@ -24,4 +25,18 @@
     "no-unused-vars": 1,
     "react/jsx-key": 1
   }
+=======
+    "jest": true
+  },
+  "extends": ["next/core-web-vitals", "plugin:jest/recommended"],
+  "rules": {
+    "import/no-anonymous-default-export": [
+      "error",
+      {
+        "allowObject": true
+      }
+    ]
+  },
+  "plugins": ["jest"]
+>>>>>>> d32d1a7 ( "initial commit")
 }
