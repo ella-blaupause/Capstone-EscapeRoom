@@ -15,14 +15,20 @@ const StyledColorDiv = styled.div`
   place-items: center;
 `;
 
-export default function Clue() {
+export default function Clue({ randomColor }) {
   return (
     <>
       <p>Gib den Code ein!</p>
       <StyledClue>
-        <StyledColorDiv style={{ backgroundColor: "red" }}>△</StyledColorDiv>
-        <StyledColorDiv style={{ backgroundColor: "green" }}>☆</StyledColorDiv>
-        <StyledColorDiv style={{ backgroundColor: "purple" }}>◇</StyledColorDiv>
+        <StyledColorDiv style={{ backgroundColor: randomColor[0] }}>
+          △
+        </StyledColorDiv>
+        <StyledColorDiv style={{ backgroundColor: randomColor[1] }}>
+          ☆
+        </StyledColorDiv>
+        <StyledColorDiv style={{ backgroundColor: randomColor[2] }}>
+          ◇
+        </StyledColorDiv>
       </StyledClue>
     </>
   );
