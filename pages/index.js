@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import Clue from "../components/Clue";
 import ColorPuzzle from "../components/ColorPuzzle";
 import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 
 const colors = [
   "yellow",
@@ -17,12 +19,18 @@ const colors = [
 
 export default function HomePage() {
   const [count, setCount] = useState({ first: 0, second: 0, third: 0 });
-  const [randomColor, setRandomColor] = useState([
-    colors[0],
-    colors[1],
-    colors[2],
-  ]);
-
+  const [randomColor, setRandomColor] = useLocalStorageState("randomColor", {
+    defaultValue: "",
+  });
+  useEffect(
+    () =>
+      setRandomColor([
+        colors[Math.floor(Math.random() * colors.length)],
+        colors[Math.floor(Math.random() * colors.length)],
+        colors[Math.floor(Math.random() * colors.length)],
+      ]),
+    []
+  );
   function getRandomColor() {
     setRandomColor([
       colors[Math.floor(Math.random() * colors.length)],
