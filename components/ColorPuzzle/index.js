@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 const PuzzleDiv = styled.div`
@@ -19,56 +18,29 @@ const ColorDiv = styled.div`
   background-color: ${(props) => props.color};
 `;
 
-const colors = [
-  "yellow",
-  "green",
-  "lightblue",
-  "brown",
-  "red",
-  "gray",
-  "orange",
-  "purple",
-];
-
-export default function ColorPuzzle() {
-  const [color, setColor] = useState("blueviolet");
-  const [color1, setColor1] = useState("blueviolet");
-  const [color2, setColor2] = useState("blueviolet");
-  const [count, setCount] = useState(0);
-
-  function colorSwitch() {
-    setColor(colors[count]);
-    if (count >= colors.length - 1) {
-      setCount(0);
-    } else {
-      setCount(count + 1);
-    }
-  }
-  function colorSwitch1() {
-    setColor1(colors[count]);
-    if (count >= colors.length - 1) {
-      setCount(0);
-    } else {
-      setCount(count + 1);
-    }
-  }
-
-  function colorSwitch2() {
-    setColor2(colors[count]);
-    if (count >= colors.length - 1) {
-      setCount(0);
-    } else {
-      setCount(count + 1);
-    }
-  }
+export default function ColorPuzzle({
+  onColorSwitch,
+  colors,
+  count,
+  randomSymbol,
+}) {
   return (
     <PuzzleDiv>
-      <p>◇</p>
-      <p>△</p>
-      <p>☆</p>
-      <ColorDiv color={color} onClick={colorSwitch} />
-      <ColorDiv color={color1} onClick={colorSwitch1} />
-      <ColorDiv color={color2} onClick={colorSwitch2} />
+      <p>{randomSymbol[2]}</p>
+      <p>{randomSymbol[0]}</p>
+      <p>{randomSymbol[1]}</p>
+      <ColorDiv
+        color={colors[count.first]}
+        onClick={() => onColorSwitch("first")}
+      />
+      <ColorDiv
+        color={colors[count.second]}
+        onClick={() => onColorSwitch("second")}
+      />
+      <ColorDiv
+        color={colors[count.third]}
+        onClick={() => onColorSwitch("third")}
+      />
     </PuzzleDiv>
   );
 }
