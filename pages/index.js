@@ -6,7 +6,7 @@ const DoorButton = styled.button`
   height: 150px;
   position: absolute;
   transform: translate(0,-50%);
-  right: 50px;
+  right: 20%;
   top 50%;
   font-size: 80px
 `;
