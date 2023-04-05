@@ -17,12 +17,12 @@ const colors = [
 
 const symbols = ["△", "☆", "◇", "❀", "☀︎", "✧"];
 
-function generateRandomNumbers(arrryLength) {
+function generateRandomNumbers(arrayLength) {
   const numbers = [];
 
   // Generiert drei zufällige Zahlen, die nur einmal vorkommen
   while (numbers.length < 3) {
-    const random = Math.floor(Math.random() * arrryLength);
+    const random = Math.floor(Math.random() * arrayLength);
     if (!numbers.includes(random)) {
       numbers.push(random);
     }
