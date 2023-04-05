@@ -15,22 +15,24 @@ const colors = [
   "blueviolet",
 ];
 
-/* Math.floor(Math.random() * colors.length) */
-
 export default function HomePage() {
-  const [count, setCount] = useState({ first: 0, second: 0, third: 0 });
+  const [count, setCount] = useState({ first: 0, second: 2, third: 2 });
   const [randomColor, setRandomColor] = useLocalStorageState("randomColor", {
     defaultValue: "",
   });
-  useEffect(
-    () =>
-      setRandomColor([
-        colors[Math.floor(Math.random() * colors.length)],
-        colors[Math.floor(Math.random() * colors.length)],
-        colors[Math.floor(Math.random() * colors.length)],
-      ]),
-    []
-  );
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!randomColor) {
+    setRandomColor([
+      colors[Math.floor(Math.random() * colors.length)],
+      colors[Math.floor(Math.random() * colors.length)],
+      colors[Math.floor(Math.random() * colors.length)],
+    ]);
+  }
+
   function getRandomColor() {
     setRandomColor([
       colors[Math.floor(Math.random() * colors.length)],
@@ -67,9 +69,9 @@ export default function HomePage() {
   }
 
   if (
-    colors[count.first] === randomColor[2] &&
-    colors[count.second] === randomColor[0] &&
-    colors[count.third] === randomColor[1]
+    colors[count.first] === randomColor[2] && // 0->△
+    colors[count.second] === randomColor[0] && // 1->☆
+    colors[count.third] === randomColor[1] //2->◇
   ) {
     return (
       <>
@@ -81,14 +83,21 @@ export default function HomePage() {
     );
   }
 
+  if (randomColor) {
+  }
+
   return (
-    <div>
-      <Clue randomColor={randomColor} />
-      <ColorPuzzle
-        colors={colors}
-        onColorSwitch={handleColorSwitch}
-        count={count}
-      />
-    </div>
+    <>
+      {isClient && (
+        <div>
+          <Clue randomColor={randomColor} />
+          <ColorPuzzle
+            colors={colors}
+            onColorSwitch={handleColorSwitch}
+            count={count}
+          />
+        </div>
+      )}
+    </>
   );
 }

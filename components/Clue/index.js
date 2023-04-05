@@ -13,6 +13,7 @@ const StyledColorDiv = styled.div`
   width: 2em;
   display: grid;
   place-items: center;
+  background-color: ${(props) => props.color};
 `;
 
 export default function Clue({ randomColor }) {
@@ -20,15 +21,9 @@ export default function Clue({ randomColor }) {
     <>
       <p>Gib den Code ein!</p>
       <StyledClue>
-        <StyledColorDiv style={{ backgroundColor: randomColor[0] }}>
-          △
-        </StyledColorDiv>
-        <StyledColorDiv style={{ backgroundColor: randomColor[1] }}>
-          ☆
-        </StyledColorDiv>
-        <StyledColorDiv style={{ backgroundColor: randomColor[2] }}>
-          ◇
-        </StyledColorDiv>
+        <StyledColorDiv color={randomColor[0]}>△</StyledColorDiv>
+        <StyledColorDiv color={randomColor[1]}>☆</StyledColorDiv>
+        <StyledColorDiv color={randomColor[2]}>◇</StyledColorDiv>
       </StyledClue>
     </>
   );
