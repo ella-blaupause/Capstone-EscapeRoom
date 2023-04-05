@@ -18,12 +18,17 @@ const ColorDiv = styled.div`
   background-color: ${(props) => props.color};
 `;
 
-export default function ColorPuzzle({ onColorSwitch, colors, count }) {
+export default function ColorPuzzle({
+  onColorSwitch,
+  colors,
+  count,
+  randomSymbol,
+}) {
   return (
     <PuzzleDiv>
-      <p>◇</p>
-      <p>△</p>
-      <p>☆</p>
+      <p>{randomSymbol[2]}</p>
+      <p>{randomSymbol[0]}</p>
+      <p>{randomSymbol[1]}</p>
       <ColorDiv
         color={colors[count.first]}
         onClick={() => onColorSwitch("first")}
@@ -35,7 +40,7 @@ export default function ColorPuzzle({ onColorSwitch, colors, count }) {
       <ColorDiv
         color={colors[count.third]}
         onClick={() => onColorSwitch("third")}
-      />{" "}
+      />
     </PuzzleDiv>
   );
 }

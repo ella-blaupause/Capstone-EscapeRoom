@@ -15,25 +15,53 @@ const colors = [
   "blueviolet",
 ];
 
+const symbols = ["△", "☆", "◇", "❀", "☀︎", "✧"];
+
+function generateRandomNumbers(arrryLength) {
+  const numbers = [];
+
+  // Generiert drei zufällige Zahlen, die nur einmal vorkommen
+  while (numbers.length < 3) {
+    const random = Math.floor(Math.random() * arrryLength);
+    if (!numbers.includes(random)) {
+      numbers.push(random);
+    }
+  }
+
+  return numbers;
+}
+const randomNumbers = generateRandomNumbers(symbols.length);
+
 export default function HomePage() {
-  const [count, setCount] = useState({ first: 0, second: 2, third: 2 });
+  const [count, setCount] = useState({ first: 2, second: 2, third: 2 });
   const [randomColor, setRandomColor] = useLocalStorageState("randomColor", {
-    defaultValue: "",
+    defaultValue: [
+      colors[[Math.floor(Math.random() * symbols.length)]],
+      colors[[Math.floor(Math.random() * symbols.length)]],
+      colors[[Math.floor(Math.random() * symbols.length)]],
+    ],
+  });
+
+  const [randomSymbol, setRandomSymbol] = useLocalStorageState("randomSymbol", {
+    defaultValue: [
+      symbols[randomNumbers[0]],
+      symbols[randomNumbers[1]],
+      symbols[randomNumbers[2]],
+    ],
   });
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  if (!randomColor) {
-    setRandomColor([
-      colors[Math.floor(Math.random() * colors.length)],
-      colors[Math.floor(Math.random() * colors.length)],
-      colors[Math.floor(Math.random() * colors.length)],
-    ]);
-  }
+  function getRandomCode() {
+    const randomNumbers = generateRandomNumbers(symbols.length);
 
-  function getRandomColor() {
+    setRandomSymbol([
+      symbols[[randomNumbers[0]]],
+      symbols[[randomNumbers[1]]],
+      symbols[[randomNumbers[2]]],
+    ]);
     setRandomColor([
       colors[Math.floor(Math.random() * colors.length)],
       colors[Math.floor(Math.random() * colors.length)],
@@ -76,7 +104,7 @@ export default function HomePage() {
     return (
       <>
         <h1>Freiheit</h1>
-        <button type="button" onClick={() => getRandomColor()}>
+        <button type="button" onClick={() => getRandomCode()}>
           Noch mal spielen
         </button>
       </>
@@ -90,11 +118,12 @@ export default function HomePage() {
     <>
       {isClient && (
         <div>
-          <Clue randomColor={randomColor} />
+          <Clue randomColor={randomColor} randomSymbol={randomSymbol} />
           <ColorPuzzle
             colors={colors}
             onColorSwitch={handleColorSwitch}
             count={count}
+            randomSymbol={randomSymbol}
           />
         </div>
       )}
