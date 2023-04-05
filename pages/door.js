@@ -3,6 +3,8 @@ import Clue from "../components/Clue";
 import ColorPuzzle from "../components/ColorPuzzle";
 import { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
+import styled from "styled-components";
+import Link from "next/link";
 
 const colors = [
   "yellow",
@@ -32,7 +34,7 @@ function generateRandomNumbers(arrayLength) {
 }
 const randomNumbers = generateRandomNumbers(symbols.length);
 
-export default function HomePage() {
+export default function Door() {
   const [count, setCount] = useState({ first: 2, second: 2, third: 2 });
   const [randomColor, setRandomColor] = useLocalStorageState("randomColor", {
     defaultValue: [
@@ -104,9 +106,11 @@ export default function HomePage() {
     return (
       <>
         <h1>Freiheit</h1>
-        <button type="button" onClick={() => getRandomCode()}>
-          Noch mal spielen
-        </button>
+        <Link href={"/"}>
+          <button type="button" onClick={() => getRandomCode()}>
+            Noch mal spielen
+          </button>
+        </Link>
       </>
     );
   }
@@ -117,15 +121,20 @@ export default function HomePage() {
   return (
     <>
       {isClient && (
-        <div>
-          <Clue randomColor={randomColor} randomSymbol={randomSymbol} />
-          <ColorPuzzle
-            colors={colors}
-            onColorSwitch={handleColorSwitch}
-            count={count}
-            randomSymbol={randomSymbol}
-          />
-        </div>
+        <>
+          <Link href={"/"}>
+            <button>⬅️</button>
+          </Link>
+          <div>
+            <Clue randomColor={randomColor} randomSymbol={randomSymbol} />
+            <ColorPuzzle
+              colors={colors}
+              onColorSwitch={handleColorSwitch}
+              count={count}
+              randomSymbol={randomSymbol}
+            />
+          </div>
+        </>
       )}
     </>
   );
