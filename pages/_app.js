@@ -5,7 +5,7 @@ const colors = [
   "yellow",
   "green",
   "lightblue",
-  "brown",
+  "hotpink",
   "red",
   "gray",
   "orange",

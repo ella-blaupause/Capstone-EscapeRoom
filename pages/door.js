@@ -61,9 +61,6 @@ export default function Door({
     );
   }
 
-  if (randomColor) {
-  }
-
   return (
     <>
       {isClient && (
