@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const StyledClue = styled.div`
-  width: 375;
   display: flex;
   flex-direction: row;
   align-items: center;
