@@ -31,7 +31,7 @@ const LightButton = styled.button`
 
 export default function Room({ randomColor, randomSymbol }) {
   const [isOn, setIsOn] = useLocalStorageState("isOn", { defaultValue: true });
-  // Componente wir nur beim zweiten Mal gerendert
+  // Es wir nur beim zweiten Mal gerendert
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
     setIsClient(true);
