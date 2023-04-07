@@ -31,11 +31,6 @@ const LightButton = styled.button`
 
 export default function Room({ randomColor, randomSymbol }) {
   const [isOn, setIsOn] = useLocalStorageState("isOn", { defaultValue: true });
-  // Es wir nur beim zweiten Mal gerendert
-  const [isClient, setIsClient] = useState(false);
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   function toggleOnOff() {
     setIsOn(!isOn);
@@ -43,19 +38,17 @@ export default function Room({ randomColor, randomSymbol }) {
 
   return (
     <>
-      {isClient && (
-        <StyledLayout isOn={isOn}>
-          {!isOn && (
-            <Clue randomColor={randomColor} randomSymbol={randomSymbol} />
-          )}
-          <Link href={"/door"}>
-            <DoorButton>🚪</DoorButton>
-          </Link>
-          <LightButton type="button" onClick={toggleOnOff}>
-            on/off
-          </LightButton>
-        </StyledLayout>
-      )}
+      <StyledLayout isOn={isOn}>
+        {!isOn && (
+          <Clue randomColor={randomColor} randomSymbol={randomSymbol} />
+        )}
+        <Link href={"/door"}>
+          <DoorButton>🚪</DoorButton>
+        </Link>
+        <LightButton type="button" onClick={toggleOnOff}>
+          on/off
+        </LightButton>
+      </StyledLayout>
     </>
   );
 }
