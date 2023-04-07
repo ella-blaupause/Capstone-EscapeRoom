@@ -65,7 +65,7 @@ export default function App({ Component, pageProps }) {
       colors[getRandomColor()],
     ]);
 
-    //Licht beim neuen Spiel anmachen
+    //Licht beim neuen Spiel an machen
     setIsOn(true);
   }
 
