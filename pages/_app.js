@@ -29,12 +29,16 @@ function getRandomNumbers(arrayLength) {
 }
 const randomNumbers = getRandomNumbers(symbols.length);
 
+function getRandomColor() {
+  return Math.floor(Math.random() * colors.length);
+}
+
 export default function App({ Component, pageProps }) {
   const [randomColor, setRandomColor] = useLocalStorageState("randomColor", {
     defaultValue: [
-      colors[[Math.floor(Math.random() * symbols.length)]],
-      colors[[Math.floor(Math.random() * symbols.length)]],
-      colors[[Math.floor(Math.random() * symbols.length)]],
+      colors[getRandomColor()],
+      colors[getRandomColor()],
+      colors[getRandomColor()],
     ],
   });
   const [randomSymbol, setRandomSymbol] = useLocalStorageState("randomSymbol", {
@@ -54,9 +58,9 @@ export default function App({ Component, pageProps }) {
       symbols[[randomNumbers[2]]],
     ]);
     setRandomColor([
-      colors[Math.floor(Math.random() * colors.length)],
-      colors[Math.floor(Math.random() * colors.length)],
-      colors[Math.floor(Math.random() * colors.length)],
+      colors[getRandomColor()],
+      colors[getRandomColor()],
+      colors[getRandomColor()],
     ]);
   }
 
