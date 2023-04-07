@@ -29,13 +29,12 @@ const LightButton = styled.button`
   top: 50%;
 `;
 
-export default function Room({ randomColor, randomSymbol }) {
-  const [isOn, setIsOn] = useLocalStorageState("isOn", { defaultValue: true });
-
-  function toggleOnOff() {
-    setIsOn(!isOn);
-  }
-
+export default function Room({
+  randomColor,
+  randomSymbol,
+  onToggleOnOff,
+  isOn,
+}) {
   return (
     <>
       <StyledLayout isOn={isOn}>
@@ -45,7 +44,7 @@ export default function Room({ randomColor, randomSymbol }) {
         <Link href={"/door"}>
           <DoorButton>🚪</DoorButton>
         </Link>
-        <LightButton type="button" onClick={toggleOnOff}>
+        <LightButton type="button" onClick={onToggleOnOff}>
           on/off
         </LightButton>
       </StyledLayout>

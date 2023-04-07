@@ -34,6 +34,8 @@ function getRandomColor() {
 }
 
 export default function App({ Component, pageProps }) {
+  const [isOn, setIsOn] = useLocalStorageState("isOn", { defaultValue: true });
+
   const [randomColor, setRandomColor] = useLocalStorageState("randomColor", {
     defaultValue: [
       colors[getRandomColor()],
@@ -62,8 +64,14 @@ export default function App({ Component, pageProps }) {
       colors[getRandomColor()],
       colors[getRandomColor()],
     ]);
+
+    //Licht beim neuen Spiel anmachen
+    setIsOn(true);
   }
 
+  function handleToggleOnOff() {
+    setIsOn(!isOn);
+  }
   return (
     <>
       <GlobalStyle />
@@ -72,6 +80,8 @@ export default function App({ Component, pageProps }) {
         colors={colors}
         randomColor={randomColor}
         randomSymbol={randomSymbol}
+        onToggleOnOff={handleToggleOnOff}
+        isOn={isOn}
         {...pageProps}
       />
     </>
