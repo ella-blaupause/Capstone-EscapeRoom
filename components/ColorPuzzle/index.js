@@ -31,14 +31,17 @@ export default function ColorPuzzle({
       <ColorDiv
         color={colors[count.first]}
         onClick={() => onColorSwitch("first")}
+        data-testid="color-div-0"
       />
       <ColorDiv
         color={colors[count.second]}
         onClick={() => onColorSwitch("second")}
+        data-testid="color-div-1"
       />
       <ColorDiv
         color={colors[count.third]}
         onClick={() => onColorSwitch("third")}
+        data-testid="color-div-2"
       />
     </PuzzleDiv>
   );
