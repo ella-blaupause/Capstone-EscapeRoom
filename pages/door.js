@@ -45,9 +45,9 @@ export default function Door({
   }
 
   if (
-    colors[count.first] === randomColor[2] && // 0->△
-    colors[count.second] === randomColor[0] && // 1->☆
-    colors[count.third] === randomColor[1] //2->◇
+    colors[count.first] === randomColor[2] &&
+    colors[count.second] === randomColor[0] &&
+    colors[count.third] === randomColor[1]
   ) {
     return (
       <>
