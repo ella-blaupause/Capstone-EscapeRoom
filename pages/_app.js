@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }) {
     ],
   });
 
-  function getRandomCode() {
+  function handleRandomCode() {
     const randomNumbers = getRandomNumbers(symbols.length);
 
     setRandomSymbol([
@@ -52,7 +52,7 @@ export default function App({ Component, pageProps }) {
     <>
       <GlobalStyle />
       <Component
-        getRandomCode={getRandomCode}
+        onRandomCode={handleRandomCode}
         colors={colors}
         randomColor={randomColor}
         randomSymbol={randomSymbol}
