@@ -20,6 +20,9 @@ const DoorButton = styled.button`
   right: 0;
   top: 50%;
   font-size: 80px;
+  background: none;
+  border: none;
+  padding: 0;
 `;
 
 const LightButton = styled.button`
