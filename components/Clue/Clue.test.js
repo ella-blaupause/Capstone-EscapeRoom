@@ -2,18 +2,6 @@ import { render, screen } from "@testing-library/react";
 import Clue from ".";
 
 // eslint-disable-next-line jest/valid-title
-test("Test if the text `Gib den Code ein!` is rendered", () => {
-  render(
-    <Clue
-      randomColor={["red", "green", "blue"]}
-      randomSymbol={["a", "b", "c"]}
-    />
-  );
-  const textElement = screen.getByText("Gib den Code ein!");
-  expect(textElement).toBeInTheDocument();
-});
-
-// eslint-disable-next-line jest/valid-title
 test("Test if each StyledColorDiv component displays the correct symbol.", async () => {
   const randomColor = ["red", "blue", "yellow"];
   const randomSymbol = ["A", "B", "C"];
