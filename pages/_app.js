@@ -1,37 +1,13 @@
 import useLocalStorageState from "use-local-storage-state";
 import GlobalStyle from "../styles";
+import {
+  colors,
+  getRandomColor,
+  getRandomNumbers,
+  symbols,
+} from "../utils/utils";
 
-const colors = [
-  "yellow",
-  "green",
-  "lightblue",
-  "hotpink",
-  "red",
-  "gray",
-  "orange",
-  "blueviolet",
-];
-
-const symbols = ["△", "☆", "◇", "❀", "☀︎", "✧"];
-
-function getRandomNumbers(arrayLength) {
-  const numbers = [];
-
-  // Generiert drei zufällige Zahlen, die nur einmal vorkommen
-  while (numbers.length < 3) {
-    const random = Math.floor(Math.random() * arrayLength);
-    if (!numbers.includes(random)) {
-      numbers.push(random);
-    }
-  }
-
-  return numbers;
-}
 const randomNumbers = getRandomNumbers(symbols.length);
-
-function getRandomColor() {
-  return Math.floor(Math.random() * colors.length);
-}
 
 export default function App({ Component, pageProps }) {
   const [isOn, setIsOn] = useLocalStorageState("isOn", { defaultValue: true });
