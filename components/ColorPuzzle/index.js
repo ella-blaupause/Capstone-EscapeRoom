@@ -24,25 +24,28 @@ export default function ColorPuzzle({
   randomSymbol,
 }) {
   return (
-    <PuzzleDiv>
-      <p>{randomSymbol[2]}</p>
-      <p>{randomSymbol[0]}</p>
-      <p>{randomSymbol[1]}</p>
-      <ColorDiv
-        color={colors[count.first]}
-        onClick={() => onColorSwitch("first")}
-        data-testid="color-div-0"
-      />
-      <ColorDiv
-        color={colors[count.second]}
-        onClick={() => onColorSwitch("second")}
-        data-testid="color-div-1"
-      />
-      <ColorDiv
-        color={colors[count.third]}
-        onClick={() => onColorSwitch("third")}
-        data-testid="color-div-2"
-      />
-    </PuzzleDiv>
+    <>
+      <p>Gib den Code ein!</p>
+      <PuzzleDiv>
+        <span>{randomSymbol[2]}</span>
+        <span>{randomSymbol[0]}</span>
+        <span>{randomSymbol[1]}</span>
+        <ColorDiv
+          color={colors[count.first]}
+          onClick={() => onColorSwitch("first")}
+          data-testid="color-div-0"
+        />
+        <ColorDiv
+          color={colors[count.second]}
+          onClick={() => onColorSwitch("second")}
+          data-testid="color-div-1"
+        />
+        <ColorDiv
+          color={colors[count.third]}
+          onClick={() => onColorSwitch("third")}
+          data-testid="color-div-2"
+        />
+      </PuzzleDiv>
+    </>
   );
 }
