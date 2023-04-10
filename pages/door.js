@@ -4,7 +4,7 @@ import Link from "next/link";
 import useLocalStorageState from "use-local-storage-state";
 
 export default function Door({
-  getRandomCode,
+  onRandomCode,
   colors,
   randomColor,
   randomSymbol,
@@ -53,7 +53,7 @@ export default function Door({
       <>
         <h1>Freiheit</h1>
         <Link href={"/"}>
-          <button type="button" onClick={() => getRandomCode()}>
+          <button type="button" onClick={() => onRandomCode()}>
             Noch mal spielen
           </button>
         </Link>
