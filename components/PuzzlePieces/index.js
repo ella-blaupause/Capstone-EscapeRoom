@@ -1,6 +1,4 @@
-import { useState } from "react";
 import styled from "styled-components";
-import { initialPuzzlePieces } from "../../utils/utils";
 
 const PuzzlePiece = styled.button`
   background: none;
@@ -10,19 +8,7 @@ const PuzzlePiece = styled.button`
   grid-column: ${({ position }) => position.column};
 `;
 
-export default function PuzzlePieces() {
-  const [puzzlePieces, setPuzzlePieces] = useState(initialPuzzlePieces);
-
-  function handleCollect(puzzlePieceId) {
-    setPuzzlePieces(
-      puzzlePieces.map((puzzlePiece) => {
-        return puzzlePiece.id === puzzlePieceId
-          ? { ...puzzlePiece, isCollected: true }
-          : puzzlePiece;
-      })
-    );
-  }
-
+export default function PuzzlePieces({ onCollect, puzzlePieces }) {
   return (
     <>
       {puzzlePieces.map((puzzlePiece) => (
@@ -30,7 +16,7 @@ export default function PuzzlePieces() {
           key={puzzlePiece.id}
           type="button"
           onClick={() => {
-            handleCollect(puzzlePiece.id);
+            onCollect(puzzlePiece.id);
           }}
           position={puzzlePiece.position}
         >
