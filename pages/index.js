@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Clue from "../components/Clue";
 import PuzzlePieces from "../components/PuzzlePieces";
 import CollectingArea from "../components/CollectingArea";
+import { useEffect, useState } from "react";
 
 const GridContainer = styled.div`
   background-color: ghostwhite;
@@ -15,7 +16,7 @@ const GridContainer = styled.div`
   height: 667px;
 `;
 
-const DoorButton = styled(Link)`
+const Door = styled(Link)`
   font-size: 100px;
   grid-column: 12 / span 2;
   grid-row: 10 / span 3;
@@ -38,21 +39,31 @@ export default function Room({
   onToggleOnOff,
   isOn,
 }) {
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   return (
-    <GridContainer isOn={isOn}>
-      <CollectingArea
-        countPieces={countPieces}
-        puzzlePieces={puzzlePieces}
-        randomColor={randomColor}
-        randomSymbol={randomSymbol}
-      />
-      {!isOn && <Clue randomColor={randomColor} randomSymbol={randomSymbol} />}
-      <DoorButton href={"/door"}>🚪</DoorButton>
-      <PuzzlePieces onCollect={onCollect} puzzlePieces={puzzlePieces} />
+    <>
+      {isClient && (
+        <GridContainer isOn={isOn}>
+          <CollectingArea
+            countPieces={countPieces}
+            puzzlePieces={puzzlePieces}
+            randomColor={randomColor}
+            randomSymbol={randomSymbol}
+          />
+          {!isOn && (
+            <Clue randomColor={randomColor} randomSymbol={randomSymbol} />
+          )}
+          <Door href={"/door"}>🚪</Door>
+          <PuzzlePieces onCollect={onCollect} puzzlePieces={puzzlePieces} />
 
-      <LightButton type="button" onClick={onToggleOnOff}>
-        on/off
-      </LightButton>
-    </GridContainer>
+          <LightButton type="button" onClick={onToggleOnOff}>
+            on/off
+          </LightButton>
+        </GridContainer>
+      )}
+    </>
   );
 }
