@@ -1,8 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Clue from "../components/Clue";
-import { initialPuzzlePieces } from "../utils/utils";
-import { useState } from "react";
 import PuzzlePieces from "../components/PuzzlePieces";
 import CollectingArea from "../components/CollectingArea";
 
@@ -32,32 +30,25 @@ const LightButton = styled.button`
 `;
 
 export default function Room({
+  onCollect,
+  puzzlePieces,
+  countPieces,
   randomColor,
   randomSymbol,
   onToggleOnOff,
   isOn,
 }) {
-  const [puzzlePieces, setPuzzlePieces] = useState(initialPuzzlePieces);
-  const [countPieces, setCountPieces] = useState(0);
-
-  function handleCollect(puzzlePieceId) {
-    if (puzzlePieces[puzzlePieceId].isCountable === true) {
-      setCountPieces(countPieces + 1);
-      setPuzzlePieces(
-        puzzlePieces.map((puzzlePiece) => {
-          return puzzlePiece.id === puzzlePieceId
-            ? { ...puzzlePiece, isCollected: true, isCountable: false }
-            : puzzlePiece;
-        })
-      );
-    }
-  }
   return (
     <GridContainer isOn={isOn}>
-      <CollectingArea countPieces={countPieces} puzzlePieces={puzzlePieces} />
+      <CollectingArea
+        countPieces={countPieces}
+        puzzlePieces={puzzlePieces}
+        randomColor={randomColor}
+        randomSymbol={randomSymbol}
+      />
       {!isOn && <Clue randomColor={randomColor} randomSymbol={randomSymbol} />}
       <DoorButton href={"/door"}>🚪</DoorButton>
-      <PuzzlePieces onCollect={handleCollect} puzzlePieces={puzzlePieces} />
+      <PuzzlePieces onCollect={onCollect} puzzlePieces={puzzlePieces} />
 
       <LightButton type="button" onClick={onToggleOnOff}>
         on/off

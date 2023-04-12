@@ -20,9 +20,6 @@ const StyledColorDiv = styled.div`
 export default function Clue({ randomColor, randomSymbol }) {
   return (
     <StyledClue>
-      <StyledColorDiv color={randomColor[0]} data-testid="color-div">
-        {randomSymbol[0]}
-      </StyledColorDiv>
       <StyledColorDiv color={randomColor[1]} data-testid="color-div">
         {randomSymbol[1]}
       </StyledColorDiv>
