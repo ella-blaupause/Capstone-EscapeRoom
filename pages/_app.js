@@ -36,14 +36,15 @@ export default function App({ Component, pageProps }) {
     defaultValue: 0,
   });
   function handleCollect(puzzlePieceId) {
-    if (puzzlePieces[puzzlePieceId].isCountable === true) {
+    const piece = puzzlePieces.find((piece) => piece.id === puzzlePieceId);
+    if (piece && piece.isCountable) {
       setCountPieces(countPieces + 1);
-      setPuzzlePieces(
-        puzzlePieces.map((puzzlePiece) => {
-          return puzzlePiece.id === puzzlePieceId
-            ? { ...puzzlePiece, isCollected: true, isCountable: false }
-            : puzzlePiece;
-        })
+      setPuzzlePieces((pieces) =>
+        pieces.map((p) =>
+          p.id === puzzlePieceId
+            ? { ...piece, isCollected: true, isCountable: false }
+            : p
+        )
       );
     }
   }
