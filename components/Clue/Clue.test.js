@@ -1,8 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import Clue from ".";
 
-// eslint-disable-next-line jest/valid-title
-test("Test if each StyledColorDiv component displays the correct symbol.", async () => {
+test("displays two different symbols", async () => {
   const randomColor = ["", "red", "blue"];
   const randomSymbol = ["", "A", "B"];
   render(<Clue randomColor={randomColor} randomSymbol={randomSymbol} />);
@@ -13,8 +12,8 @@ test("Test if each StyledColorDiv component displays the correct symbol.", async
   expect(secondSymbol).toBeInTheDocument();
 });
 
-test("if each StyledColorDiv component is correctly styled with the provided color.", async () => {
-  const randomColor = ["", "#FF0000", "#00FF00"];
+test("displays randomly provided colors", async () => {
+  const randomColor = ["", "red", "blue"];
   const randomSymbol = ["", "A", "B"];
   render(<Clue randomColor={randomColor} randomSymbol={randomSymbol} />);
 

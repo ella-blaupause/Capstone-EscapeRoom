@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import CollectingArea from ".";
 
-test("if the component displays the header 'Eingesammelte Puzzleteile' correctly.", async () => {
+test("displays the header with title 'Eingesammelte Puzzleteile'.", async () => {
   render(
     <CollectingArea
       countPieces={""}
@@ -18,7 +18,7 @@ test("if the component displays the header 'Eingesammelte Puzzleteile' correctly
   expect(header).toBeInTheDocument();
 });
 
-test("that the component handles different count of collected puzzle pieces.", async () => {
+test("handles different count of collected puzzle pieces.", async () => {
   const countPieces = 1;
   const puzzlePieces = [1, 2, 3];
 
