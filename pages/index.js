@@ -1,10 +1,9 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Clue from "../components/Clue";
-import { initialPuzzlePieces } from "../utils/utils";
-import { useState } from "react";
 import PuzzlePieces from "../components/PuzzlePieces";
 import CollectingArea from "../components/CollectingArea";
+import { useEffect, useState } from "react";
 
 const GridContainer = styled.div`
   background-color: ghostwhite;
@@ -17,7 +16,7 @@ const GridContainer = styled.div`
   height: 667px;
 `;
 
-const DoorButton = styled(Link)`
+const Door = styled(Link)`
   font-size: 100px;
   grid-column: 12 / span 2;
   grid-row: 10 / span 3;
@@ -32,36 +31,39 @@ const LightButton = styled.button`
 `;
 
 export default function Room({
+  onCollect,
+  puzzlePieces,
+  countPieces,
   randomColor,
   randomSymbol,
   onToggleOnOff,
   isOn,
 }) {
-  const [puzzlePieces, setPuzzlePieces] = useState(initialPuzzlePieces);
-  const [countPieces, setCountPieces] = useState(0);
-
-  function handleCollect(puzzlePieceId) {
-    if (puzzlePieces[puzzlePieceId].isCountable === true) {
-      setCountPieces(countPieces + 1);
-      setPuzzlePieces(
-        puzzlePieces.map((puzzlePiece) => {
-          return puzzlePiece.id === puzzlePieceId
-            ? { ...puzzlePiece, isCollected: true, isCountable: false }
-            : puzzlePiece;
-        })
-      );
-    }
-  }
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   return (
-    <GridContainer isOn={isOn}>
-      <CollectingArea countPieces={countPieces} puzzlePieces={puzzlePieces} />
-      {!isOn && <Clue randomColor={randomColor} randomSymbol={randomSymbol} />}
-      <DoorButton href={"/door"}>🚪</DoorButton>
-      <PuzzlePieces onCollect={handleCollect} puzzlePieces={puzzlePieces} />
+    <>
+      {isClient && (
+        <GridContainer isOn={isOn}>
+          <CollectingArea
+            countPieces={countPieces}
+            puzzlePieces={puzzlePieces}
+            randomColor={randomColor}
+            randomSymbol={randomSymbol}
+          />
+          {!isOn && (
+            <Clue randomColor={randomColor} randomSymbol={randomSymbol} />
+          )}
+          <Door href={"/door"}>🚪</Door>
+          <PuzzlePieces onCollect={onCollect} puzzlePieces={puzzlePieces} />
 
-      <LightButton type="button" onClick={onToggleOnOff}>
-        on/off
-      </LightButton>
-    </GridContainer>
+          <LightButton type="button" onClick={onToggleOnOff}>
+            on/off
+          </LightButton>
+        </GridContainer>
+      )}
+    </>
   );
 }

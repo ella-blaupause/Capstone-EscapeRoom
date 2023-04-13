@@ -4,6 +4,7 @@ import {
   colors,
   getRandomColor,
   getRandomNumbers,
+  initialPuzzlePieces,
   symbols,
 } from "../utils/utils";
 
@@ -19,6 +20,7 @@ export default function App({ Component, pageProps }) {
       colors[getRandomColor()],
     ],
   });
+
   const [randomSymbol, setRandomSymbol] = useLocalStorageState("randomSymbol", {
     defaultValue: [
       symbols[randomNumbers[0]],
@@ -27,7 +29,28 @@ export default function App({ Component, pageProps }) {
     ],
   });
 
-  function handleRandomCode() {
+  const [puzzlePieces, setPuzzlePieces] = useLocalStorageState("puzzlePieces", {
+    defaultValue: initialPuzzlePieces,
+  });
+  const [countPieces, setCountPieces] = useLocalStorageState("countPieces", {
+    defaultValue: 0,
+  });
+  function handleCollect(puzzlePieceId) {
+    const piece = puzzlePieces.find((piece) => piece.id === puzzlePieceId);
+    if (piece && piece.isCountable) {
+      setCountPieces(countPieces + 1);
+      setPuzzlePieces((pieces) =>
+        pieces.map((p) =>
+          p.id === puzzlePieceId
+            ? { ...piece, isCollected: true, isCountable: false }
+            : p
+        )
+      );
+    }
+  }
+
+  function handleNewGame() {
+    //generiert einen neuen Color Code
     const randomNumbers = getRandomNumbers(symbols.length);
 
     setRandomSymbol([
@@ -43,6 +66,10 @@ export default function App({ Component, pageProps }) {
 
     //Licht beim neuen Spiel wieder an machen
     setIsOn(true);
+
+    //Puzzleteile beim neuen Spiel wieder sichtbar machen und counter auf null setzen
+    setPuzzlePieces(initialPuzzlePieces);
+    setCountPieces(0);
   }
 
   function handleToggleOnOff() {
@@ -52,11 +79,14 @@ export default function App({ Component, pageProps }) {
     <>
       <GlobalStyle />
       <Component
-        onRandomCode={handleRandomCode}
+        onNewGame={handleNewGame}
         colors={colors}
         randomColor={randomColor}
         randomSymbol={randomSymbol}
         onToggleOnOff={handleToggleOnOff}
+        onCollect={handleCollect}
+        puzzlePieces={puzzlePieces}
+        countPieces={countPieces}
         isOn={isOn}
         {...pageProps}
       />

@@ -3,12 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import useLocalStorageState from "use-local-storage-state";
 
-export default function Door({
-  onRandomCode,
-  colors,
-  randomColor,
-  randomSymbol,
-}) {
+export default function Door({ onNewGame, colors, randomColor, randomSymbol }) {
   const [count, setCount] = useLocalStorageState("count", {
     defaultValue: { first: 2, second: 2, third: 2 },
   });
@@ -53,7 +48,7 @@ export default function Door({
       <>
         <h1>Freiheit</h1>
         <Link href={"/"}>
-          <button type="button" onClick={() => onRandomCode()}>
+          <button type="button" onClick={() => onNewGame()}>
             Noch mal spielen
           </button>
         </Link>
