@@ -1,28 +1,48 @@
 import { render, screen } from "@testing-library/react";
 import CollectingArea from ".";
 
-// eslint-disable-next-line jest/valid-title
-test("Test if the header `Eingesammelte Puzzleteile` is rendered", async () => {
-  render(<CollectingArea countPieces={0} puzzlePieces={[]} />);
-  const header = await screen.findByText(/Eingesammelte Puzzleteile/i);
+test("if the component displays the header 'Eingesammelte Puzzleteile' correctly.", async () => {
+  render(
+    <CollectingArea
+      countPieces={""}
+      puzzlePieces={""}
+      randomColor={""}
+      randomSymbol={""}
+    />
+  );
+
+  const header = screen.getByRole("heading", {
+    name: "Eingesammelte Puzzleteile",
+  });
+
   expect(header).toBeInTheDocument();
 });
 
-// eslint-disable-next-line jest/valid-title
-test("Test that the component handles different count of collected puzzle pieces.", async () => {
-  const countPieces = 0;
-  const puzzlePieces = [{ id: 1 }, { id: 2 }, { id: 3 }];
+test("that the component handles different count of collected puzzle pieces.", async () => {
+  const countPieces = 1;
+  const puzzlePieces = [1, 2, 3];
+
   render(
-    <CollectingArea countPieces={countPieces} puzzlePieces={puzzlePieces} />
+    <CollectingArea
+      countPieces={countPieces}
+      puzzlePieces={puzzlePieces}
+      randomColor={""}
+      randomSymbol={""}
+    />
   );
   const piecesCollected = await screen.findByText(
     `${countPieces}/${puzzlePieces.length}`
   );
   expect(piecesCollected).toBeInTheDocument();
 
-  const newCountPieces = 3;
+  const newCountPieces = 2;
   render(
-    <CollectingArea countPieces={newCountPieces} puzzlePieces={puzzlePieces} />
+    <CollectingArea
+      countPieces={newCountPieces}
+      puzzlePieces={puzzlePieces}
+      randomColor={""}
+      randomSymbol={""}
+    />
   );
   const updatedPiecesCollected = await screen.findByText(
     `${newCountPieces}/${puzzlePieces.length}`

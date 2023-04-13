@@ -49,6 +49,7 @@ export default function App({ Component, pageProps }) {
   }
 
   function handleNewGame() {
+    //generiert einen neuen Color Code
     const randomNumbers = getRandomNumbers(symbols.length);
 
     setRandomSymbol([
