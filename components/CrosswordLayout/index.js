@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { questions } from "../../utils/utils";
+import { crosswordClues } from "../../utils/utils";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -68,8 +68,8 @@ export default function CrosswordLayout() {
         </tbody>
       </StyledTable>
       <StyledOl>
-        {questions.map((question) => (
-          <li key={question.id}>{question.question}</li>
+        {crosswordClues.map((crosswordClue) => (
+          <li key={crosswordClue.id}>{crosswordClue.question}</li>
         ))}
       </StyledOl>
     </>

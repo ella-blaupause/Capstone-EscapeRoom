@@ -77,7 +77,7 @@ export function getRandomColor() {
   return Math.floor(Math.random() * colors.length);
 }
 
-export const questions = [
+export const crosswordClues = [
   {
     id: 1,
     question: "Was wird in Konzerten, Opern, Musicals und Filmen aufgeführt?",
