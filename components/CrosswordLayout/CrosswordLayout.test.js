@@ -9,7 +9,7 @@ test("table is correctly rendered with five rows and five columns.", async () =>
   expect(columns).toHaveLength(25);
 });
 
-test("questions are rendered as a list of items.", async () => {
+test("questions are rendered as a list of items.", () => {
   const questions = [
     {
       id: 1,

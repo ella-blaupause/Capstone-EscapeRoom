@@ -12,7 +12,7 @@ test("displays two different symbols", async () => {
   expect(secondSymbol).toBeInTheDocument();
 });
 
-test("displays randomly provided colors", async () => {
+test("displays randomly provided colors", () => {
   const randomColors = ["", "red", "blue"];
   const randomSymbols = ["", "A", "B"];
   render(<Clue randomColors={randomColors} randomSymbols={randomSymbols} />);
