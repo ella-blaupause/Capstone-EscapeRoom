@@ -76,3 +76,27 @@ export function getRandomNumbers(arrayLength) {
 export function getRandomColor() {
   return Math.floor(Math.random() * colors.length);
 }
+
+export const questions = [
+  {
+    id: 1,
+    question: "Was wird in Konzerten, Opern, Musicals und Filmen aufgeführt?",
+    answer: "Musik",
+  },
+  {
+    id: 2,
+    question: "Welches Gerät wird verwendet, um die Zeit zu messen?",
+    answer: "Uhr",
+  },
+  {
+    id: 3,
+    question:
+      "Welches Möbelstück kann man zum Essen, Arbeiten oder Schreiben verwenden?",
+    answer: "Tisch",
+  },
+  {
+    id: 4,
+    question: "Welches Körperteil ermöglicht es uns, zu hören?",
+    answer: "Ohr",
+  },
+];

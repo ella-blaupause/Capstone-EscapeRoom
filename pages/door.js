@@ -63,19 +63,17 @@ export default function Door({
 
   return (
     <>
-      {isClient && (
-        <>
-          <Link href={"/"}>
-            <button>⬅️</button>
-          </Link>
+      <Link href={"/"}>
+        <button>⬅️</button>
+      </Link>
 
-          <ColorPuzzle
-            colors={colors}
-            onColorSwitch={handleColorSwitch}
-            colorCounts={colorCounts}
-            randomSymbols={randomSymbols}
-          />
-        </>
+      {isClient && (
+        <ColorPuzzle
+          colors={colors}
+          onColorSwitch={handleColorSwitch}
+          colorCounts={colorCounts}
+          randomSymbols={randomSymbols}
+        />
       )}
     </>
   );

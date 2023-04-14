@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Clue from "../components/Clue";
 import PuzzlePieces from "../components/PuzzlePieces";
 import CollectingArea from "../components/CollectingArea";
-import { useEffect, useState } from "react";
 
 const GridContainer = styled.div`
   background-color: ghostwhite;
@@ -30,6 +29,15 @@ const StyledLightButton = styled.button`
   grid-row: 11;
 `;
 
+const StyledPaper = styled(Link)`
+  font-size: 60px;
+  grid-column: 11 / span 2;
+  grid-row: 16 / span 2;
+  z-index: 1;
+  text-decoration: none;
+  cursor: default;
+`;
+
 export default function Room({
   onCollect,
   puzzlePieces,
@@ -53,10 +61,10 @@ export default function Room({
         )}
         <StyledDoor href={"/door"}>🚪</StyledDoor>
         <PuzzlePieces onCollect={onCollect} puzzlePieces={puzzlePieces} />
-
         <StyledLightButton type="button" onClick={onToggleOnOff}>
           on/off
         </StyledLightButton>
+        <StyledPaper href={"/crossword"}>📝</StyledPaper>
       </GridContainer>
     </>
   );
