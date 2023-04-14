@@ -30,13 +30,11 @@ export default function App({ Component, pageProps }) {
 
   function handleCollect(puzzlePieceId) {
     const piece = puzzlePieces.find((piece) => piece.id === puzzlePieceId);
-    if (piece && piece.isCountable) {
+    if (!piece.isCollected) {
       setCountPieces(countPieces + 1);
       setPuzzlePieces((pieces) =>
         pieces.map((p) =>
-          p.id === puzzlePieceId
-            ? { ...piece, isCollected: true, isCountable: false }
-            : p
+          p.id === puzzlePieceId ? { ...piece, isCollected: true } : p
         )
       );
     }

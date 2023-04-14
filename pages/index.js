@@ -39,31 +39,25 @@ export default function Room({
   onToggleOnOff,
   isOn,
 }) {
-  const [isClient, setIsClient] = useState(false);
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
   return (
     <>
-      {isClient && (
-        <GridContainer isOn={isOn}>
-          <CollectingArea
-            countPieces={countPieces}
-            puzzlePieces={puzzlePieces}
-            randomColor={randomColor}
-            randomSymbol={randomSymbol}
-          />
-          {!isOn && (
-            <Clue randomColor={randomColor} randomSymbol={randomSymbol} />
-          )}
-          <Door href={"/door"}>🚪</Door>
-          <PuzzlePieces onCollect={onCollect} puzzlePieces={puzzlePieces} />
+      <GridContainer isOn={isOn}>
+        <CollectingArea
+          countPieces={countPieces}
+          puzzlePieces={puzzlePieces}
+          randomColor={randomColor}
+          randomSymbol={randomSymbol}
+        />
+        {!isOn && (
+          <Clue randomColor={randomColor} randomSymbol={randomSymbol} />
+        )}
+        <Door href={"/door"}>🚪</Door>
+        <PuzzlePieces onCollect={onCollect} puzzlePieces={puzzlePieces} />
 
-          <LightButton type="button" onClick={onToggleOnOff}>
-            on/off
-          </LightButton>
-        </GridContainer>
-      )}
+        <LightButton type="button" onClick={onToggleOnOff}>
+          on/off
+        </LightButton>
+      </GridContainer>
     </>
   );
 }
