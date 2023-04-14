@@ -5,7 +5,6 @@ const StyledTable = styled.table`
   border-collapse: collapse;
   grid-column: 1;
   grid-row: 1;
-  width: 150px;
 `;
 
 //Styled vor Tr  und Td weggelassen, wegen besserer Lesbarkeit
@@ -19,6 +18,11 @@ const Td = styled.td`
   display: table-cell;
   border: solid black;
   background-color: ${({ isBlack }) => (isBlack ? "black" : null)};
+`;
+
+const StyledOl = styled.ol`
+  grid-column: 2;
+  grid-row: 1;
 `;
 
 export default function CrosswordLayout() {
@@ -63,11 +67,11 @@ export default function CrosswordLayout() {
           </Tr>
         </tbody>
       </StyledTable>
-      <ol>
+      <StyledOl>
         {questions.map((question) => (
           <li key={question.id}>{question.question}</li>
         ))}
-      </ol>
+      </StyledOl>
     </>
   );
 }

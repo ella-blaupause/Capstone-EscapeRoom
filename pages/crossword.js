@@ -1,11 +1,13 @@
 import Link from "next/link";
 import styled from "styled-components";
-import CrosswordLayout from "../components/CrosswordLayout/CrosswordLayout";
+import CrosswordLayout from "../components/CrosswordLayout";
 
 const StyldedDiv = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 375px;
+  height: 667px;
 `;
 
 export default function Crossword() {
@@ -14,8 +16,8 @@ export default function Crossword() {
       <Link href={"/"}>
         <button>⬅️</button>
       </Link>
-      <h2>Kreuzwort</h2>
       <StyldedDiv>
+        <h2>Kreuzworträtsel</h2>
         <CrosswordLayout />
       </StyldedDiv>
     </>
