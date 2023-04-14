@@ -1,4 +1,3 @@
-import useLocalStorageState from "use-local-storage-state";
 import GlobalStyle from "../styles";
 import {
   colors,
@@ -7,34 +6,28 @@ import {
   initialPuzzlePieces,
   symbols,
 } from "../utils/utils";
+import { useState } from "react";
 
 const randomNumbers = getRandomNumbers(symbols.length);
 
 export default function App({ Component, pageProps }) {
-  const [isOn, setIsOn] = useLocalStorageState("isOn", { defaultValue: true });
+  const [isOn, setIsOn] = useState(true);
 
-  const [randomColor, setRandomColor] = useLocalStorageState("randomColor", {
-    defaultValue: [
-      colors[getRandomColor()],
-      colors[getRandomColor()],
-      colors[getRandomColor()],
-    ],
-  });
+  const [randomColor, setRandomColor] = useState([
+    colors[getRandomColor()],
+    colors[getRandomColor()],
+    colors[getRandomColor()],
+  ]);
 
-  const [randomSymbol, setRandomSymbol] = useLocalStorageState("randomSymbol", {
-    defaultValue: [
-      symbols[randomNumbers[0]],
-      symbols[randomNumbers[1]],
-      symbols[randomNumbers[2]],
-    ],
-  });
+  const [randomSymbol, setRandomSymbol] = useState([
+    symbols[randomNumbers[0]],
+    symbols[randomNumbers[1]],
+    symbols[randomNumbers[2]],
+  ]);
 
-  const [puzzlePieces, setPuzzlePieces] = useLocalStorageState("puzzlePieces", {
-    defaultValue: initialPuzzlePieces,
-  });
-  const [countPieces, setCountPieces] = useLocalStorageState("countPieces", {
-    defaultValue: 0,
-  });
+  const [puzzlePieces, setPuzzlePieces] = useState(initialPuzzlePieces);
+  const [countPieces, setCountPieces] = useState(0);
+
   function handleCollect(puzzlePieceId) {
     const piece = puzzlePieces.find((piece) => piece.id === puzzlePieceId);
     if (piece && piece.isCountable) {
