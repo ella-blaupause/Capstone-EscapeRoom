@@ -22,14 +22,14 @@ const StyledColorDiv0 = styled.div`
 export default function CollectingArea({
   countPieces,
   puzzlePieces,
-  randomColor,
-  randomSymbol,
+  randomColors,
+  randomSymbols,
 }) {
   if (countPieces === puzzlePieces.length) {
     return (
       <Area countPieces={countPieces}>
-        <StyledColorDiv0 color={randomColor[0]}>
-          {randomSymbol[0]}
+        <StyledColorDiv0 color={randomColors[0]}>
+          {randomSymbols[0]}
         </StyledColorDiv0>
       </Area>
     );

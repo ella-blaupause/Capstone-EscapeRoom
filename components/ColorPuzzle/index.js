@@ -21,15 +21,15 @@ export default function ColorPuzzle({
   onColorSwitch,
   colors,
   count,
-  randomSymbol,
+  randomSymbols,
 }) {
   return (
     <>
       <p>Gib den Code ein!</p>
       <PuzzleDiv>
-        <span>{randomSymbol[2]}</span>
-        <span>{randomSymbol[0]}</span>
-        <span>{randomSymbol[1]}</span>
+        <span>{randomSymbols[2]}</span>
+        <span>{randomSymbols[0]}</span>
+        <span>{randomSymbols[1]}</span>
         <ColorDiv
           color={colors[count.first]}
           onClick={() => onColorSwitch("first")}

@@ -13,13 +13,13 @@ const randomNumbers = getRandomNumbers(symbols.length);
 export default function App({ Component, pageProps }) {
   const [isOn, setIsOn] = useState(true);
 
-  const [randomColor, setRandomColor] = useState([
+  const [randomColors, setRandomColors] = useState([
     colors[getRandomColor()],
     colors[getRandomColor()],
     colors[getRandomColor()],
   ]);
 
-  const [randomSymbol, setRandomSymbol] = useState([
+  const [randomSymbols, setRandomSymbols] = useState([
     symbols[randomNumbers[0]],
     symbols[randomNumbers[1]],
     symbols[randomNumbers[2]],
@@ -44,12 +44,12 @@ export default function App({ Component, pageProps }) {
     //generiert einen neuen Color Code
     const randomNumbers = getRandomNumbers(symbols.length);
 
-    setRandomSymbol([
+    setRandomSymbols([
       symbols[[randomNumbers[0]]],
       symbols[[randomNumbers[1]]],
       symbols[[randomNumbers[2]]],
     ]);
-    setRandomColor([
+    setRandomColors([
       colors[getRandomColor()],
       colors[getRandomColor()],
       colors[getRandomColor()],
@@ -72,8 +72,8 @@ export default function App({ Component, pageProps }) {
       <Component
         onNewGame={handleNewGame}
         colors={colors}
-        randomColor={randomColor}
-        randomSymbol={randomSymbol}
+        randomColors={randomColors}
+        randomSymbols={randomSymbols}
         onToggleOnOff={handleToggleOnOff}
         onCollect={handleCollect}
         puzzlePieces={puzzlePieces}
