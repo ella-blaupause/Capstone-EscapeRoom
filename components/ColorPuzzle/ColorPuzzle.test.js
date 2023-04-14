@@ -7,14 +7,14 @@ test("Test if the text `Gib den Code ein!` is rendered", () => {
   const onColorSwitch = jest.fn();
   const colors = ["red", "blue", "green"];
   const count = { first: 0, second: 1, third: 2 };
-  const randomSymbol = ["A", "B", "C"];
+  const randomSymbols = ["A", "B", "C"];
 
   render(
     <ColorPuzzle
       onColorSwitch={onColorSwitch}
       colors={colors}
       count={count}
-      randomSymbol={randomSymbol}
+      randomSymbols={randomSymbols}
     />
   );
   const textElement = screen.getByText("Gib den Code ein!");
@@ -25,14 +25,14 @@ test("Verify if the onColorSwitch function is called with the correct parameter 
   const onColorSwitch = jest.fn();
   const colors = ["red", "blue", "green"];
   const count = { first: 0, second: 1, third: 2 };
-  const randomSymbol = ["A", "B", "C"];
+  const randomSymbols = ["A", "B", "C"];
 
   render(
     <ColorPuzzle
       onColorSwitch={onColorSwitch}
       colors={colors}
       count={count}
-      randomSymbol={randomSymbol}
+      randomSymbols={randomSymbols}
     />
   );
 
@@ -58,7 +58,7 @@ test("Verify if the ColorDiv component has the correct color prop value", () => 
       onColorSwitch={() => {}}
       colors={colors}
       count={count}
-      randomSymbol={["A", "B", "C"]}
+      randomSymbols={["A", "B", "C"]}
     />
   );
 
@@ -73,7 +73,7 @@ test("Verify if the ColorDiv component has the correct color prop value", () => 
       onColorSwitch={() => {}}
       colors={colors}
       count={count}
-      randomSymbol={["A", "B", "C"]}
+      randomSymbols={["A", "B", "C"]}
     />
   );
 
@@ -91,7 +91,7 @@ test("Verify if the ColorDiv component has the correct color prop value", () => 
       onColorSwitch={() => {}}
       colors={colors}
       count={count}
-      randomSymbol={["A", "B", "C"]}
+      randomSymbols={["A", "B", "C"]}
     />
   );
 
@@ -109,7 +109,7 @@ test("Verify if the ColorDiv component has the correct color prop value", () => 
       onColorSwitch={() => {}}
       colors={colors}
       count={count}
-      randomSymbol={["A", "B", "C"]}
+      randomSymbols={["A", "B", "C"]}
     />
   );
 
