@@ -2,8 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import ColorPuzzle from ".";
 
-// eslint-disable-next-line jest/valid-title
-test("Test if the text `Gib den Code ein!` is rendered", () => {
+test("if the text `Gib den Code ein!` is rendered", () => {
   const onColorSwitch = jest.fn();
   const colors = ["red", "blue", "green"];
   const count = { first: 0, second: 1, third: 2 };
