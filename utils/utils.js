@@ -77,26 +77,30 @@ export function getRandomColor() {
   return Math.floor(Math.random() * colors.length);
 }
 
-export const crosswordClues = [
+export const initialCrosswordClues = [
   {
     id: 1,
     question: "Was wird in Konzerten, Opern, Musicals und Filmen aufgeführt?",
     answer: "Musik",
+    isCorrectlyAnswered: false,
   },
   {
     id: 2,
     question: "Welches Gerät wird verwendet, um die Zeit zu messen?",
     answer: "Uhr",
+    isCorrectlyAnswered: false,
   },
   {
     id: 3,
     question:
       "Welches Möbelstück kann man zum Essen, Arbeiten oder Schreiben verwenden?",
     answer: "Tisch",
+    isCorrectlyAnswered: false,
   },
   {
     id: 4,
     question: "Welches Körperteil ermöglicht es uns, zu hören?",
     answer: "Ohr",
+    isCorrectlyAnswered: false,
   },
 ];
