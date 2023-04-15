@@ -25,48 +25,8 @@ const StyledOl = styled.ol`
   grid-column: 2;
   grid-row: 1;
 `;
-const StyledForm = styled.form`
-  grid-column: 1 / span 2;
-  grid-row: 2;
-`;
 
-export default function CrosswordLayout() {
-  const [currentClueId, setCurrentClueId] = useState(null);
-  const [crosswordClues, setCrosswordClues] = useState(initialCrosswordClues);
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
-
-    checkAnswer(data);
-  }
-  function handleClick(crosswordCluesId) {
-    setCurrentClueId(crosswordCluesId);
-  }
-  function checkAnswer(data) {
-    if (currentClueId === null) {
-      alert("Wähle eine Frage aus!");
-      return;
-    }
-    const currentCrosswordClue = crosswordClues.find(
-      (clue) => clue.id === currentClueId
-    );
-    const correctAnswer = currentCrosswordClue.answer.toLowerCase();
-    const enteredAnswer = data.answer.toLowerCase();
-
-    if (enteredAnswer === correctAnswer) {
-      console.log("richtig");
-      setCrosswordClues((clues) =>
-        clues.map((clue) =>
-          clue.id === currentClueId
-            ? { ...clue, isCorrectlyAnswered: true }
-            : clue
-        )
-      );
-    }
-  }
-
+export default function CrosswordLayout({ onCurrentClueId, crosswordClues }) {
   return (
     <>
       <StyledTable>
@@ -137,27 +97,12 @@ export default function CrosswordLayout() {
         {crosswordClues.map((crosswordClue) => (
           <li
             key={crosswordClue.id}
-            onClick={() => handleClick(crosswordClue.id)}
+            onClick={() => onCurrentClueId(crosswordClue.id)}
           >
             {crosswordClue.question}
           </li>
         ))}
       </StyledOl>
-      <StyledForm onSubmit={handleSubmit}>
-        <legend>Hinweis:</legend>
-        <label htmlFor="answer">
-          {currentClueId
-            ? crosswordClues[currentClueId - 1].question
-            : "Wähle eine Frage aus"}
-        </label>
-        <br />
-        <input
-          id="answer"
-          type="text"
-          name="answer"
-          placeholder="Antwort eingeben"
-        />
-      </StyledForm>{" "}
     </>
   );
 }
