@@ -2,37 +2,36 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import ColorPuzzle from ".";
 
-// eslint-disable-next-line jest/valid-title
-test("Test if the text `Gib den Code ein!` is rendered", () => {
+test("if the text `Gib den Code ein!` is rendered", () => {
   const onColorSwitch = jest.fn();
   const colors = ["red", "blue", "green"];
-  const count = { first: 0, second: 1, third: 2 };
-  const randomSymbol = ["A", "B", "C"];
+  const colorCounts = { first: 0, second: 1, third: 2 };
+  const randomSymbols = ["A", "B", "C"];
 
   render(
     <ColorPuzzle
       onColorSwitch={onColorSwitch}
       colors={colors}
-      count={count}
-      randomSymbol={randomSymbol}
+      colorCounts={colorCounts}
+      randomSymbols={randomSymbols}
     />
   );
   const textElement = screen.getByText("Gib den Code ein!");
   expect(textElement).toBeInTheDocument();
 });
 
-test("Verify if the onColorSwitch function is called with the correct parameter when a ColorDiv is clicked.", async () => {
+test("onColorSwitch function is called with the correct parameter when a ColorDiv is clicked.", async () => {
   const onColorSwitch = jest.fn();
   const colors = ["red", "blue", "green"];
-  const count = { first: 0, second: 1, third: 2 };
-  const randomSymbol = ["A", "B", "C"];
+  const colorCounts = { first: 0, second: 1, third: 2 };
+  const randomSymbols = ["A", "B", "C"];
 
   render(
     <ColorPuzzle
       onColorSwitch={onColorSwitch}
       colors={colors}
-      count={count}
-      randomSymbol={randomSymbol}
+      colorCounts={colorCounts}
+      randomSymbols={randomSymbols}
     />
   );
 
@@ -50,15 +49,15 @@ test("Verify if the onColorSwitch function is called with the correct parameter 
   expect(onColorSwitch).toHaveBeenCalledWith("third");
 });
 
-test("Verify if the ColorDiv component has the correct color prop value", () => {
+test("ColorDiv component has the correct color prop value", () => {
   const colors = ["red", "green", "blue"];
-  const count = { first: 0, second: 1, third: 2 };
+  const colorCounts = { first: 0, second: 1, third: 2 };
   const { rerender } = render(
     <ColorPuzzle
       onColorSwitch={() => {}}
       colors={colors}
-      count={count}
-      randomSymbol={["A", "B", "C"]}
+      colorCounts={colorCounts}
+      randomSymbols={["A", "B", "C"]}
     />
   );
 
@@ -67,13 +66,13 @@ test("Verify if the ColorDiv component has the correct color prop value", () => 
   expect(colorDiv).toHaveStyle({ backgroundColor: "red" });
 
   // Update the props and rerender the component
-  count.first = 1;
+  colorCounts.first = 1;
   rerender(
     <ColorPuzzle
       onColorSwitch={() => {}}
       colors={colors}
-      count={count}
-      randomSymbol={["A", "B", "C"]}
+      colorCounts={colorCounts}
+      randomSymbols={["A", "B", "C"]}
     />
   );
 
@@ -85,13 +84,13 @@ test("Verify if the ColorDiv component has the correct color prop value", () => 
   expect(colorDiv).toHaveStyle({ backgroundColor: "green" });
 
   // Update the props and rerender the component
-  count.second = 2;
+  colorCounts.second = 2;
   rerender(
     <ColorPuzzle
       onColorSwitch={() => {}}
       colors={colors}
-      count={count}
-      randomSymbol={["A", "B", "C"]}
+      colorCounts={colorCounts}
+      randomSymbols={["A", "B", "C"]}
     />
   );
 
@@ -103,13 +102,13 @@ test("Verify if the ColorDiv component has the correct color prop value", () => 
   expect(colorDiv2).toHaveStyle({ backgroundColor: "blue" });
 
   // Update the props and rerender the component
-  count.third = 0;
+  colorCounts.third = 0;
   rerender(
     <ColorPuzzle
       onColorSwitch={() => {}}
       colors={colors}
-      count={count}
-      randomSymbol={["A", "B", "C"]}
+      colorCounts={colorCounts}
+      randomSymbols={["A", "B", "C"]}
     />
   );
 

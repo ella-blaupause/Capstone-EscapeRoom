@@ -3,8 +3,13 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import useLocalStorageState from "use-local-storage-state";
 
-export default function Door({ onNewGame, colors, randomColor, randomSymbol }) {
-  const [count, setCount] = useLocalStorageState("count", {
+export default function Door({
+  onNewGame,
+  colors,
+  randomColors,
+  randomSymbols,
+}) {
+  const [colorCounts, setcolorCounts] = useLocalStorageState("colorCounts", {
     defaultValue: { first: 2, second: 2, third: 2 },
   });
   const [isClient, setIsClient] = useState(false);
@@ -14,35 +19,35 @@ export default function Door({ onNewGame, colors, randomColor, randomSymbol }) {
 
   function handleColorSwitch(props) {
     if (props === "first") {
-      if (count.first >= colors.length - 1) {
-        count.first = -1;
-        setCount({ first: count.first, ...count });
+      if (colorCounts.first >= colors.length - 1) {
+        colorCounts.first = -1;
+        setcolorCounts({ first: colorCounts.first, ...colorCounts });
       }
-      count.first++;
-      setCount({ first: count.first, ...count });
+      colorCounts.first++;
+      setcolorCounts({ first: colorCounts.first, ...colorCounts });
     } else if (props === "second") {
-      if (count.second >= colors.length - 1) {
-        count.second = -1;
-        setCount({ second: count.second, ...count });
+      if (colorCounts.second >= colors.length - 1) {
+        colorCounts.second = -1;
+        setcolorCounts({ second: colorCounts.second, ...colorCounts });
       }
-      count.second++;
-      setCount({ second: count.second, ...count });
+      colorCounts.second++;
+      setcolorCounts({ second: colorCounts.second, ...colorCounts });
     } else if (props === "third") {
-      if (count.third >= colors.length - 1) {
-        count.third = -1;
-        setCount({ third: count.third, ...count });
+      if (colorCounts.third >= colors.length - 1) {
+        colorCounts.third = -1;
+        setcolorCounts({ third: colorCounts.third, ...colorCounts });
       }
-      count.third++;
-      setCount({ third: count.third, ...count });
+      colorCounts.third++;
+      setcolorCounts({ third: colorCounts.third, ...colorCounts });
     } else {
-      setCount({ first: 0, second: 0, third: 0 });
+      setcolorCounts({ first: 0, second: 0, third: 0 });
     }
   }
 
   if (
-    colors[count.first] === randomColor[2] &&
-    colors[count.second] === randomColor[0] &&
-    colors[count.third] === randomColor[1]
+    colors[colorCounts.first] === randomColors[2] &&
+    colors[colorCounts.second] === randomColors[0] &&
+    colors[colorCounts.third] === randomColors[1]
   ) {
     return (
       <>
@@ -58,19 +63,17 @@ export default function Door({ onNewGame, colors, randomColor, randomSymbol }) {
 
   return (
     <>
-      {isClient && (
-        <>
-          <Link href={"/"}>
-            <button>⬅️</button>
-          </Link>
+      <Link href={"/"}>
+        <button>⬅️</button>
+      </Link>
 
-          <ColorPuzzle
-            colors={colors}
-            onColorSwitch={handleColorSwitch}
-            count={count}
-            randomSymbol={randomSymbol}
-          />
-        </>
+      {isClient && (
+        <ColorPuzzle
+          colors={colors}
+          onColorSwitch={handleColorSwitch}
+          colorCounts={colorCounts}
+          randomSymbols={randomSymbols}
+        />
       )}
     </>
   );

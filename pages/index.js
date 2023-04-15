@@ -16,7 +16,7 @@ const GridContainer = styled.div`
   height: 667px;
 `;
 
-const Door = styled(Link)`
+const StyledDoor = styled(Link)`
   font-size: 100px;
   grid-column: 12 / span 2;
   grid-row: 10 / span 3;
@@ -25,17 +25,26 @@ const Door = styled(Link)`
   cursor: default;
 `;
 
-const LightButton = styled.button`
+const StyledLightButton = styled.button`
   grid-column: 11;
   grid-row: 11;
+`;
+
+const StyledPaper = styled(Link)`
+  font-size: 60px;
+  grid-column: 11 / span 2;
+  grid-row: 16 / span 2;
+  z-index: 1;
+  text-decoration: none;
+  cursor: default;
 `;
 
 export default function Room({
   onCollect,
   puzzlePieces,
   countPieces,
-  randomColor,
-  randomSymbol,
+  randomColors,
+  randomSymbols,
   onToggleOnOff,
   isOn,
 }) {
@@ -50,18 +59,18 @@ export default function Room({
           <CollectingArea
             countPieces={countPieces}
             puzzlePieces={puzzlePieces}
-            randomColor={randomColor}
-            randomSymbol={randomSymbol}
+            randomColors={randomColors}
+            randomSymbols={randomSymbols}
           />
           {!isOn && (
-            <Clue randomColor={randomColor} randomSymbol={randomSymbol} />
+            <Clue randomColors={randomColors} randomSymbols={randomSymbols} />
           )}
-          <Door href={"/door"}>🚪</Door>
+          <StyledDoor href={"/door"}>🚪</StyledDoor>
           <PuzzlePieces onCollect={onCollect} puzzlePieces={puzzlePieces} />
-
-          <LightButton type="button" onClick={onToggleOnOff}>
+          <StyledLightButton type="button" onClick={onToggleOnOff}>
             on/off
-          </LightButton>
+          </StyledLightButton>
+          <StyledPaper href={"/crossword"}>📝</StyledPaper>
         </GridContainer>
       )}
     </>

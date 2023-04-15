@@ -17,14 +17,14 @@ const StyledColorDiv = styled.div`
   background-color: ${(props) => props.color};
 `;
 
-export default function Clue({ randomColor, randomSymbol }) {
+export default function Clue({ randomColors, randomSymbols }) {
   return (
     <StyledClue>
-      <StyledColorDiv color={randomColor[1]} data-testid="color-div">
-        {randomSymbol[1]}
+      <StyledColorDiv color={randomColors[1]} data-testid="color-div">
+        {randomSymbols[1]}
       </StyledColorDiv>
-      <StyledColorDiv color={randomColor[2]} data-testid="color-div">
-        {randomSymbol[2]}
+      <StyledColorDiv color={randomColors[2]} data-testid="color-div">
+        {randomSymbols[2]}
       </StyledColorDiv>
     </StyledClue>
   );

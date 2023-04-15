@@ -20,28 +20,28 @@ const ColorDiv = styled.div`
 export default function ColorPuzzle({
   onColorSwitch,
   colors,
-  count,
-  randomSymbol,
+  colorCounts,
+  randomSymbols,
 }) {
   return (
     <>
       <p>Gib den Code ein!</p>
       <PuzzleDiv>
-        <span>{randomSymbol[2]}</span>
-        <span>{randomSymbol[0]}</span>
-        <span>{randomSymbol[1]}</span>
+        <span>{randomSymbols[2]}</span>
+        <span>{randomSymbols[0]}</span>
+        <span>{randomSymbols[1]}</span>
         <ColorDiv
-          color={colors[count.first]}
+          color={colors[colorCounts.first]}
           onClick={() => onColorSwitch("first")}
           data-testid="color-div-0"
         />
         <ColorDiv
-          color={colors[count.second]}
+          color={colors[colorCounts.second]}
           onClick={() => onColorSwitch("second")}
           data-testid="color-div-1"
         />
         <ColorDiv
-          color={colors[count.third]}
+          color={colors[colorCounts.third]}
           onClick={() => onColorSwitch("third")}
           data-testid="color-div-2"
         />
