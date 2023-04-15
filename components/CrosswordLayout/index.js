@@ -151,7 +151,12 @@ export default function CrosswordLayout() {
             : "Wähle eine Frage aus"}
         </label>
         <br />
-        <input id="answer" type="text" name="answer" />
+        <input
+          id="answer"
+          type="text"
+          name="answer"
+          placeholder="Antwort eingeben"
+        />
       </StyledForm>{" "}
     </>
   );
