@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { crosswordClues } from "../../utils/utils";
+import { crosswordClues, initialCrosswordClues } from "../../utils/utils";
+import { useState } from "react";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
