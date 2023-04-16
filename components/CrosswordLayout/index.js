@@ -33,7 +33,7 @@ export default function CrosswordLayout({ onCurrentClueId, crosswordClues }) {
             <Td isBlack></Td>
             <Td>
               <sup>1</sup>
-              {crosswordClues[0].isCorrectlyAnswered ? "M" : null}
+              {crosswordClues[0].isCorrectlyAnswered && "M"}
             </Td>
             <Td isBlack></Td>
             <Td isBlack></Td>
@@ -43,51 +43,48 @@ export default function CrosswordLayout({ onCurrentClueId, crosswordClues }) {
             <Td isBlack></Td>
             <Td>
               <sup>2</sup>
-              {crosswordClues[0].isCorrectlyAnswered ||
-              crosswordClues[1].isCorrectlyAnswered
-                ? "U"
-                : null}
+              {(crosswordClues[0].isCorrectlyAnswered ||
+                crosswordClues[1].isCorrectlyAnswered) &&
+                "U"}
             </Td>
-            <Td>{crosswordClues[1].isCorrectlyAnswered ? "H" : null}</Td>
-            <Td>{crosswordClues[1].isCorrectlyAnswered ? "R" : null}</Td>
+            <Td> {crosswordClues[1].isCorrectlyAnswered && "H"}</Td>
+            <Td>{crosswordClues[1].isCorrectlyAnswered && "R"}</Td>
             <Td isBlack></Td>
           </Tr>
           <Tr>
             <Td isBlack></Td>
-            <Td>{crosswordClues[0].isCorrectlyAnswered ? "S" : null}</Td>
+            <Td>{crosswordClues[0].isCorrectlyAnswered && "S"}</Td>
             <Td isBlack></Td>
             <Td isBlack></Td>
             <Td>
               <sup>4</sup>
-              {crosswordClues[3].isCorrectlyAnswered ? "O" : null}
+              {crosswordClues[3].isCorrectlyAnswered && "O"}
             </Td>
           </Tr>
           <Tr>
             <Td>
               <sup>3</sup>
-              {crosswordClues[2].isCorrectlyAnswered ? "T" : null}
+              {crosswordClues[2].isCorrectlyAnswered && "T"}
             </Td>
             <Td>
-              {crosswordClues[0].isCorrectlyAnswered ||
-              crosswordClues[2].isCorrectlyAnswered
-                ? "I"
-                : null}
+              {(crosswordClues[0].isCorrectlyAnswered ||
+                crosswordClues[2].isCorrectlyAnswered) &&
+                "I"}
             </Td>
-            <Td>{crosswordClues[2].isCorrectlyAnswered ? "S" : null}</Td>
-            <Td>{crosswordClues[2].isCorrectlyAnswered ? "C" : null}</Td>
+            <Td>{crosswordClues[2].isCorrectlyAnswered && "S"}</Td>
+            <Td>{crosswordClues[2].isCorrectlyAnswered && "C"}</Td>
             <Td>
-              {crosswordClues[2].isCorrectlyAnswered ||
-              crosswordClues[3].isCorrectlyAnswered
-                ? "H"
-                : null}
+              {(crosswordClues[2].isCorrectlyAnswered ||
+                crosswordClues[3].isCorrectlyAnswered) &&
+                "H"}
             </Td>
           </Tr>
           <Tr>
             <Td isBlack></Td>
-            <Td>{crosswordClues[0].isCorrectlyAnswered ? "K" : null}</Td>
+            <Td>{crosswordClues[0].isCorrectlyAnswered && "K"}</Td>
             <Td isBlack></Td>
             <Td isBlack></Td>
-            <Td>{crosswordClues[3].isCorrectlyAnswered ? "R" : null}</Td>
+            <Td>{crosswordClues[3].isCorrectlyAnswered && "R"}</Td>
           </Tr>
         </tbody>
       </StyledTable>
