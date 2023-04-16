@@ -9,19 +9,22 @@ const StyledForm = styled.form`
 export default function EntryForm({ onData, currentClueId }) {
   return (
     <StyledForm onSubmit={onData}>
-      <legend>Hinweis:</legend>
-      <label htmlFor="answer">
-        {currentClueId
-          ? initialCrosswordClues[currentClueId - 1].question
-          : "Wähle eine Frage aus"}
-      </label>
-      <br />
-      <input
-        id="answer"
-        type="text"
-        name="answer"
-        placeholder="Antwort eingeben"
-      />
+      <fieldset>
+        <legend>Hinweis:</legend>
+
+        <label htmlFor="answer">
+          {currentClueId
+            ? initialCrosswordClues[currentClueId - 1].question
+            : "Wähle eine Frage aus"}
+        </label>
+        <br />
+        <input
+          id="answer"
+          type="text"
+          name="answer"
+          placeholder="Antwort eingeben"
+        />
+      </fieldset>
     </StyledForm>
   );
 }
