@@ -56,22 +56,24 @@ const Progress = styled.div`
   }
 `;
 
-export default function Toast({ toasts, onDeleteToast, isSubmit }) {
+export default function Toast({ toasts, onDeleteToast, countSubmits }) {
   useEffect(() => {
     let interval;
-    if (isSubmit) {
+    if (countSubmits) {
       interval = setTimeout(() => onDeleteToast(), 3000);
     }
     return () => {
       clearTimeout(interval);
     };
-  }, [isSubmit]);
-
+  }, [countSubmits]);
+  console.log("hallo");
   return (
     <>
       {toasts.map((toast) => (
         <StyledToast key={toast.id} borderColor={toast.borderColor}>
-          <span aria-label={toast.ariaLabel}>{toast.emoji} </span>
+          <span role="image" aria-label={toast.ariaLabel}>
+            {toast.emoji}{" "}
+          </span>
           <span>{toast.title}</span>
           <DeleteButton onClick={() => onDeleteToast()}>x</DeleteButton>
           <Progress />
