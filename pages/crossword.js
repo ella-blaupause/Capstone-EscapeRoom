@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import CrosswordLayout from "../components/CrosswordLayout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EntryForm from "../components/EntryForm";
 import { initialCrosswordClues } from "../utils/utils";
 import Toast from "../components/Toast";
@@ -20,6 +20,8 @@ export default function Crossword() {
   const [currentClueId, setCurrentClueId] = useState(null);
   const [crosswordClues, setCrosswordClues] = useState(initialCrosswordClues);
   const [toasts, setToasts] = useState([]);
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [entryCharacterLength, setEntryCharacterLength] = useState(0);
 
   function handleData(event) {
     event.preventDefault();
@@ -27,11 +29,16 @@ export default function Crossword() {
     const data = Object.fromEntries(formData);
 
     checkAnswer(data);
+    setIsSubmit(isSubmit + 1);
+
+    event.target.reset();
   }
+
   function getCurrentClueId(crosswordCluesId) {
     setCurrentClueId(crosswordCluesId);
   }
 
+  //Überprüft Antwort und gibt Toastmassege
   function checkAnswer(data) {
     if (currentClueId === null) {
       toastProperties = {
@@ -42,11 +49,11 @@ export default function Crossword() {
       };
       return setToasts([toastProperties]);
     }
+
     const currentCrosswordClue = crosswordClues.find(
       (clue) => clue.id === currentClueId
     );
     const correctAnswer = currentCrosswordClue.answer.toLowerCase();
-    console.log(correctAnswer.length);
     const enteredAnswer = data.answer.toLowerCase();
 
     if (enteredAnswer === correctAnswer) {
@@ -63,7 +70,7 @@ export default function Crossword() {
             : clue
         )
       );
-      return setToasts([toastProperties]);
+      setToasts([toastProperties]);
     } else {
       toastProperties = {
         id: 2,
@@ -71,11 +78,16 @@ export default function Crossword() {
         emoji: "✘",
         borderColor: "red",
       };
-      return setToasts([toastProperties]);
+      setToasts([toastProperties]);
     }
   }
+
   function handleDeleteToast() {
     setToasts([]);
+  }
+
+  function handleChangeData(event) {
+    setEntryCharacterLength(event.target.value.length);
   }
 
   return (
@@ -89,8 +101,17 @@ export default function Crossword() {
           onCurrentClueId={getCurrentClueId}
           crosswordClues={crosswordClues}
         />
-        <EntryForm onData={handleData} currentClueId={currentClueId} />
-        <Toast toasts={toasts} onDeleteToast={handleDeleteToast}></Toast>
+        <EntryForm
+          onData={handleData}
+          onChangeData={handleChangeData}
+          currentClueId={currentClueId}
+          entryCharacterLength={entryCharacterLength}
+        />
+        <Toast
+          isSubmit={isSubmit}
+          toasts={toasts}
+          onDeleteToast={handleDeleteToast}
+        ></Toast>
       </StyldedDiv>
     </>
   );

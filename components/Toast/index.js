@@ -56,15 +56,16 @@ const Progress = styled.div`
   }
 `;
 
-export default function Toast({ toasts, onDeleteToast }) {
+export default function Toast({ toasts, onDeleteToast, isSubmit }) {
   useEffect(() => {
-    const interval = setInterval(() => {
-      onDeleteToast();
-    }, 3000);
+    let interval;
+    if (isSubmit) {
+      interval = setTimeout(() => onDeleteToast(), 3000);
+    }
     return () => {
-      clearInterval(interval);
+      clearTimeout(interval);
     };
-  }, [toasts]);
+  }, [isSubmit]);
 
   return (
     <>
