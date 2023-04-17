@@ -2,12 +2,14 @@ import create from "zustand";
 import {
   colors,
   getRandomColor,
+  getRandomNumbers,
   initialPuzzlePieces,
   symbols,
 } from "../utils/utils";
 
 const randomNumbers = getRandomNumbers(symbols.length);
-export default useStore = create((set) => ({
+qui;
+const useStore = create((set) => ({
   isOn: true,
   randomColors: [
     colors[getRandomColor()],
@@ -27,3 +29,5 @@ export default useStore = create((set) => ({
       countPieces: state.countPieces + 1,
     })),
 }));
+
+export default useStore;
