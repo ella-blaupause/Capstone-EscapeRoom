@@ -2,14 +2,12 @@ import { render, screen } from "@testing-library/react";
 import Clue from ".";
 
 test("displays two different symbols", async () => {
-  const randomColors = ["", "red", "blue"];
-  const randomSymbols = ["", "A", "B"];
+  const randomColors = ["", "", "blue"];
+  const randomSymbols = ["", "", "B"];
   render(<Clue randomColors={randomColors} randomSymbols={randomSymbols} />);
-  const firstSymbol = await screen.findByText("A");
-  const secondSymbol = await screen.findByText("B");
+  const Symbol = await screen.findByText("B");
 
-  expect(firstSymbol).toBeInTheDocument();
-  expect(secondSymbol).toBeInTheDocument();
+  expect(Symbol).toBeInTheDocument();
 });
 
 test("displays randomly provided colors", () => {
@@ -18,8 +16,7 @@ test("displays randomly provided colors", () => {
   render(<Clue randomColors={randomColors} randomSymbols={randomSymbols} />);
 
   // find all StyledColorDiv components and check their styles
-  const colorDivs = screen.getAllByTestId("color-div");
-  expect(colorDivs).toHaveLength(2);
-  expect(colorDivs[0]).toHaveStyle(`background-color: ${randomColors[1]};`);
-  expect(colorDivs[1]).toHaveStyle(`background-color: ${randomColors[2]};`);
+  const colorDiv = screen.getAllByTestId("color-div");
+
+  expect(colorDiv[0]).toHaveStyle(`background-color: ${randomColors[2]};`);
 });

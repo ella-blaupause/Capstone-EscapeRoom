@@ -66,7 +66,7 @@ export default function Toast({ toasts, onDeleteToast, countSubmits }) {
       clearTimeout(interval);
     };
   }, [countSubmits]);
-  console.log("hallo");
+
   return (
     <>
       {toasts.map((toast) => (
