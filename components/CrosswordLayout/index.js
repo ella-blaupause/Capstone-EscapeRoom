@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { crosswordClues } from "../../utils/utils";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -25,51 +24,78 @@ const StyledOl = styled.ol`
   grid-row: 1;
 `;
 
-export default function CrosswordLayout() {
+export default function CrosswordLayout({ onCurrentClueId, crosswordClues }) {
   return (
     <>
       <StyledTable>
         <tbody>
           <Tr>
             <Td isBlack></Td>
-            <Td></Td>
+            <Td>
+              <sup>1</sup>
+              {crosswordClues[0].isCorrectlyAnswered && "M"}
+            </Td>
             <Td isBlack></Td>
             <Td isBlack></Td>
             <Td isBlack></Td>
           </Tr>
           <Tr>
             <Td isBlack></Td>
-            <Td></Td>
-            <Td></Td>
-            <Td></Td>
+            <Td>
+              <sup>2</sup>
+              {(crosswordClues[0].isCorrectlyAnswered ||
+                crosswordClues[1].isCorrectlyAnswered) &&
+                "U"}
+            </Td>
+            <Td> {crosswordClues[1].isCorrectlyAnswered && "H"}</Td>
+            <Td>{crosswordClues[1].isCorrectlyAnswered && "R"}</Td>
             <Td isBlack></Td>
           </Tr>
           <Tr>
             <Td isBlack></Td>
-            <Td></Td>
+            <Td>{crosswordClues[0].isCorrectlyAnswered && "S"}</Td>
             <Td isBlack></Td>
             <Td isBlack></Td>
-            <Td></Td>
+            <Td>
+              <sup>4</sup>
+              {crosswordClues[3].isCorrectlyAnswered && "O"}
+            </Td>
           </Tr>
           <Tr>
-            <Td></Td>
-            <Td></Td>
-            <Td></Td>
-            <Td></Td>
-            <Td></Td>
+            <Td>
+              <sup>3</sup>
+              {crosswordClues[2].isCorrectlyAnswered && "T"}
+            </Td>
+            <Td>
+              {(crosswordClues[0].isCorrectlyAnswered ||
+                crosswordClues[2].isCorrectlyAnswered) &&
+                "I"}
+            </Td>
+            <Td>{crosswordClues[2].isCorrectlyAnswered && "S"}</Td>
+            <Td>{crosswordClues[2].isCorrectlyAnswered && "C"}</Td>
+            <Td>
+              {(crosswordClues[2].isCorrectlyAnswered ||
+                crosswordClues[3].isCorrectlyAnswered) &&
+                "H"}
+            </Td>
           </Tr>
           <Tr>
             <Td isBlack></Td>
-            <Td></Td>
+            <Td>{crosswordClues[0].isCorrectlyAnswered && "K"}</Td>
             <Td isBlack></Td>
             <Td isBlack></Td>
-            <Td></Td>
+            <Td>{crosswordClues[3].isCorrectlyAnswered && "R"}</Td>
           </Tr>
         </tbody>
       </StyledTable>
       <StyledOl>
         {crosswordClues.map((crosswordClue) => (
-          <li key={crosswordClue.id}>{crosswordClue.question}</li>
+          <li
+            key={crosswordClue.id}
+            onClick={() => onCurrentClueId(crosswordClue.id)}
+          >
+            {crosswordClue.question}
+          </li>
         ))}
       </StyledOl>
     </>
