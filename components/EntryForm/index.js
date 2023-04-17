@@ -24,6 +24,7 @@ export default function EntryForm({ onData, currentClueId }) {
           name="answer"
           placeholder="Antwort eingeben"
         />
+        <button type="submit">ok</button>
       </fieldset>
     </StyledForm>
   );
