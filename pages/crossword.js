@@ -109,9 +109,14 @@ export default function Crossword({ randomColors, randomSymbols }) {
 
   if (countRightAnswer === initialCrosswordClues.length) {
     return (
-      <StyledColorDiv1 color={randomColors[1]} data-testid="color-div">
-        {randomSymbols[1]}
-      </StyledColorDiv1>
+      <>
+        <Link href={"/"}>
+          <span>⬅️</span>
+        </Link>
+        <StyledColorDiv1 color={randomColors[1]} data-testid="color-div">
+          {randomSymbols[1]}
+        </StyledColorDiv1>
+      </>
     );
   }
 
