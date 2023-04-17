@@ -20,7 +20,7 @@ export default function Crossword() {
   const [currentClueId, setCurrentClueId] = useState(null);
   const [crosswordClues, setCrosswordClues] = useState(initialCrosswordClues);
   const [toasts, setToasts] = useState([]);
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(0);
   const [entryCharacterLength, setEntryCharacterLength] = useState(0);
 
   function handleData(event) {
@@ -42,9 +42,9 @@ export default function Crossword() {
   function checkAnswer(data) {
     if (currentClueId === null) {
       toastProperties = {
-        id: 3,
         title: "Frage auswählen",
         emoji: "?",
+        ariaLabel: "",
         borderColor: "grey",
       };
       return setToasts([toastProperties]);
@@ -58,9 +58,9 @@ export default function Crossword() {
 
     if (enteredAnswer === correctAnswer) {
       toastProperties = {
-        id: 1,
         title: "Richtig",
         emoji: "✓",
+        ariaLabel: "Antwort ist richtig",
         borderColor: "green",
       };
       setCrosswordClues((clues) =>
@@ -73,9 +73,9 @@ export default function Crossword() {
       setToasts([toastProperties]);
     } else {
       toastProperties = {
-        id: 2,
         title: "Falsch",
         emoji: "✘",
+        ariaLabel: "Antwort ist falsch",
         borderColor: "red",
       };
       setToasts([toastProperties]);
@@ -93,7 +93,7 @@ export default function Crossword() {
   return (
     <>
       <Link href={"/"}>
-        <button>⬅️</button>
+        <span>⬅️</span>
       </Link>
       <StyldedDiv>
         <h2>Kreuzworträtsel</h2>
@@ -111,7 +111,7 @@ export default function Crossword() {
           isSubmit={isSubmit}
           toasts={toasts}
           onDeleteToast={handleDeleteToast}
-        ></Toast>
+        />
       </StyldedDiv>
     </>
   );

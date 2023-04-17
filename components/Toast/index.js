@@ -71,7 +71,7 @@ export default function Toast({ toasts, onDeleteToast, isSubmit }) {
     <>
       {toasts.map((toast) => (
         <StyledToast key={toast.id} borderColor={toast.borderColor}>
-          <span>{toast.emoji}</span>
+          <span aria-label={toast.ariaLabel}>{toast.emoji} </span>
           <span>{toast.title}</span>
           <DeleteButton onClick={() => onDeleteToast()}>x</DeleteButton>
           <Progress />

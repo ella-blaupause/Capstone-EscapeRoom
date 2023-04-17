@@ -64,7 +64,7 @@ export default function Door({
   return (
     <>
       <Link href={"/"}>
-        <button>⬅️</button>
+        <span>⬅️</span>
       </Link>
 
       {isClient && (
