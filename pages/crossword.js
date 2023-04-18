@@ -75,7 +75,7 @@ export default function Crossword({ randomColors, randomSymbols }) {
         id: 2,
         title: "Richtig",
         emoji: "✓",
-        ariaLabel: "Hacken",
+        ariaLabel: "Richtig Haken",
         borderColor: "green",
       };
       setCrosswordClues((clues) =>
@@ -92,7 +92,7 @@ export default function Crossword({ randomColors, randomSymbols }) {
         id: 3,
         title: "Falsch",
         emoji: "✘",
-        ariaLabel: "Kreuz",
+        ariaLabel: "Falsch Kreuz",
         borderColor: "red",
       };
       setToasts([toastProperties]);
