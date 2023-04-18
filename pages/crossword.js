@@ -1,12 +1,12 @@
 import Link from "next/link";
 import styled from "styled-components";
 import CrosswordLayout from "../components/CrosswordLayout";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import EntryForm from "../components/EntryForm";
 import { initialCrosswordClues } from "../utils/utils";
 import Toast from "../components/Toast";
 
-const StyldedDiv = styled.div`
+const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,14 +14,23 @@ const StyldedDiv = styled.div`
   height: 667px;
 `;
 
+const StyledColorDiv1 = styled.div`
+  height: 2em;
+  width: 2em;
+  display: grid;
+  place-items: center;
+  background-color: ${(props) => props.color};
+`;
+
 let toastProperties;
 
-export default function Crossword() {
+export default function Crossword({ randomColors, randomSymbols }) {
   const [currentClueId, setCurrentClueId] = useState(null);
   const [crosswordClues, setCrosswordClues] = useState(initialCrosswordClues);
   const [toasts, setToasts] = useState([]);
-  const [isSubmit, setIsSubmit] = useState(0);
+  const [countSubmits, setCountSubmits] = useState(0);
   const [entryCharacterLength, setEntryCharacterLength] = useState(0);
+  const [countRightAnswer, setCountRightAnswer] = useState(0);
 
   function handleData(event) {
     event.preventDefault();
@@ -29,9 +38,10 @@ export default function Crossword() {
     const data = Object.fromEntries(formData);
 
     checkAnswer(data);
-    setIsSubmit(isSubmit + 1);
+    setCountSubmits(countSubmits + 1);
 
     event.target.reset();
+    setEntryCharacterLength(0);
   }
 
   function getCurrentClueId(crosswordCluesId) {
@@ -42,6 +52,7 @@ export default function Crossword() {
   function checkAnswer(data) {
     if (currentClueId === null) {
       toastProperties = {
+        id: 1,
         title: "Frage auswählen",
         emoji: "?",
         ariaLabel: "",
@@ -56,11 +67,15 @@ export default function Crossword() {
     const correctAnswer = currentCrosswordClue.answer.toLowerCase();
     const enteredAnswer = data.answer.toLowerCase();
 
-    if (enteredAnswer === correctAnswer) {
+    if (
+      enteredAnswer === correctAnswer &&
+      crosswordClues[currentClueId - 1].isCorrectlyAnswered === false
+    ) {
       toastProperties = {
+        id: 2,
         title: "Richtig",
         emoji: "✓",
-        ariaLabel: "Antwort ist richtig",
+        ariaLabel: "Hacken",
         borderColor: "green",
       };
       setCrosswordClues((clues) =>
@@ -70,12 +85,14 @@ export default function Crossword() {
             : clue
         )
       );
+      setCountRightAnswer(countRightAnswer + 1);
       setToasts([toastProperties]);
-    } else {
+    } else if (enteredAnswer !== correctAnswer) {
       toastProperties = {
+        id: 3,
         title: "Falsch",
         emoji: "✘",
-        ariaLabel: "Antwort ist falsch",
+        ariaLabel: "Kreuz",
         borderColor: "red",
       };
       setToasts([toastProperties]);
@@ -90,12 +107,25 @@ export default function Crossword() {
     setEntryCharacterLength(event.target.value.length);
   }
 
+  if (countRightAnswer === initialCrosswordClues.length) {
+    return (
+      <>
+        <Link href={"/"}>
+          <span>⬅️</span>
+        </Link>
+        <StyledColorDiv1 color={randomColors[1]} data-testid="color-div">
+          {randomSymbols[1]}
+        </StyledColorDiv1>
+      </>
+    );
+  }
+
   return (
     <>
       <Link href={"/"}>
         <span>⬅️</span>
       </Link>
-      <StyldedDiv>
+      <StyledDiv>
         <h2>Kreuzworträtsel</h2>
         <CrosswordLayout
           onCurrentClueId={getCurrentClueId}
@@ -108,11 +138,11 @@ export default function Crossword() {
           entryCharacterLength={entryCharacterLength}
         />
         <Toast
-          isSubmit={isSubmit}
+          countSubmits={countSubmits}
           toasts={toasts}
           onDeleteToast={handleDeleteToast}
         />
-      </StyldedDiv>
+      </StyledDiv>
     </>
   );
 }
