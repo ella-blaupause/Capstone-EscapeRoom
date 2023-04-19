@@ -4,6 +4,7 @@ import Clue from "../components/Clue";
 import PuzzlePieces from "../components/PuzzlePieces";
 import CollectingArea from "../components/CollectingArea";
 import { useEffect, useState } from "react";
+import useStore from "../store";
 
 const GridContainer = styled.div`
   background-color: ghostwhite;
@@ -12,7 +13,7 @@ const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(15, 1fr);
   grid-template-rows: repeat(20, 1fr);
-  width: 375px;
+  width: 320px;
   height: 667px;
 `;
 
@@ -46,8 +47,10 @@ export default function Room({
   randomColors,
   randomSymbols,
   onToggleOnOff,
-  isOn,
+  /* isOn, */
 }) {
+  const isOn = useStore((state) => state.isOn);
+
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
     setIsClient(true);

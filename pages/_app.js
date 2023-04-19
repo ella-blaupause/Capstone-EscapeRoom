@@ -8,17 +8,22 @@ import {
   symbols,
 } from "../utils/utils";
 import { useState } from "react";
+import Layout from "../components/Layout";
+import useStore from "../store";
 
 const randomNumbers = getRandomNumbers(symbols.length);
 
 export default function App({ Component, pageProps }) {
-  const [isOn, setIsOn] = useLocalStorageState("isOn", { defaultValue: true });
-
-  const [randomColors, setRandomColors] = useState([
+  //const [isOn, setIsOn] = useLocalStorageState("isOn", { defaultValue: true });
+  const isOn = useStore((state) => state.isOn);
+  const setIsOn = useStore((state) => state.switchLigth);
+  const randomColors = useStore((state) => state.randomColors);
+  console.log(randomColors);
+  /* const [randomColors, setRandomColors] = useState([
     colors[getRandomColor()],
     colors[getRandomColor()],
     colors[getRandomColor()],
-  ]);
+  ]); */
 
   const [randomSymbols, setRandomSymbols] = useState([
     symbols[randomNumbers[0]],
@@ -75,18 +80,20 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <Component
-        onNewGame={handleNewGame}
-        colors={colors}
-        randomColors={randomColors}
-        randomSymbols={randomSymbols}
-        onToggleOnOff={handleToggleOnOff}
-        onCollect={handleCollect}
-        puzzlePieces={puzzlePieces}
-        countPieces={countPieces}
-        isOn={isOn}
-        {...pageProps}
-      />
+      <Layout>
+        <Component
+          onNewGame={handleNewGame}
+          colors={colors}
+          randomColors={randomColors}
+          randomSymbols={randomSymbols}
+          onToggleOnOff={handleToggleOnOff}
+          onCollect={handleCollect}
+          puzzlePieces={puzzlePieces}
+          countPieces={countPieces}
+          /* isOn={isOn} */
+          {...pageProps}
+        />
+      </Layout>
     </>
   );
 }
