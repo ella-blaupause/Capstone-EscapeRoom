@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { ArrowUndoUpLeft } from "../../utils/icons";
+import Link from "next/link";
 
 const StyledHeader = styled.header`
   background-color: var(--my-blue);
@@ -19,9 +21,20 @@ const Title = styled.h1`
   color: var(--my-yellow);
 `;
 
-export default function Header({ children }) {
+const StyledLink = styled(Link)`
+  position: absolute;
+  top: 10px;
+  left: 15px;
+`;
+
+export default function Header({ children, isBackArrow }) {
   return (
     <StyledHeader>
+      {isBackArrow && (
+        <StyledLink href={"/"}>
+          <ArrowUndoUpLeft />
+        </StyledLink>
+      )}
       <Title>{children}</Title>
     </StyledHeader>
   );

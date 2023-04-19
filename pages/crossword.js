@@ -111,10 +111,8 @@ export default function Crossword({ randomColors, randomSymbols }) {
   if (countRightAnswer === initialCrosswordClues.length) {
     return (
       <>
-        <Header>Kreuzworträtsel</Header>
-        <Link href={"/"}>
-          <span>⬅️</span>
-        </Link>
+        <Header isBackArrow>Kreuzworträtsel</Header>
+
         <StyledColorDiv1 color={randomColors[1]} data-testid="color-div">
           {randomSymbols[1]}
         </StyledColorDiv1>
@@ -124,10 +122,8 @@ export default function Crossword({ randomColors, randomSymbols }) {
 
   return (
     <>
-      <Header>Kreuzworträtsel</Header>
-      <Link href={"/"}>
-        <span>⬅️</span>
-      </Link>
+      <Header isBackArrow>Kreuzworträtsel</Header>
+
       <StyledDiv>
         <h2>Kreuzworträtsel</h2>
         <CrosswordLayout

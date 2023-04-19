@@ -64,10 +64,7 @@ export default function Door({
 
   return (
     <>
-      <Header>Tür</Header>
-      <Link href={"/"}>
-        <span>⬅️</span>
-      </Link>
+      <Header isBackArrow>Tür</Header>
 
       {isClient && (
         <ColorPuzzle
