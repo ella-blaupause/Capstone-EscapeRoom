@@ -5,6 +5,7 @@ import PuzzlePieces from "../components/PuzzlePieces";
 import CollectingArea from "../components/CollectingArea";
 import { useEffect, useState } from "react";
 import useStore from "../store";
+import Header from "../components/Header";
 
 const GridContainer = styled.div`
   background-color: ghostwhite;
@@ -47,16 +48,15 @@ export default function Room({
   randomColors,
   randomSymbols,
   onToggleOnOff,
-  /* isOn, */
+  isOn,
 }) {
-  const isOn = useStore((state) => state.isOn);
-
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
     setIsClient(true);
   }, []);
   return (
     <>
+      <Header>Zimmer</Header>
       {isClient && (
         <GridContainer isOn={isOn}>
           <CollectingArea

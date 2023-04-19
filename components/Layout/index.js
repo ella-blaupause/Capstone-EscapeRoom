@@ -23,7 +23,6 @@ const Main = styled.main`
 export default function Layout({ children }) {
   return (
     <Wrapper>
-      <Header />
       <Main>{children}</Main>
     </Wrapper>
   );

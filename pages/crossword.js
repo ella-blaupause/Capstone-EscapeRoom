@@ -5,6 +5,7 @@ import { useState } from "react";
 import EntryForm from "../components/EntryForm";
 import { initialCrosswordClues } from "../utils/utils";
 import Toast from "../components/Toast";
+import Header from "../components/Header";
 
 const StyledDiv = styled.div`
   display: flex;
@@ -110,6 +111,7 @@ export default function Crossword({ randomColors, randomSymbols }) {
   if (countRightAnswer === initialCrosswordClues.length) {
     return (
       <>
+        <Header>Kreuzworträtsel</Header>
         <Link href={"/"}>
           <span>⬅️</span>
         </Link>
@@ -122,6 +124,7 @@ export default function Crossword({ randomColors, randomSymbols }) {
 
   return (
     <>
+      <Header>Kreuzworträtsel</Header>
       <Link href={"/"}>
         <span>⬅️</span>
       </Link>

@@ -19,10 +19,10 @@ const Title = styled.h1`
   color: var(--my-yellow);
 `;
 
-export default function Header() {
+export default function Header({ children }) {
   return (
     <StyledHeader>
-      <Title>Escape Room</Title>
+      <Title>{children}</Title>
     </StyledHeader>
   );
 }
