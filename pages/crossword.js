@@ -1,4 +1,3 @@
-import Link from "next/link";
 import styled from "styled-components";
 import CrosswordLayout from "../components/CrosswordLayout";
 import { useState } from "react";
@@ -16,9 +15,11 @@ const StyledDiv = styled.div`
 `;
 
 const StyledColorDiv1 = styled.div`
+  margin: 68px;
   height: 2em;
   width: 2em;
   display: grid;
+  font-size: 80px;
   place-items: center;
   background-color: ${(props) => props.color};
 `;

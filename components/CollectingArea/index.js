@@ -9,6 +9,7 @@ const Area = styled.div`
   padding: 0 8px;
   display: ${(props) => (props.countPieces ? "grid" : null)};
   place-items: center;
+  background-color: var(--my-yellow);
 `;
 
 const StyledColorDiv0 = styled.div`
