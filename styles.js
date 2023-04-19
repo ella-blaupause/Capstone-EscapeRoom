@@ -16,6 +16,9 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-family: 'Comic Sans MS', sans-serif;
     background-color: var(--my-beige);
   }
