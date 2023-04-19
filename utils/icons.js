@@ -13,9 +13,9 @@ export function ArrowUndoUpLeft() {
             id="Vector"
             d="M11.6667 21.6667L5 15M5 15L11.6667 8.33334M5 15H26.6667C31.269 15 35 18.731 35 23.3333C35 27.9357 31.269 31.6667 26.6667 31.6667H18.3333"
             stroke="#FF6E40"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </g>
       </svg>
