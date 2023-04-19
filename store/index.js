@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 import {
   colors,
   getRandomColor,
@@ -8,7 +8,7 @@ import {
 } from "../utils/utils";
 
 const randomNumbers = getRandomNumbers(symbols.length);
-qui;
+
 const useStore = create((set) => ({
   isOn: true,
   randomColors: [
