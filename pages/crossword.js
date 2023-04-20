@@ -1,10 +1,10 @@
-import Link from "next/link";
 import styled from "styled-components";
 import CrosswordLayout from "../components/CrosswordLayout";
 import { useState } from "react";
 import EntryForm from "../components/EntryForm";
 import { initialCrosswordClues } from "../utils/utils";
 import Toast from "../components/Toast";
+import Header from "../components/Header";
 
 const StyledDiv = styled.div`
   display: flex;
@@ -15,9 +15,11 @@ const StyledDiv = styled.div`
 `;
 
 const StyledColorDiv1 = styled.div`
+  margin: 68px;
   height: 2em;
   width: 2em;
   display: grid;
+  font-size: 80px;
   place-items: center;
   background-color: ${(props) => props.color};
 `;
@@ -75,7 +77,7 @@ export default function Crossword({ randomColors, randomSymbols }) {
         id: 2,
         title: "Richtig",
         emoji: "✓",
-        ariaLabel: "Hacken",
+        ariaLabel: "Richtig Haken",
         borderColor: "green",
       };
       setCrosswordClues((clues) =>
@@ -92,7 +94,7 @@ export default function Crossword({ randomColors, randomSymbols }) {
         id: 3,
         title: "Falsch",
         emoji: "✘",
-        ariaLabel: "Kreuz",
+        ariaLabel: "Falsch Kreuz",
         borderColor: "red",
       };
       setToasts([toastProperties]);
@@ -110,9 +112,8 @@ export default function Crossword({ randomColors, randomSymbols }) {
   if (countRightAnswer === initialCrosswordClues.length) {
     return (
       <>
-        <Link href={"/"}>
-          <span>⬅️</span>
-        </Link>
+        <Header isBackArrow>Kreuzworträtsel</Header>
+
         <StyledColorDiv1 color={randomColors[1]} data-testid="color-div">
           {randomSymbols[1]}
         </StyledColorDiv1>
@@ -122,9 +123,8 @@ export default function Crossword({ randomColors, randomSymbols }) {
 
   return (
     <>
-      <Link href={"/"}>
-        <span>⬅️</span>
-      </Link>
+      <Header isBackArrow>Kreuzworträtsel</Header>
+
       <StyledDiv>
         <h2>Kreuzworträtsel</h2>
         <CrosswordLayout

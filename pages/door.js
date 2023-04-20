@@ -2,6 +2,7 @@ import ColorPuzzle from "../components/ColorPuzzle";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import useLocalStorageState from "use-local-storage-state";
+import Header from "../components/Header";
 
 export default function Door({
   onNewGame,
@@ -63,9 +64,7 @@ export default function Door({
 
   return (
     <>
-      <Link href={"/"}>
-        <span>⬅️</span>
-      </Link>
+      <Header isBackArrow>Tür</Header>
 
       {isClient && (
         <ColorPuzzle
