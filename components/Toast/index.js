@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const StyledToast = styled.div`
   position: absolute;
-  bottom: 20vh;
+  bottom: 5vh;
   right: 0;
   background-color: white;
   overflow: hidden;
