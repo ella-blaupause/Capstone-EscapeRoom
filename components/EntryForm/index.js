@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { initialCrosswordClues } from "../../utils/utils";
-import { useState } from "react";
 
 const StyledForm = styled.form`
   grid-column: 1 / span 2;

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import useLocalStorageState from "use-local-storage-state";
 import Header from "../components/Header";
+import MyButton from "../components/MyButton";
 
 export default function Door({
   onNewGame,
@@ -53,10 +54,10 @@ export default function Door({
     return (
       <>
         <h1>Freiheit</h1>
-        <Link href={"/"}>
-          <button type="button" onClick={() => onNewGame()}>
+        <Link href={"/room"}>
+          <MyButton fontSize={"16px"} onClick={() => onNewGame()}>
             Noch mal spielen
-          </button>
+          </MyButton>
         </Link>
       </>
     );

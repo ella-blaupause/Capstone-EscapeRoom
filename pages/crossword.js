@@ -6,7 +6,7 @@ import { initialCrosswordClues } from "../utils/utils";
 import Toast from "../components/Toast";
 import Header from "../components/Header";
 
-const StyledDiv = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,7 +125,7 @@ export default function Crossword({ randomColors, randomSymbols }) {
     <>
       <Header isBackArrow>Kreuzworträtsel</Header>
 
-      <StyledDiv>
+      <Wrapper>
         <h2>Kreuzworträtsel</h2>
         <CrosswordLayout
           onCurrentClueId={getCurrentClueId}
@@ -142,7 +142,7 @@ export default function Crossword({ randomColors, randomSymbols }) {
           toasts={toasts}
           onDeleteToast={handleDeleteToast}
         />
-      </StyledDiv>
+      </Wrapper>
     </>
   );
 }

@@ -12,12 +12,13 @@ const Wrapper = styled.div`
 const Main = styled.main`
   position: absolute;
   width: 320px;
-  height: 433px;
+  height: 100vw;
   top: 67px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
+
+  paddin: 68px 0 0 0;
 `;
 
 export default function Layout({ children }) {

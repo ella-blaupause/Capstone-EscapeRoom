@@ -31,7 +31,7 @@ export default function Header({ children, isBackArrow }) {
   return (
     <StyledHeader>
       {isBackArrow && (
-        <StyledLink href={"/"}>
+        <StyledLink href={"/room"}>
           <ArrowUndoUpLeft />
         </StyledLink>
       )}
