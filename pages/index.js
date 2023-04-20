@@ -1,7 +1,7 @@
-import Link from "next/link";
 import Header from "../components/Header";
 import MyButton from "../components/MyButton";
 import styled from "styled-components";
+import { HouseSvg } from "../utils/icons";
 
 const Wrapper = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   height: 667px;
 `;
 
-const StartLink = styled(Link)`
+const StartDiv = styled.div`
   position: absolute;
   transform: translate(-50%, -50%);
   left: 50%;
@@ -22,11 +22,11 @@ export default function HomePage({ onNewGame }) {
   return (
     <Wrapper>
       <Header>Escape Room</Header>
-      <StartLink href={"/room"}>
+      <StartDiv>
         <MyButton type="button" fontSize={"24px"} onNewGame={onNewGame}>
           Start
         </MyButton>
-      </StartLink>
+      </StartDiv>
     </Wrapper>
   );
 }

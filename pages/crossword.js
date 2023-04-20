@@ -137,6 +137,10 @@ export default function Crossword({ randomColors, randomSymbols }) {
           currentClueId={currentClueId}
           entryCharacterLength={entryCharacterLength}
         />
+        <p>
+          ❗️ Wenn du eine Frage auswählen willst, drücke auf die Nummer in der
+          Liste ❗️
+        </p>
         <Toast
           countSubmits={countSubmits}
           toasts={toasts}

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Header from "../Header";
+import Navigation from "../Navigation";
 
 const Wrapper = styled.div`
   display: flex;
@@ -25,6 +26,7 @@ export default function Layout({ children }) {
   return (
     <Wrapper>
       <Main>{children}</Main>
+      <Navigation />
     </Wrapper>
   );
 }
