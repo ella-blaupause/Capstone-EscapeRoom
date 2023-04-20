@@ -23,7 +23,7 @@ export default function HomePage({ onNewGame }) {
     <Wrapper>
       <Header>Escape Room</Header>
       <StartLink href={"/room"}>
-        <MyButton fontSize={"24px"} onClick={() => onNewGame()}>
+        <MyButton type="button" fontSize={"24px"} onNewGame={onNewGame}>
           Start
         </MyButton>
       </StartLink>

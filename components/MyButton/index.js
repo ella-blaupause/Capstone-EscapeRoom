@@ -9,6 +9,10 @@ const StyledButton = styled.button`
   border-color: black;
 `;
 
-export default function MyButton({ children, fontSize }) {
-  return <StyledButton fontSize={fontSize}>{children}</StyledButton>;
+export default function MyButton({ children, fontSize, onNewGame }) {
+  return (
+    <StyledButton type="button" fontSize={fontSize} onClick={() => onNewGame()}>
+      {children}
+    </StyledButton>
+  );
 }

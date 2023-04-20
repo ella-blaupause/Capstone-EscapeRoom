@@ -55,7 +55,7 @@ export default function Door({
       <>
         <h1>Freiheit</h1>
         <Link href={"/room"}>
-          <MyButton fontSize={"16px"} onClick={() => onNewGame()}>
+          <MyButton fontSize={"16px"} onNewGame={onNewGame}>
             Noch mal spielen
           </MyButton>
         </Link>
