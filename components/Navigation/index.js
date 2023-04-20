@@ -2,6 +2,7 @@ import Link from "next/link";
 import useRouter from "next/router";
 import styled from "styled-components";
 import { HouseSvg } from "../../utils/icons";
+import { useEffect, useState } from "react";
 
 const StyledNavigation = styled.nav`
   position: fixed;
@@ -14,17 +15,27 @@ const StyledNavigation = styled.nav`
   height: 68px;
 `;
 
-const StyledLink = styled(Link)``;
+const StyledLink = styled(Link)`
+&:hover {
+    transform: scale(1.1);
+`;
 
 export default function Navigation() {
   const router = useRouter;
-  const currentPathname = router.pathname;
-  console.log(currentPathname);
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
-    <StyledNavigation>
-      <StyledLink href="/">
-        <HouseSvg active={router.pathname === "/" && "adtive"} />
-      </StyledLink>
-    </StyledNavigation>
+    <>
+      {isClient && (
+        <StyledNavigation>
+          <StyledLink href="/">
+            <HouseSvg isFilled={router.pathname === "/" && "isFilled"} />
+          </StyledLink>
+        </StyledNavigation>
+      )}
+    </>
   );
 }

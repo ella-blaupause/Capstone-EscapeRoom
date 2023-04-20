@@ -4,7 +4,6 @@ import Clue from "../components/Clue";
 import PuzzlePieces from "../components/PuzzlePieces";
 import CollectingArea from "../components/CollectingArea";
 import { useEffect, useState } from "react";
-import useStore from "../store";
 import Header from "../components/Header";
 
 const GridContainer = styled.div`
@@ -15,7 +14,7 @@ const GridContainer = styled.div`
   grid-template-columns: repeat(15, 1fr);
   grid-template-rows: repeat(20, 1fr);
   width: 320px;
-  height: 667px;
+  height: 83vh;
 `;
 
 const StyledDoor = styled(Link)`

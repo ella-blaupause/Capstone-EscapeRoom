@@ -25,6 +25,8 @@ const StyledLink = styled(Link)`
   position: absolute;
   top: 10px;
   left: 15px;
+  &:hover {
+    transform: scale(1.1);
 `;
 
 export default function Header({ children, isBackArrow }) {

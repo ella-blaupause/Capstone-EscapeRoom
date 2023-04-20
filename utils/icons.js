@@ -23,14 +23,14 @@ export function ArrowUndoUpLeft() {
   );
 }
 
-export function HouseSvg({ active }) {
+export function HouseSvg({ isFilled }) {
   return (
     <>
       <svg
         width="68"
         height="68"
         viewBox="0 0 68 68"
-        fill={active ? "#FFC13B" : "none"}
+        fill={isFilled ? "#FFC13B" : "none"}
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
