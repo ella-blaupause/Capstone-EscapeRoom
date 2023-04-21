@@ -8,13 +8,11 @@ const Area = styled.div`
   grid-column: 14 / span 4;
   grid-row: 1 / span 3;
   display: ${(props) => (props.countPieces ? "grid" : null)};
-  place-items: center;
   background-color: var(--my-yellow);
   display: flex;
-  flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  padding: 0 20px;
 `;
 
 const StyledColorDiv0 = styled.div`
