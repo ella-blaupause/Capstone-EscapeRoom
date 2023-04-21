@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const StyledHeader = styled.header`
   background-color: var(--my-blue);
-  width: 320px;
+  width: 375px;
   height: 68px;
   top: 0px;
   display: flex;
