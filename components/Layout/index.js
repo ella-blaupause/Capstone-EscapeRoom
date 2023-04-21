@@ -16,7 +16,6 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  paddin: 68px 0 0 0;
 `;
 
 export default function Layout({ children }) {
