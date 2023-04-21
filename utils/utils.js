@@ -14,17 +14,17 @@ export const symbols = ["△", "☆", "◇", "❀", "☀︎", "✧"];
 export const initialPuzzlePieces = [
   {
     id: 0,
-    position: { row: 2, column: 10 },
+    position: { row: 2, column: 3 },
     isCollected: false,
   },
   {
     id: 1,
-    position: { row: 4, column: 4 },
+    position: { row: 3, column: 11 },
     isCollected: false,
   },
   {
     id: 2,
-    position: { row: 6, column: 12 },
+    position: { row: 5, column: 13 },
     isCollected: false,
   },
   {
@@ -39,22 +39,22 @@ export const initialPuzzlePieces = [
   },
   {
     id: 5,
-    position: { row: 11, column: 4 },
+    position: { row: 12, column: 7 },
     isCollected: false,
   },
   {
     id: 6,
-    position: { row: 14, column: 6 },
+    position: { row: 15, column: 1 },
     isCollected: false,
   },
   {
     id: 7,
-    position: { row: 16, column: 15 },
+    position: { row: 18, column: 10 },
     isCollected: false,
   },
   {
     id: 8,
-    position: { row: 18, column: 4 },
+    position: { row: 21, column: 12 },
     isCollected: false,
   },
 ];

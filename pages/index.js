@@ -1,7 +1,6 @@
 import Header from "../components/Header";
 import MyButton from "../components/MyButton";
 import styled from "styled-components";
-import { HouseSvg } from "../utils/icons";
 
 const Wrapper = styled.div`
   display: flex;

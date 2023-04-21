@@ -29,14 +29,14 @@ const StyledDoor = styled(Link)`
 const DoorDiv = styled.div`
   margin: 0 10px 0 10px;
   width: 120px;
-  height: 250px;
-  border: solid;
+  height: 280px;
 `;
 
 const StyledLightButton = styled.button`
   grid-column: 11;
   grid-row: 11 / span 2;
   background-color: transparent;
+  border: none;
   margin: 12px 0;
 `;
 
@@ -49,7 +49,6 @@ const StyledPaper = styled(Link)`
 `;
 
 const PaperDiv = styled.div`
-  border: solid;
   width: 60px;
   height: 30px;
 `;
