@@ -9,6 +9,7 @@ import {
 } from "../utils/utils";
 import { useState } from "react";
 import Layout from "../components/Layout";
+import { useRouter } from "next/router";
 
 const randomNumbers = getRandomNumbers(symbols.length);
 
@@ -35,6 +36,8 @@ export default function App({ Component, pageProps }) {
     defaultValue: 0,
   });
 
+  const router = useRouter();
+
   function handleCollect(puzzlePieceId) {
     const piece = puzzlePieces.find((piece) => piece.id === puzzlePieceId);
     if (!piece.isCollected) {
@@ -48,6 +51,7 @@ export default function App({ Component, pageProps }) {
   }
 
   function handleNewGame() {
+    router.push("/room");
     //generiert einen neuen Color Code
     const randomNumbers = getRandomNumbers(symbols.length);
 

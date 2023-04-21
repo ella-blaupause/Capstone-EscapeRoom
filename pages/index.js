@@ -1,81 +1,32 @@
-import Link from "next/link";
-import styled from "styled-components";
-import Clue from "../components/Clue";
-import PuzzlePieces from "../components/PuzzlePieces";
-import CollectingArea from "../components/CollectingArea";
-import { useEffect, useState } from "react";
-import useStore from "../store";
 import Header from "../components/Header";
+import MyButton from "../components/MyButton";
+import styled from "styled-components";
+import { HouseSvg } from "../utils/icons";
 
-const GridContainer = styled.div`
-  background-color: ghostwhite;
-  border: solid ghostwhite;
-  filter: ${(props) => (props.isOn ? "brightness(100%)" : "brightness(75%)")};
-  display: grid;
-  grid-template-columns: repeat(15, 1fr);
-  grid-template-rows: repeat(20, 1fr);
-  width: 320px;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 375px;
   height: 667px;
 `;
 
-const StyledDoor = styled(Link)`
-  font-size: 100px;
-  grid-column: 12 / span 2;
-  grid-row: 10 / span 3;
-  z-index: -1;
-  text-decoration: none;
-  cursor: default;
+const StartDiv = styled.div`
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
 `;
 
-const StyledLightButton = styled.button`
-  grid-column: 11;
-  grid-row: 11;
-`;
-
-const StyledPaper = styled(Link)`
-  font-size: 60px;
-  grid-column: 11 / span 2;
-  grid-row: 16 / span 2;
-  z-index: 1;
-  text-decoration: none;
-  cursor: default;
-`;
-
-export default function Room({
-  onCollect,
-  puzzlePieces,
-  countPieces,
-  randomColors,
-  randomSymbols,
-  onToggleOnOff,
-  isOn,
-}) {
-  const [isClient, setIsClient] = useState(false);
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+export default function HomePage({ onNewGame }) {
   return (
-    <>
-      <Header>Zimmer</Header>
-      {isClient && (
-        <GridContainer isOn={isOn}>
-          <CollectingArea
-            countPieces={countPieces}
-            puzzlePieces={puzzlePieces}
-            randomColors={randomColors}
-            randomSymbols={randomSymbols}
-          />
-          {!isOn && (
-            <Clue randomColors={randomColors} randomSymbols={randomSymbols} />
-          )}
-          <StyledDoor href={"/door"}>🚪</StyledDoor>
-          <PuzzlePieces onCollect={onCollect} puzzlePieces={puzzlePieces} />
-          <StyledLightButton type="button" onClick={onToggleOnOff}>
-            on/off
-          </StyledLightButton>
-          <StyledPaper href={"/crossword"}>📝</StyledPaper>
-        </GridContainer>
-      )}
-    </>
+    <Wrapper>
+      <Header>Escape Room</Header>
+      <StartDiv>
+        <MyButton type="button" fontSize={"24px"} onNewGame={onNewGame}>
+          Start
+        </MyButton>
+      </StartDiv>
+    </Wrapper>
   );
 }

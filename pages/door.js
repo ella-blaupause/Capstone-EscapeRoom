@@ -1,8 +1,9 @@
 import ColorPuzzle from "../components/ColorPuzzle";
 import { useEffect, useState } from "react";
-import Link from "next/link";
+
 import useLocalStorageState from "use-local-storage-state";
 import Header from "../components/Header";
+import MyButton from "../components/MyButton";
 
 export default function Door({
   onNewGame,
@@ -53,11 +54,10 @@ export default function Door({
     return (
       <>
         <h1>Freiheit</h1>
-        <Link href={"/"}>
-          <button type="button" onClick={() => onNewGame()}>
-            Noch mal spielen
-          </button>
-        </Link>
+
+        <MyButton fontSize={"16px"} onNewGame={onNewGame}>
+          Noch mal spielen
+        </MyButton>
       </>
     );
   }
