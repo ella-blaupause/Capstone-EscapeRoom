@@ -11,7 +11,7 @@ const StyledNavigation = styled.nav`
   justify-content: center;
   align-items: center;
   background-color: var(--my-blue);
-  width: 320px;
+  width: 375px;
   height: 68px;
 `;
 
