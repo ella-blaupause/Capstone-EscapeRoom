@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 const Area = styled.div`
-  width: 130px;
-  height: 130px;
+  width: 100px;
+  height: 100px;
   border: black solid;
-  grid-column: 12 / span 4;
+  grid-column: 14 / span 4;
   grid-row: 1 / span 3;
-  padding: 0 8px;
+  padding: 25px 10px;
   display: ${(props) => (props.countPieces ? "grid" : null)};
   place-items: center;
   background-color: var(--my-yellow);
@@ -38,7 +38,6 @@ export default function CollectingArea({
 
   return (
     <Area>
-      <h5>Eingesammelte Puzzleteile</h5>
       <span style={{ padding: "8px" }}>🧩</span>
       <span>
         {countPieces}/{puzzlePieces.length}

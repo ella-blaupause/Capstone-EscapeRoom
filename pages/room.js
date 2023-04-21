@@ -5,6 +5,7 @@ import PuzzlePieces from "../components/PuzzlePieces";
 import CollectingArea from "../components/CollectingArea";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
+import Image from "next/image";
 
 const GridContainer = styled.div`
   background-color: ghostwhite;
@@ -12,32 +13,52 @@ const GridContainer = styled.div`
   filter: ${(props) => (props.isOn ? "brightness(100%)" : "brightness(75%)")};
   display: grid;
   grid-template-columns: repeat(15, 1fr);
-  grid-template-rows: repeat(20, 1fr);
+  grid-template-rows: repeat(22, 1fr);
   width: 375px;
   height: 83vh;
 `;
 
 const StyledDoor = styled(Link)`
-  font-size: 100px;
-  grid-column: 12 / span 2;
-  grid-row: 10 / span 3;
-  z-index: -1;
+  grid-column: 12 / span 3;
+  grid-row: 7 / span 4;
+  z-index: 1;
   text-decoration: none;
   cursor: default;
+`;
+
+const DoorDiv = styled.div`
+  margin: 0 10px 0 10px;
+  width: 120px;
+  height: 250px;
+  border: solid;
 `;
 
 const StyledLightButton = styled.button`
   grid-column: 11;
-  grid-row: 11;
+  grid-row: 11 / span 2;
+  background-color: transparent;
+  margin: 12px 0;
 `;
 
 const StyledPaper = styled(Link)`
-  font-size: 60px;
-  grid-column: 11 / span 2;
-  grid-row: 16 / span 2;
+  grid-column: 13 / span 3;
+  grid-row: 19 / span 2;
   z-index: 1;
   text-decoration: none;
   cursor: default;
+`;
+
+const PaperDiv = styled.div`
+  border: solid;
+  width: 60px;
+  height: 30px;
+`;
+
+const StyledImage = styled(Image)`
+  object-fit: cover;
+  opacity: 0.9;
+  user-select: none;
+  z-index: -1;
 `;
 
 export default function Room({
@@ -58,6 +79,7 @@ export default function Room({
       <Header>Zimmer</Header>
       {isClient && (
         <GridContainer isOn={isOn}>
+          <StyledImage src="/zimmer-real.jpg" fill alt="" />
           <CollectingArea
             countPieces={countPieces}
             puzzlePieces={puzzlePieces}
@@ -67,12 +89,17 @@ export default function Room({
           {!isOn && (
             <Clue randomColors={randomColors} randomSymbols={randomSymbols} />
           )}
-          <StyledDoor href={"/door"}>🚪</StyledDoor>
+          <StyledDoor href={"/door"}>
+            <DoorDiv />
+          </StyledDoor>
           <PuzzlePieces onCollect={onCollect} puzzlePieces={puzzlePieces} />
-          <StyledLightButton type="button" onClick={onToggleOnOff}>
-            on/off
-          </StyledLightButton>
-          <StyledPaper href={"/crossword"}>📝</StyledPaper>
+          <StyledLightButton
+            type="button"
+            onClick={onToggleOnOff}
+          ></StyledLightButton>
+          <StyledPaper href={"/crossword"}>
+            <PaperDiv />
+          </StyledPaper>
         </GridContainer>
       )}
     </>
