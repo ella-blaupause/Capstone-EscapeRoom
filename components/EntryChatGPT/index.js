@@ -32,8 +32,6 @@ export default function EntryChatGPT() {
       console.log(data.result);
       setQuestionInput("");
     } catch (error) {
-      // Consider implementing your own error handling logic here
-
       toastProperties = {
         id: 1,
         title: "Frage eingeben",
