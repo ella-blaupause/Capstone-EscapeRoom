@@ -5,13 +5,14 @@ import EntryForm from "../components/EntryForm";
 import { initialCrosswordClues } from "../utils/utils";
 import Toast from "../components/Toast";
 import Header from "../components/Header";
+import EntryChatGPT from "../components/EntryChatGPT";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 375px;
-  height: 667px;
+  height: 100vh;
 `;
 
 const StyledColorDiv1 = styled.div`
@@ -146,6 +147,7 @@ export default function Crossword({ randomColors, randomSymbols }) {
           toasts={toasts}
           onDeleteToast={handleDeleteToast}
         />
+        <EntryChatGPT />
       </Wrapper>
     </>
   );
