@@ -61,7 +61,7 @@ export default function EntryChatGPT() {
           <br />
           <input
             type="text"
-            name="animal"
+            name="question"
             placeholder="Gib deine Frage ein ..."
             value={questionInput}
             onChange={(event) => setQuestionInput(event.target.value)}
