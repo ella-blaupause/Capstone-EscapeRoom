@@ -53,13 +53,14 @@ export default function EntryChatGPT() {
         <fieldset>
           <legend>ChatGPT:</legend>
 
-          <label htmlFor="answer">
+          <label htmlFor="question">
             Du brauchst Hilfe? Vielleicht bringt dich ChatGPT weiter!
           </label>
           <br />
           <input
             type="text"
             name="question"
+            id="question"
             placeholder="Gib deine Frage ein ..."
             value={questionInput}
             onChange={(event) => setQuestionInput(event.target.value)}
