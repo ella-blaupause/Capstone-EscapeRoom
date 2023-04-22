@@ -1,8 +1,13 @@
 import { useState } from "react";
+import Toast from "../Toast";
+
+let toastProperties;
 
 export default function EntryChatGPT() {
   const [questionInput, setQuestionInput] = useState("");
   const [result, setResult] = useState();
+  const [toasts, setToasts] = useState([]);
+  const [countSubmits, setCountSubmits] = useState(0);
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -28,9 +33,20 @@ export default function EntryChatGPT() {
       setQuestionInput("");
     } catch (error) {
       // Consider implementing your own error handling logic here
-      console.error(error);
-      alert(error.message);
+
+      toastProperties = {
+        id: 1,
+        title: "Frage eingeben",
+        emoji: "! ",
+        ariaLabel: "",
+        borderColor: "grey",
+      };
+      setCountSubmits(countSubmits + 1);
+      return setToasts([toastProperties]);
     }
+  }
+  function handleDeleteToast() {
+    setToasts([]);
   }
 
   return (
@@ -47,6 +63,11 @@ export default function EntryChatGPT() {
         <button type="submit">Frage absenden</button>
       </form>
       <p>{result}</p>
+      <Toast
+        countSubmits={countSubmits}
+        toasts={toasts}
+        onDeleteToast={handleDeleteToast}
+      />
     </div>
   );
 }
