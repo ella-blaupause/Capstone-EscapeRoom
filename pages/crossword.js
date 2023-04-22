@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 375px;
-  height: 100vh;
+  margin: 8px 0 16vh 0;
 `;
 
 const StyledColorDiv1 = styled.div`
@@ -127,7 +127,6 @@ export default function Crossword({ randomColors, randomSymbols }) {
       <Header isBackArrow>Kreuzworträtsel</Header>
 
       <Wrapper>
-        <h2>Kreuzworträtsel</h2>
         <CrosswordLayout
           onCurrentClueId={getCurrentClueId}
           crosswordClues={crosswordClues}

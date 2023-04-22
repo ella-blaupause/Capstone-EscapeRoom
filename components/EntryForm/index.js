@@ -35,7 +35,6 @@ export default function EntryForm({
         </label>
         <br />
         <input
-          maxLength={{ answerLength }}
           id="answer"
           type="text"
           name="answer"

@@ -9,18 +9,17 @@ export default async function handler(request, response) {
   if (!configuration.apiKey) {
     response.status(500).json({
       error: {
-        message:
-          "OpenAI API key not configured, please follow instructions in README.md",
+        message: "OpenAI API key not configured",
       },
     });
     return;
   }
 
-  const animal = request.body.animal || "";
-  if (animal.trim().length === 0) {
+  const question = request.body.question || "";
+  if (question.trim().length === 0) {
     response.status(400).json({
       error: {
-        message: "Please enter a valid animal",
+        message: "Bitte gib eine Frage ein!",
       },
     });
     return;
@@ -29,8 +28,8 @@ export default async function handler(request, response) {
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: generatePrompt(animal),
-      temperature: 0.6,
+      prompt: generatePrompt(question),
+      temperature: 0.5,
     });
     response.status(200).json({ result: completion.data.choices[0].text });
   } catch (error) {
@@ -49,15 +48,11 @@ export default async function handler(request, response) {
   }
 }
 
-function generatePrompt(animal) {
-  const capitalizedAnimal =
-    animal[0].toUpperCase() + animal.slice(1).toLowerCase();
-  return `Suggest three names for an animal that is a superhero.
+function generatePrompt(question) {
+  const capitalizedQuestion =
+    question[0].toUpperCase() + question.slice(1).toLowerCase();
+  return `Gib 2 mögliche Antworten.
 
-Animal: Cat
-Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
-Animal: Dog
-Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
-Animal: ${capitalizedAnimal}
-Names:`;
+Frage: ${capitalizedQuestion}
+Antwort:`;
 }

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const StyledToast = styled.div`
   position: absolute;
-  bottom: 5vh;
+  top: 65vh;
   right: 0;
   background-color: white;
   overflow: hidden;
@@ -72,7 +72,7 @@ export default function Toast({ toasts, onDeleteToast, countSubmits }) {
       {toasts.map((toast) => (
         <StyledToast key={toast.id} borderColor={toast.borderColor}>
           <span role="image" aria-label={toast.ariaLabel}>
-            {toast.emoji}{" "}
+            {toast.emoji}
           </span>
           <span>{toast.title}</span>
           <DeleteButton onClick={() => onDeleteToast()}>x</DeleteButton>

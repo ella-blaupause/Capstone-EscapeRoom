@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function EntryChatGPT() {
-  const [animalInput, setAnimalInput] = useState("");
+  const [questionInput, setQuestionInput] = useState("");
   const [result, setResult] = useState();
 
   async function onSubmit(event) {
@@ -12,7 +12,7 @@ export default function EntryChatGPT() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ animal: animalInput }),
+        body: JSON.stringify({ question: questionInput }),
       });
 
       const data = await response.json();
@@ -24,7 +24,8 @@ export default function EntryChatGPT() {
       }
 
       setResult(data.result);
-      setAnimalInput("");
+      console.log(data.result);
+      setQuestionInput("");
     } catch (error) {
       // Consider implementing your own error handling logic here
       console.error(error);
@@ -34,20 +35,18 @@ export default function EntryChatGPT() {
 
   return (
     <div>
-      <main>
-        <h3>Name my pet</h3>
-        <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            name="animal"
-            placeholder="Enter an animal"
-            value={animalInput}
-            onChange={(e) => setAnimalInput(e.target.value)}
-          />
-          <input type="submit" value="Generate names" />
-        </form>
-        <div>{result}</div>
-      </main>
+      <h3>Brauchst du Hilfe? Frag ChatGPT:</h3>
+      <form onSubmit={onSubmit}>
+        <input
+          type="text"
+          name="animal"
+          placeholder="Gib deine Frage ein ..."
+          value={questionInput}
+          onChange={(event) => setQuestionInput(event.target.value)}
+        />
+        <button type="submit">Frage absenden</button>
+      </form>
+      <p>{result}</p>
     </div>
   );
 }
