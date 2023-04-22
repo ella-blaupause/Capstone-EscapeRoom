@@ -56,17 +56,17 @@ export function PuzzleElement() {
     >
       <mask id="b" fill="#fff">
         <path
-          fill-rule="evenodd"
+          fillRule="evenodd"
           d="M14.135 13.863a1.755 1.755 0 0 0 1.75-1.76l-.004-1.988c-.001-.42.468-.707.888-.708a1.907 1.907 0 1 0-.01-3.813c-.42 0-.89-.284-.891-.704l-.005-1.988a1.755 1.755 0 0 0-1.76-1.75l-1.988.004c-.42.001-.704.472-.703.892a1.907 1.907 0 0 1-3.814.01c0-.421-.288-.89-.708-.889l-1.988.005c-.97.002-1.753.79-1.75 1.76l.004 1.988c.001.42-.468.707-.888.708a1.907 1.907 0 1 0 .01 3.813c.42 0 .89.284.891.704l.005 1.988c.002.97.79 1.753 1.76 1.75l9.2-.022Z"
-          clip-rule="evenodd"
+          clipRule="evenodd"
         />
       </mask>
       <g filter="url(#a)">
         <path
           fill="#23DF36"
-          fill-rule="evenodd"
+          fillRule="evenodd"
           d="M14.135 13.863a1.755 1.755 0 0 0 1.75-1.76l-.004-1.988c-.001-.42.468-.707.888-.708a1.907 1.907 0 1 0-.01-3.813c-.42 0-.89-.284-.891-.704l-.005-1.988a1.755 1.755 0 0 0-1.76-1.75l-1.988.004c-.42.001-.704.472-.703.892a1.907 1.907 0 0 1-3.814.01c0-.421-.288-.89-.708-.889l-1.988.005c-.97.002-1.753.79-1.75 1.76l.004 1.988c.001.42-.468.707-.888.708a1.907 1.907 0 1 0 .01 3.813c.42 0 .89.284.891.704l.005 1.988c.002.97.79 1.753 1.76 1.75l9.2-.022Z"
-          clip-rule="evenodd"
+          clipRule="evenodd"
         />
       </g>
       <path
@@ -81,10 +81,10 @@ export function PuzzleElement() {
           height="16.735"
           x=".366"
           y="1.151"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
           <feColorMatrix
             in="SourceAlpha"

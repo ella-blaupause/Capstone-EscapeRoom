@@ -55,7 +55,6 @@ const PaperDiv = styled.div`
 
 const StyledImage = styled(Image)`
   object-fit: cover;
-  opacity: 0.9;
   user-select: none;
   z-index: -1;
 `;

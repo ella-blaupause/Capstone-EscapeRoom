@@ -16,8 +16,9 @@ const StyledNavigation = styled.nav`
 `;
 
 const StyledLink = styled(Link)`
-&:hover {
+  &:hover {
     transform: scale(1.1);
+  }
 `;
 
 export default function Navigation() {
