@@ -50,24 +50,31 @@ export default function EntryChatGPT() {
   }
 
   return (
-    <div>
-      <h3>Brauchst du Hilfe? Frag ChatGPT:</h3>
+    <>
       <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          name="animal"
-          placeholder="Gib deine Frage ein ..."
-          value={questionInput}
-          onChange={(event) => setQuestionInput(event.target.value)}
-        />
-        <button type="submit">Frage absenden</button>
+        <fieldset>
+          <legend>ChatGPT:</legend>
+
+          <label htmlFor="answer">
+            Du brauchst Hilfe? Vielleicht bringt dich ChatGPT weiter!
+          </label>
+          <br />
+          <input
+            type="text"
+            name="animal"
+            placeholder="Gib deine Frage ein ..."
+            value={questionInput}
+            onChange={(event) => setQuestionInput(event.target.value)}
+          />
+          <button type="submit">Frage absenden</button>
+        </fieldset>
       </form>
-      <p>{result}</p>
+      <p>Antwort: {result}</p>
       <Toast
         countSubmits={countSubmits}
         toasts={toasts}
         onDeleteToast={handleDeleteToast}
       />
-    </div>
+    </>
   );
 }
