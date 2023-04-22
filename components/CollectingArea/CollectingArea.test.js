@@ -1,23 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import CollectingArea from ".";
 
-test("displays the header with title 'Eingesammelte Puzzleteile'.", async () => {
-  render(
-    <CollectingArea
-      countPieces={""}
-      puzzlePieces={""}
-      randomColor={""}
-      randomSymbol={""}
-    />
-  );
-
-  const header = screen.getByRole("heading", {
-    name: "Eingesammelte Puzzleteile",
-  });
-
-  expect(header).toBeInTheDocument();
-});
-
 test("handles different count of collected puzzle pieces.", async () => {
   const countPieces = 1;
   const puzzlePieces = [1, 2, 3];

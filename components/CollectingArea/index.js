@@ -1,15 +1,18 @@
 import styled from "styled-components";
+import { PuzzleElement } from "../../utils/icons";
 
 const Area = styled.div`
-  width: 130px;
-  height: 130px;
+  width: 100px;
+  height: 100px;
   border: black solid;
-  grid-column: 12 / span 4;
+  grid-column: 14 / span 4;
   grid-row: 1 / span 3;
-  padding: 0 8px;
   display: ${(props) => (props.countPieces ? "grid" : null)};
-  place-items: center;
   background-color: var(--my-yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 `;
 
 const StyledColorDiv0 = styled.div`
@@ -38,8 +41,7 @@ export default function CollectingArea({
 
   return (
     <Area>
-      <h5>Eingesammelte Puzzleteile</h5>
-      <span style={{ padding: "8px" }}>🧩</span>
+      <PuzzleElement alt="Grünes Pzzleteil" />
       <span>
         {countPieces}/{puzzlePieces.length}
       </span>

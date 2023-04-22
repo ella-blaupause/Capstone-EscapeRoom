@@ -7,6 +7,9 @@ const StyledButton = styled.button`
   border-radius: 6px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-color: black;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 export default function MyButton({ children, fontSize, onNewGame }) {

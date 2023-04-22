@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Header from "../Header";
 import Navigation from "../Navigation";
 
 const Wrapper = styled.div`
@@ -16,7 +15,6 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  paddin: 68px 0 0 0;
 `;
 
 export default function Layout({ children }) {
