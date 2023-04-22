@@ -15,7 +15,8 @@ const GridContainer = styled.div`
   grid-template-columns: repeat(15, 1fr);
   grid-template-rows: repeat(22, 1fr);
   width: 375px;
-  height: 83vh;
+  height: 84vh;
+  margin: 0 0 16vh 0;
 `;
 
 const StyledDoor = styled(Link)`
