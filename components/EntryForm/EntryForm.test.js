@@ -10,13 +10,13 @@ test("renders a label and an input with the correct attributes", () => {
       onData={onData}
       currentClueId={currentClueId}
       name="answer"
-      labelText="Was wird in Konzerten, Opern, Musicals und Filmen aufgeführt?"
+      labelText="Der Ort, an dem die Seelen der Verstorbenen hingelangen?"
       placeholder="Antwort eingeben"
     />
   );
 
   const input = screen.getByLabelText(
-    /Was wird in Konzerten, Opern, Musicals und Filmen aufgeführt?/i
+    /Der Ort, an dem die Seelen der Verstorbenen hingelangen?/i
   );
   expect(input).toHaveAttribute("placeholder", "Antwort eingeben");
   expect(input).toHaveAttribute("name", "answer");
