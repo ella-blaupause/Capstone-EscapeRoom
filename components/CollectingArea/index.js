@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PuzzleElement } from "../../utils/icons";
+import { SvgPuzzleElement } from "../../utils/icons";
 
 const Area = styled.div`
   width: 100px;
@@ -41,7 +41,7 @@ export default function CollectingArea({
 
   return (
     <Area>
-      <PuzzleElement alt="Grünes Pzzleteil" />
+      <SvgPuzzleElement alt="Grünes Pzzleteil" />
       <span>
         {countPieces}/{puzzlePieces.length}
       </span>

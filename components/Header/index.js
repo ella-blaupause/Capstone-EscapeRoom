@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ArrowUndoUpLeft } from "../../utils/icons";
+import { SvgArrowUndoUpLeft } from "../../utils/icons";
 import Link from "next/link";
 
 const StyledHeader = styled.header`
@@ -35,7 +35,7 @@ export default function Header({ children, isBackArrow }) {
     <StyledHeader>
       {isBackArrow && (
         <StyledLink href={"/room"}>
-          <ArrowUndoUpLeft />
+          <SvgArrowUndoUpLeft />
         </StyledLink>
       )}
       <Title>{children}</Title>

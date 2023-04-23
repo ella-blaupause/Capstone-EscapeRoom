@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PuzzleElement } from "../../utils/icons";
+import { SvgPuzzleElement } from "../../utils/icons";
 
 const PuzzlePiece = styled.button`
   background: none;
@@ -22,7 +22,7 @@ export default function PuzzlePieces({ onCollect, puzzlePieces }) {
           position={puzzlePiece.position}
         >
           {puzzlePiece.isCollected ? null : (
-            <PuzzleElement alt="Grünes Pzzleteil" />
+            <SvgPuzzleElement alt="Grünes Puzzleteil" />
           )}
         </PuzzlePiece>
       ))}

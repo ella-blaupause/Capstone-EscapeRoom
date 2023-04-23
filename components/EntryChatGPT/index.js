@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Toast from "../Toast";
+import SvgChatGPT from "../../utils/icons";
 
 let toastProperties;
 
@@ -51,7 +52,9 @@ export default function EntryChatGPT() {
     <>
       <form onSubmit={onSubmit}>
         <fieldset>
-          <legend>ChatGPT:</legend>
+          <legend>
+            <SvgChatGPT />
+          </legend>
 
           <label htmlFor="question">
             Du brauchst Hilfe? Vielleicht bringt dich ChatGPT weiter!
