@@ -1,7 +1,7 @@
 import Link from "next/link";
 import useRouter from "next/router";
 import styled from "styled-components";
-import { HouseSvg } from "../../utils/icons";
+import { SvgHouse } from "../../utils/icons";
 import { useEffect, useState } from "react";
 
 const StyledNavigation = styled.nav`
@@ -33,7 +33,7 @@ export default function Navigation() {
       {isClient && (
         <StyledNavigation>
           <StyledLink href="/">
-            <HouseSvg isFilled={router.pathname === "/" && "isFilled"} />
+            <SvgHouse isFilled={router.pathname === "/" && "isFilled"} />
           </StyledLink>
         </StyledNavigation>
       )}
