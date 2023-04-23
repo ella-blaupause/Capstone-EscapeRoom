@@ -80,27 +80,56 @@ export function getRandomColor() {
 export const initialCrosswordClues = [
   {
     id: 1,
-    question: "Was wird in Konzerten, Opern, Musicals und Filmen aufgeführt?",
-    answer: "Musik",
+    question: "Der Ort, an dem die Seelen der Verstorbenen hingelangen?",
+    answer: "Himmel",
     isCorrectlyAnswered: false,
   },
   {
     id: 2,
-    question: "Welches Gerät wird verwendet, um die Zeit zu messen?",
-    answer: "Uhr",
+    question: "Kleines Nagetier.",
+    answer: "Maus",
     isCorrectlyAnswered: false,
   },
   {
     id: 3,
-    question:
-      "Welches Möbelstück kann man zum Essen, Arbeiten oder Schreiben verwenden?",
-    answer: "Tisch",
+    question: "Eines der 4 Elemente.",
+    answer: "Wasser",
     isCorrectlyAnswered: false,
   },
   {
     id: 4,
-    question: "Welches Körperteil ermöglicht es uns, zu hören?",
-    answer: "Ohr",
+    question: "Wie nennt man den Verfasser eines Buches?",
+    answer: "Autor",
+    isCorrectlyAnswered: false,
+  },
+  {
+    id: 5,
+    question: "Größeres Gewässer.",
+    answer: "See",
+    isCorrectlyAnswered: false,
+  },
+  {
+    id: 6,
+    question: "Eisige Kälte.",
+    answer: "Frost",
+    isCorrectlyAnswered: false,
+  },
+  {
+    id: 7,
+    question: "Bezeichnung für eine Person, die du anhimmelst.",
+    answer: "Idol",
+    isCorrectlyAnswered: false,
+  },
+  {
+    id: 8,
+    question: "Knuspriges Topping auf Kuchen, Muffins oder Eis.",
+    answer: "Streusel",
+    isCorrectlyAnswered: false,
+  },
+  {
+    id: 9,
+    question: "Scheues Huftier mit Geweih.",
+    answer: "Reh",
     isCorrectlyAnswered: false,
   },
 ];
