@@ -9,8 +9,9 @@ export default function EntryChatGPT() {
   const [result, setResult] = useState();
   const [toasts, setToasts] = useState([]);
   const [countSubmits, setCountSubmits] = useState(0);
+  const [isAnswered, setIsAnswered] = useState(false);
 
-  async function onSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     try {
       const response = await fetch("/api/generate", {
@@ -30,8 +31,7 @@ export default function EntryChatGPT() {
       }
 
       setResult(data.result);
-      console.log(data.result);
-      setQuestionInput("");
+      setIsAnswered(true);
     } catch (error) {
       toastProperties = {
         id: 1,
@@ -50,28 +50,38 @@ export default function EntryChatGPT() {
 
   return (
     <>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>
             <SvgChatGPT />
           </legend>
-
-          <label htmlFor="question">
-            Du brauchst Hilfe? Vielleicht bringt dich ChatGPT weiter!
-          </label>
-          <br />
-          <input
-            type="text"
-            name="question"
-            id="question"
-            placeholder="Gib deine Frage ein ..."
-            value={questionInput}
-            onChange={(event) => setQuestionInput(event.target.value)}
-          />
-          <button type="submit">Frage absenden</button>
+          <>
+            {isAnswered ? (
+              <>
+                <p>Deine Frage: {questionInput}</p>
+                <p>Antwort: {result}</p>
+              </>
+            ) : (
+              <>
+                <label htmlFor="question">
+                  Du brauchst Hilfe? Vielleicht bringt dich ChatGPT weiter!
+                </label>
+                <br />
+                <input
+                  type="text"
+                  name="question"
+                  id="question"
+                  placeholder="Gib deine Frage ein ..."
+                  value={questionInput}
+                  onChange={(event) => setQuestionInput(event.target.value)}
+                />
+                <button type="submit">Frage absenden</button>
+              </>
+            )}
+          </>
         </fieldset>
       </form>
-      <p>Antwort: {result}</p>
+
       <Toast
         countSubmits={countSubmits}
         toasts={toasts}
