@@ -37,7 +37,7 @@ export default function CrosswordLayout({ onCurrentClueId, crosswordClues }) {
                     <td key={columnIndex}>
                       <Cell
                         isBlack={grid[row][column] === -1}
-                        onClick={() => handleClick(grid[row][column].id)}
+                        onClick={() => onCurrentClueId(grid[row][column].id)}
                       >
                         <small>
                           <sup>{grid[row][column].sup} </sup>
