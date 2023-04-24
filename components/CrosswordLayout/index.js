@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import useGrid from "../../lib/Hook/useGrid.js";
+import EntryForm from "../EntryForm/index.js";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -26,8 +27,16 @@ const StyledOl = styled.ol`
   grid-row: 1;
 `;
 
-export default function CrosswordLayout({ onCurrentClueId, crosswordClues }) {
+export default function CrosswordLayout({
+  onCurrentClueId,
+  crosswordClues,
+  onData,
+  onChangeData,
+  currentClueId,
+  entryCharacterLength,
+}) {
   const grid = useGrid(crosswordClues);
+
   return (
     <>
       <StyledTable>
@@ -58,6 +67,13 @@ export default function CrosswordLayout({ onCurrentClueId, crosswordClues }) {
           })}
         </tbody>
       </StyledTable>
+
+      <EntryForm
+        onData={onData}
+        onChangeData={onChangeData}
+        currentClueId={currentClueId}
+        entryCharacterLength={entryCharacterLength}
+      />
 
       <StyledOl>
         {crosswordClues.map((crosswordClue) => (

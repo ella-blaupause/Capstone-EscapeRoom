@@ -47,7 +47,7 @@ export default function Crossword({ randomColors, randomSymbols }) {
     setEntryCharacterLength(0);
   }
 
-  function getCurrentClueId(crosswordCluesId) {
+  function handleCurrentClueId(crosswordCluesId) {
     setCurrentClueId(crosswordCluesId);
   }
 
@@ -128,19 +128,14 @@ export default function Crossword({ randomColors, randomSymbols }) {
 
       <Wrapper>
         <CrosswordLayout
-          onCurrentClueId={getCurrentClueId}
+          onCurrentClueId={handleCurrentClueId}
           crosswordClues={crosswordClues}
-        />
-        <EntryForm
           onData={handleData}
-          onChangeData={handleChangeData}
+          onChageData={handleChangeData}
           currentClueId={currentClueId}
           entryCharacterLength={entryCharacterLength}
         />
-        <p>
-          ❗️ Wenn du eine Frage auswählen willst, drücke auf die Nummer in der
-          Liste ❗️
-        </p>
+
         <Toast
           countSubmits={countSubmits}
           toasts={toasts}

@@ -4,6 +4,7 @@ import { initialCrosswordClues } from "../../utils/utils";
 const StyledForm = styled.form`
   grid-column: 1 / span 2;
   grid-row: 2;
+  margin: 10px 0;
 `;
 
 export default function EntryForm({
