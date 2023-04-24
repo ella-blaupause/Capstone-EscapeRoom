@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import useGrid from "../../lib/Hook/useGrid.js";
 import EntryForm from "../EntryForm/index.js";
+import { useState } from "react";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -44,6 +45,7 @@ export default function CrosswordLayout({
   currentClueId,
   entryCharacterLength,
 }) {
+  const [countClick, setCountClick] = useState(0);
   const rows = [0, 1, 2, 3, 4, 5, 6, 7];
   const columns = [0, 1, 2, 3, 4, 5, 6, 7];
   const grid = useGrid(crosswordClues);
@@ -66,7 +68,10 @@ export default function CrosswordLayout({
                           grid[row][column].id.includes(currentClueId)
                         }
                         disabled={grid[row][column] === -1}
-                        onClick={() => onCurrentClueId(grid[row][column].id[0])}
+                        onClick={() => {
+                          onCurrentClueId(grid[row][column].id[countClick % 2]);
+                          setCountClick(countClick + 1);
+                        }}
                       >
                         <small>
                           <sup>{grid[row][column].sup} </sup>
