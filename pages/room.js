@@ -17,6 +17,7 @@ const GridContainer = styled.div`
   width: 375px;
   height: 84vh;
   margin: 0 0 8vh 0;
+  position: relative;
 `;
 
 const StyledDoor = styled(Link)`
@@ -55,6 +56,7 @@ const PaperDiv = styled.div`
 `;
 
 const StyledImage = styled(Image)`
+  position: absolute;
   object-fit: cover;
   user-select: none;
   z-index: -1;
@@ -78,7 +80,7 @@ export default function Room({
       <Header>Zimmer</Header>
       {isClient && (
         <GridContainer isOn={isOn}>
-          <StyledImage src="/zimmer-real.jpg" fill alt="" />
+          <StyledImage src="/zimmer-real.jpg" fill alt="" priority />
           <CollectingArea
             countPieces={countPieces}
             puzzlePieces={puzzlePieces}
