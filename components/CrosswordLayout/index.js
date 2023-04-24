@@ -17,7 +17,9 @@ const Cell = styled.button`
   background-color: transparent;
   font-style: initial;
   text-align: center;
-  border: solid black;
+  border: solid
+    ${({ isSelected }) => (isSelected ? "var(--my-orange)" : "black")};
+
   background-color: ${({ isBlack }) => isBlack && "black"};
   cursor: pointer;
 `;
@@ -25,7 +27,13 @@ const Cell = styled.button`
 const StyledOl = styled.ol`
   grid-column: 2;
   grid-row: 1;
+
   cursor: pointer;
+`;
+
+const StyledLi = styled.li`
+  border: solid
+    ${({ isSelected }) => (isSelected ? "var(--my-orange)" : "transparent")};
 `;
 
 export default function CrosswordLayout({
@@ -36,23 +44,29 @@ export default function CrosswordLayout({
   currentClueId,
   entryCharacterLength,
 }) {
+  const rows = [0, 1, 2, 3, 4, 5, 6, 7];
+  const columns = [0, 1, 2, 3, 4, 5, 6, 7];
   const grid = useGrid(crosswordClues);
 
   return (
     <>
       <StyledTable>
         <tbody>
-          {[0, 1, 2, 3, 4, 5, 6, 7].map((row, rowIndex) => {
+          {rows.map((row, rowIndex) => {
             return (
               <tr key={rowIndex}>
-                {[0, 1, 2, 3, 4, 5, 6, 7].map((column, columnIndex) => {
+                {columns.map((column, columnIndex) => {
                   return (
                     <td key={columnIndex}>
                       <Cell
                         type="button"
                         isBlack={grid[row][column] === -1}
+                        isSelected={
+                          grid[row][column] !== -1 &&
+                          grid[row][column].id.includes(currentClueId)
+                        }
                         disabled={grid[row][column] === -1}
-                        onClick={() => onCurrentClueId(grid[row][column].id)}
+                        onClick={() => onCurrentClueId(grid[row][column].id[0])}
                       >
                         <small>
                           <sup>{grid[row][column].sup} </sup>
@@ -78,12 +92,13 @@ export default function CrosswordLayout({
 
       <StyledOl>
         {crosswordClues.map((crosswordClue) => (
-          <li
+          <StyledLi
             key={crosswordClue.id}
+            isSelected={crosswordClue.id === currentClueId}
             onClick={() => onCurrentClueId(crosswordClue.id)}
           >
             {crosswordClue.question}
-          </li>
+          </StyledLi>
         ))}
       </StyledOl>
     </>
