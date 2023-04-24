@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import useGrid from "../../lib/Hook/useGrid.js";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -6,17 +7,18 @@ const StyledTable = styled.table`
   grid-row: 1;
 `;
 
-//Styled vor Tr  und Td weggelassen, wegen besserer Lesbarkeit
-const Tr = styled.tr`
+const Cell = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  font-style: initial;
   text-align: center;
-`;
 
-const Td = styled.td`
-  width: 20px;
-  height: 20px;
-  display: table-cell;
   border: solid black;
-  background-color: ${({ isBlack }) => (isBlack ? "black" : null)};
+  background-color: ${({ isBlack }) => isBlack && "black"};
 `;
 
 const StyledOl = styled.ol`
@@ -25,69 +27,38 @@ const StyledOl = styled.ol`
 `;
 
 export default function CrosswordLayout({ onCurrentClueId, crosswordClues }) {
+  const grid = useGrid(crosswordClues);
   return (
     <>
       <StyledTable>
         <tbody>
-          <Tr>
-            <Td isBlack></Td>
-            <Td>
-              <sup>1</sup>
-              {crosswordClues[0].isCorrectlyAnswered && "M"}
-            </Td>
-            <Td isBlack></Td>
-            <Td isBlack></Td>
-            <Td isBlack></Td>
-          </Tr>
-          <Tr>
-            <Td isBlack></Td>
-            <Td>
-              <sup>2</sup>
-              {(crosswordClues[0].isCorrectlyAnswered ||
-                crosswordClues[1].isCorrectlyAnswered) &&
-                "U"}
-            </Td>
-            <Td> {crosswordClues[1].isCorrectlyAnswered && "H"}</Td>
-            <Td>{crosswordClues[1].isCorrectlyAnswered && "R"}</Td>
-            <Td isBlack></Td>
-          </Tr>
-          <Tr>
-            <Td isBlack></Td>
-            <Td>{crosswordClues[0].isCorrectlyAnswered && "S"}</Td>
-            <Td isBlack></Td>
-            <Td isBlack></Td>
-            <Td>
-              <sup>4</sup>
-              {crosswordClues[3].isCorrectlyAnswered && "O"}
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>
-              <sup>3</sup>
-              {crosswordClues[2].isCorrectlyAnswered && "T"}
-            </Td>
-            <Td>
-              {(crosswordClues[0].isCorrectlyAnswered ||
-                crosswordClues[2].isCorrectlyAnswered) &&
-                "I"}
-            </Td>
-            <Td>{crosswordClues[2].isCorrectlyAnswered && "S"}</Td>
-            <Td>{crosswordClues[2].isCorrectlyAnswered && "C"}</Td>
-            <Td>
-              {(crosswordClues[2].isCorrectlyAnswered ||
-                crosswordClues[3].isCorrectlyAnswered) &&
-                "H"}
-            </Td>
-          </Tr>
-          <Tr>
-            <Td isBlack></Td>
-            <Td>{crosswordClues[0].isCorrectlyAnswered && "K"}</Td>
-            <Td isBlack></Td>
-            <Td isBlack></Td>
-            <Td>{crosswordClues[3].isCorrectlyAnswered && "R"}</Td>
-          </Tr>
+          {[0, 1, 2, 3, 4, 5, 6, 7].map((row, rowIndex) => {
+            return (
+              <tr key={rowIndex}>
+                {[0, 1, 2, 3, 4, 5, 6, 7].map((column, columnIndex) => {
+                  return (
+                    <td key={columnIndex}>
+                      <Cell
+                        type="button"
+                        isBlack={grid[row][column] === -1}
+                        disabled={grid[row][column] === -1}
+                        onClick={() => onCurrentClueId(grid[row][column].id)}
+                      >
+                        <small>
+                          <sup>{grid[row][column].sup} </sup>
+                        </small>
+
+                        {grid[row][column].letter}
+                      </Cell>
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
         </tbody>
       </StyledTable>
+
       <StyledOl>
         {crosswordClues.map((crosswordClue) => (
           <li

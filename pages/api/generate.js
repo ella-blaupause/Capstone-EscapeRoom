@@ -53,8 +53,10 @@ function generatePrompt(question) {
     question[0].toUpperCase() + question.slice(1).toLowerCase();
   return `Gib 2 mögliche Antworten.
 
- Frage:Welches Körperteil ermöglicht es uns, zu hören?
-Antwort: Ohr oder Gehör
-Frage: ${capitalizedQuestion}
-Antwort:`;
+ Frage: Welches Körperteil ermöglicht es uns, zu hören?
+ Antwort: Ohr oder Gehör
+ Frage: Bezeichnung für eine Person, die du anhimmelst?
+ Antwort: Idol oder Schwarm
+ Frage: ${capitalizedQuestion}
+ Antwort:`;
 }
