@@ -17,14 +17,15 @@ const Cell = styled.button`
   background-color: transparent;
   font-style: initial;
   text-align: center;
-
   border: solid black;
   background-color: ${({ isBlack }) => isBlack && "black"};
+  cursor: pointer;
 `;
 
 const StyledOl = styled.ol`
   grid-column: 2;
   grid-row: 1;
+  cursor: pointer;
 `;
 
 export default function CrosswordLayout({

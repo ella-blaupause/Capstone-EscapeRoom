@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import CrosswordLayout from "../components/CrosswordLayout";
 import { useState } from "react";
-import EntryForm from "../components/EntryForm";
 import { initialCrosswordClues } from "../utils/utils";
 import Toast from "../components/Toast";
 import Header from "../components/Header";
@@ -131,7 +130,7 @@ export default function Crossword({ randomColors, randomSymbols }) {
           onCurrentClueId={handleCurrentClueId}
           crosswordClues={crosswordClues}
           onData={handleData}
-          onChageData={handleChangeData}
+          onChangeData={handleChangeData}
           currentClueId={currentClueId}
           entryCharacterLength={entryCharacterLength}
         />
