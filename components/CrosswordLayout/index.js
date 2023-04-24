@@ -7,13 +7,16 @@ const StyledTable = styled.table`
   grid-row: 1;
 `;
 
-const Cell = styled.div`
+const Cell = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 30px;
   height: 30px;
+  background-color: transparent;
+  font-style: initial;
   text-align: center;
+
   border: solid black;
   background-color: ${({ isBlack }) => isBlack && "black"};
 `;
@@ -36,7 +39,9 @@ export default function CrosswordLayout({ onCurrentClueId, crosswordClues }) {
                   return (
                     <td key={columnIndex}>
                       <Cell
+                        type="button"
                         isBlack={grid[row][column] === -1}
+                        disabled={grid[row][column] === -1}
                         onClick={() => onCurrentClueId(grid[row][column].id)}
                       >
                         <small>
