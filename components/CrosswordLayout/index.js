@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import useGrid from "../../lib/Hook/useGrid.js";
+
 import EntryForm from "../EntryForm/index.js";
 import { useState } from "react";
+import { getGrid } from "../../utils/utils.js";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -23,6 +24,18 @@ const Cell = styled.button`
 
   background-color: ${({ isBlack }) => isBlack && "black"};
   cursor: pointer;
+  font-family: "Comic Sans MS", sans-serif;
+`;
+
+const StyledToggleList = styled.button`
+  padding: 10px 20px 10px 20px;
+  background: var(--my-orange);
+  border-radius: 6px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-color: black;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const StyledOl = styled.ol`
@@ -46,9 +59,14 @@ export default function CrosswordLayout({
   entryCharacterLength,
 }) {
   const [countClick, setCountClick] = useState(0);
+  const [isActive, setIsActive] = useState(false);
   const rows = [0, 1, 2, 3, 4, 5, 6, 7];
   const columns = [0, 1, 2, 3, 4, 5, 6, 7];
-  const grid = useGrid(crosswordClues);
+  const grid = getGrid(crosswordClues);
+
+  function handleToggleList() {
+    setIsActive(!isActive);
+  }
 
   return (
     <>
@@ -95,17 +113,28 @@ export default function CrosswordLayout({
         entryCharacterLength={entryCharacterLength}
       />
 
-      <StyledOl>
-        {crosswordClues.map((crosswordClue) => (
-          <StyledLi
-            key={crosswordClue.id}
-            isSelected={crosswordClue.id === currentClueId}
-            onClick={() => onCurrentClueId(crosswordClue.id)}
-          >
-            {crosswordClue.question}
-          </StyledLi>
-        ))}
-      </StyledOl>
+      <StyledToggleList
+        type="button"
+        onClick={() => {
+          handleToggleList();
+        }}
+      >
+        {isActive ? "Fragen verbergen" : "Fragen anzeigen"}
+      </StyledToggleList>
+
+      {isActive && (
+        <StyledOl>
+          {crosswordClues.map((crosswordClue) => (
+            <StyledLi
+              key={crosswordClue.id}
+              isSelected={crosswordClue.id === currentClueId}
+              onClick={() => onCurrentClueId(crosswordClue.id)}
+            >
+              {crosswordClue.question}
+            </StyledLi>
+          ))}
+        </StyledOl>
+      )}
     </>
   );
 }

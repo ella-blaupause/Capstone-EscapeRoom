@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   align-items: center;
   width: 375px;
   margin: 8px 0 16vh 0;
+  font-family: "Comic Sans MS", sans-serif;
 `;
 
 const StyledColorDiv1 = styled.div`
