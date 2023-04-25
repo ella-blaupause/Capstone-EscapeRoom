@@ -27,8 +27,8 @@ export function SvgHouse({ isFilled }) {
   return (
     <>
       <svg
-        width="68"
-        height="68"
+        width="55"
+        height="55"
         viewBox="0 0 68 68"
         fill={isFilled ? "#FFC13B" : "none"}
         xmlns="http://www.w3.org/2000/svg"

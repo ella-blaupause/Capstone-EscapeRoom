@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import useGrid from "../../lib/Hook/useGrid.js";
+
+import EntryForm from "../EntryForm/index.js";
+import { useState } from "react";
+import { columns, getGrid, rows } from "../../utils/utils.js";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -16,33 +19,76 @@ const Cell = styled.button`
   background-color: transparent;
   font-style: initial;
   text-align: center;
+  border: solid
+    ${({ isSelected }) => (isSelected ? "var(--my-orange)" : "black")};
 
-  border: solid black;
   background-color: ${({ isBlack }) => isBlack && "black"};
+  cursor: pointer;
+  font-family: "Comic Sans MS", sans-serif;
+`;
+
+const StyledToggleList = styled.button`
+  padding: 10px 20px 10px 20px;
+  background: var(--my-orange);
+  border-radius: 6px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-color: black;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const StyledOl = styled.ol`
   grid-column: 2;
   grid-row: 1;
+
+  cursor: pointer;
 `;
 
-export default function CrosswordLayout({ onCurrentClueId, crosswordClues }) {
-  const grid = useGrid(crosswordClues);
+const StyledLi = styled.li`
+  border: solid
+    ${({ isSelected }) => (isSelected ? "var(--my-orange)" : "transparent")};
+`;
+
+export default function CrosswordLayout({
+  onCurrentClueId,
+  crosswordClues,
+  onData,
+  onChangeData,
+  currentClueId,
+  entryCharacterLength,
+}) {
+  const [countClick, setCountClick] = useState(0);
+  const [isActive, setIsActive] = useState(false);
+
+  const grid = getGrid(crosswordClues);
+
+  function handleToggleList() {
+    setIsActive(!isActive);
+  }
+
   return (
     <>
       <StyledTable>
         <tbody>
-          {[0, 1, 2, 3, 4, 5, 6, 7].map((row, rowIndex) => {
+          {rows.map((row, rowIndex) => {
             return (
               <tr key={rowIndex}>
-                {[0, 1, 2, 3, 4, 5, 6, 7].map((column, columnIndex) => {
+                {columns.map((column, columnIndex) => {
                   return (
                     <td key={columnIndex}>
                       <Cell
                         type="button"
                         isBlack={grid[row][column] === -1}
+                        isSelected={
+                          grid[row][column] !== -1 &&
+                          grid[row][column].id.includes(currentClueId)
+                        }
                         disabled={grid[row][column] === -1}
-                        onClick={() => onCurrentClueId(grid[row][column].id)}
+                        onClick={() => {
+                          onCurrentClueId(grid[row][column].id[countClick % 2]);
+                          setCountClick(countClick + 1);
+                        }}
                       >
                         <small>
                           <sup>{grid[row][column].sup} </sup>
@@ -59,16 +105,30 @@ export default function CrosswordLayout({ onCurrentClueId, crosswordClues }) {
         </tbody>
       </StyledTable>
 
-      <StyledOl>
-        {crosswordClues.map((crosswordClue) => (
-          <li
-            key={crosswordClue.id}
-            onClick={() => onCurrentClueId(crosswordClue.id)}
-          >
-            {crosswordClue.question}
-          </li>
-        ))}
-      </StyledOl>
+      <EntryForm
+        onData={onData}
+        onChangeData={onChangeData}
+        currentClueId={currentClueId}
+        entryCharacterLength={entryCharacterLength}
+      />
+
+      <StyledToggleList type="button" onClick={handleToggleList}>
+        {isActive ? "Fragen verbergen" : "Fragen anzeigen"}
+      </StyledToggleList>
+
+      {isActive && (
+        <StyledOl>
+          {crosswordClues.map((crosswordClue) => (
+            <StyledLi
+              key={crosswordClue.id}
+              isSelected={crosswordClue.id === currentClueId}
+              onClick={() => onCurrentClueId(crosswordClue.id)}
+            >
+              {crosswordClue.question}
+            </StyledLi>
+          ))}
+        </StyledOl>
+      )}
     </>
   );
 }

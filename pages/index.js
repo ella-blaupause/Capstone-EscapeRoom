@@ -20,7 +20,14 @@ const StartDiv = styled.div`
 export default function HomePage({ onNewGame }) {
   return (
     <Wrapper>
-      <Header>Escape Room</Header>
+      <Header>Code Breaker</Header>
+
+      <h3>Finde den Code und entkomme!</h3>
+      <p>
+        In diesem Spiel findest du dich in einem Raum voller Puzzleteile und
+        versteckter Hinweise wieder. Dein Ziel ist es, den Raum zu verlassen,
+        indem du den Farbcode richtig eingibst.
+      </p>
       <StartDiv>
         <MyButton type="button" fontSize={"24px"} onNewGame={onNewGame}>
           Start

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import CrosswordLayout from "../components/CrosswordLayout";
 import { useState } from "react";
-import EntryForm from "../components/EntryForm";
 import { initialCrosswordClues } from "../utils/utils";
 import Toast from "../components/Toast";
 import Header from "../components/Header";
@@ -13,6 +12,7 @@ const Wrapper = styled.div`
   align-items: center;
   width: 375px;
   margin: 8px 0 16vh 0;
+  font-family: "Comic Sans MS", sans-serif;
 `;
 
 const StyledColorDiv1 = styled.div`
@@ -47,7 +47,7 @@ export default function Crossword({ randomColors, randomSymbols }) {
     setEntryCharacterLength(0);
   }
 
-  function getCurrentClueId(crosswordCluesId) {
+  function handleCurrentClueId(crosswordCluesId) {
     setCurrentClueId(crosswordCluesId);
   }
 
@@ -128,19 +128,14 @@ export default function Crossword({ randomColors, randomSymbols }) {
 
       <Wrapper>
         <CrosswordLayout
-          onCurrentClueId={getCurrentClueId}
+          onCurrentClueId={handleCurrentClueId}
           crosswordClues={crosswordClues}
-        />
-        <EntryForm
           onData={handleData}
           onChangeData={handleChangeData}
           currentClueId={currentClueId}
           entryCharacterLength={entryCharacterLength}
         />
-        <p>
-          ❗️ Wenn du eine Frage auswählen willst, drücke auf die Nummer in der
-          Liste ❗️
-        </p>
+
         <Toast
           countSubmits={countSubmits}
           toasts={toasts}

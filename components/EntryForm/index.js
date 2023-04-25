@@ -4,6 +4,8 @@ import { initialCrosswordClues } from "../../utils/utils";
 const StyledForm = styled.form`
   grid-column: 1 / span 2;
   grid-row: 2;
+  margin: 10px 0;
+  width: 260px;
 `;
 
 export default function EntryForm({
@@ -30,7 +32,8 @@ export default function EntryForm({
 
         <label htmlFor="answer">
           {currentClueId
-            ? initialCrosswordClues[currentClueId - 1].question
+            ? `${currentClueId}. ` +
+              initialCrosswordClues[currentClueId - 1].question
             : "Wähle eine Frage aus"}
         </label>
         <br />

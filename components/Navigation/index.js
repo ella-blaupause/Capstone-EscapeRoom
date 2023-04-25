@@ -12,7 +12,7 @@ const StyledNavigation = styled.nav`
   align-items: center;
   background-color: var(--my-blue);
   width: 375px;
-  height: 68px;
+  height: 86px;
 `;
 
 const StyledLink = styled(Link)`

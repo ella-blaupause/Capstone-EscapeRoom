@@ -1,6 +1,11 @@
 import { useState } from "react";
 import Toast from "../Toast";
 import SvgChatGPT from "../../utils/icons";
+import styled from "styled-components";
+
+const StyledFormChatGPT = styled.form`
+  width: 260px;
+`;
 
 let toastProperties;
 
@@ -50,7 +55,7 @@ export default function EntryChatGPT() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <StyledFormChatGPT onSubmit={handleSubmit}>
         <fieldset>
           <legend>
             <SvgChatGPT />
@@ -80,7 +85,7 @@ export default function EntryChatGPT() {
             )}
           </>
         </fieldset>
-      </form>
+      </StyledFormChatGPT>
 
       <Toast
         countSubmits={countSubmits}

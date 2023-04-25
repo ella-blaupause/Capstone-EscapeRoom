@@ -1,4 +1,10 @@
 import { createGlobalStyle } from "styled-components";
+import { Montserrat } from "@next/font/google";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+});
 
 export default createGlobalStyle`
   *,
@@ -8,10 +14,14 @@ export default createGlobalStyle`
   }
 
   :root {
+    //My colors
     --my-beige: #f5f0e1;
     --my-blue: #1e3d59;
     --my-yellow: #ffc13b;
     --my-orange: #ff6e40;
+
+    //Font styles 
+    --font-family: ${montserrat.style.fontFamily};
   }
 
   body {
@@ -19,7 +29,7 @@ export default createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'Comic Sans MS', sans-serif;
+    font-family: var( --font-family);
     background-color: var(--my-beige);
   }
 
