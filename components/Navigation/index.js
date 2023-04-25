@@ -1,7 +1,11 @@
 import Link from "next/link";
 import useRouter from "next/router";
 import styled from "styled-components";
-import { SvgHouse } from "../../utils/icons";
+import {
+  SvgHouse,
+  SvgUserCircle,
+  SvgUserCircleFilled,
+} from "../../utils/icons";
 import { useEffect, useState } from "react";
 
 const StyledNavigation = styled.nav`
@@ -10,6 +14,7 @@ const StyledNavigation = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 30px;
   background-color: var(--my-blue);
   width: 375px;
   height: 86px;
@@ -34,6 +39,13 @@ export default function Navigation() {
         <StyledNavigation>
           <StyledLink href="/">
             <SvgHouse isFilled={router.pathname === "/" && "isFilled"} />
+          </StyledLink>
+          <StyledLink href="/profile">
+            {router.pathname === "/profile" ? (
+              <SvgUserCircleFilled />
+            ) : (
+              <SvgUserCircle />
+            )}
           </StyledLink>
         </StyledNavigation>
       )}

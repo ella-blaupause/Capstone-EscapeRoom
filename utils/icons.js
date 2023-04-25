@@ -45,6 +45,50 @@ export function SvgHouse({ isFilled }) {
   );
 }
 
+export function SvgUserCircle(isFilled) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="55"
+      height="55"
+      fill="none"
+      viewBox="0 0 68 68"
+    >
+      <path
+        stroke="#FFC13B"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M46.257 54.775c-3.443-4.056-8.447-6.608-14.016-6.608-5.568 0-10.572 2.552-14.016 6.608M32.241 59.5c-13.354 0-24.18-11.417-24.18-25.5S18.886 8.5 32.24 8.5c13.355 0 24.181 11.417 24.181 25.5s-10.826 25.5-24.18 25.5Zm0-19.833c-4.451 0-8.06-3.806-8.06-8.5 0-4.695 3.609-8.5 8.06-8.5 4.452 0 8.06 3.805 8.06 8.5 0 4.694-3.608 8.5-8.06 8.5Z"
+      />
+    </svg>
+  );
+}
+
+export function SvgUserCircleFilled(isFilled) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="65"
+      height="68"
+      fill="none"
+      viewBox="0 0 65 68"
+    >
+      <path
+        fill="#FFC13B"
+        d="M8.06 34c0 14.083 10.827 25.5 24.181 25.5 13.355 0 24.181-11.417 24.181-25.5S45.596 8.5 32.242 8.5C18.886 8.5 8.06 19.917 8.06 34Z"
+      />
+      <path
+        stroke="#1E3D59"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M46.257 54.775c-3.443-4.056-8.447-6.608-14.016-6.608-5.568 0-10.572 2.552-14.016 6.608M32.241 59.5c-13.354 0-24.18-11.417-24.18-25.5S18.886 8.5 32.24 8.5c13.355 0 24.181 11.417 24.181 25.5s-10.826 25.5-24.18 25.5Zm0-19.833c-4.451 0-8.06-3.806-8.06-8.5 0-4.695 3.609-8.5 8.06-8.5 4.452 0 8.06 3.805 8.06 8.5 0 4.694-3.608 8.5-8.06 8.5Z"
+      />
+    </svg>
+  );
+}
+
 export function SvgPuzzleElement() {
   return (
     <svg
