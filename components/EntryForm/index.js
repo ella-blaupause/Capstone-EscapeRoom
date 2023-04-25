@@ -32,8 +32,8 @@ export default function EntryForm({
 
         <label htmlFor="answer">
           {currentClueId
-            ? `${currentClueId}. ` +
-              initialCrosswordClues[currentClueId - 1].question
+            ? `${currentClueId}. 
+              initialCrosswordClues[currentClueId - 1].question`
             : "Wähle eine Frage aus"}
         </label>
         <br />

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import EntryForm from "../EntryForm/index.js";
 import { useState } from "react";
-import { getGrid } from "../../utils/utils.js";
+import { columns, getGrid, rows } from "../../utils/utils.js";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -60,8 +60,7 @@ export default function CrosswordLayout({
 }) {
   const [countClick, setCountClick] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const rows = [0, 1, 2, 3, 4, 5, 6, 7];
-  const columns = [0, 1, 2, 3, 4, 5, 6, 7];
+
   const grid = getGrid(crosswordClues);
 
   function handleToggleList() {
@@ -113,12 +112,7 @@ export default function CrosswordLayout({
         entryCharacterLength={entryCharacterLength}
       />
 
-      <StyledToggleList
-        type="button"
-        onClick={() => {
-          handleToggleList();
-        }}
-      >
+      <StyledToggleList type="button" onClick={handleToggleList}>
         {isActive ? "Fragen verbergen" : "Fragen anzeigen"}
       </StyledToggleList>
 
