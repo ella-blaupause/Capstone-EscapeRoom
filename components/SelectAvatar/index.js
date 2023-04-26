@@ -35,13 +35,7 @@ export default function SelectAvatar() {
           })}
         </select>
       </form>
-      <Image
-        priority
-        src={selectedAvatar.src}
-        width={120}
-        height={120}
-        alt="avatar"
-      />
+      <Image src={selectedAvatar.src} width={120} height={120} alt="avatar" />
     </StyledAvatar>
   );
 }
