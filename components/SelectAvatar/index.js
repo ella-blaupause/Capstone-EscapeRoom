@@ -9,6 +9,10 @@ const StyledAvatarDiv = styled.div`
   gap: 8px;
 `;
 
+const StyledAvatarImage = styled(Image)`
+  border-radius: 100px;
+`;
+
 export default function SelectAvatar() {
   const [selectedAvatar, setSelectedAvatar] = useState(avatars[0]);
   function handleAvatarChange(event) {
@@ -35,7 +39,13 @@ export default function SelectAvatar() {
           })}
         </select>
       </form>
-      <Image src={selectedAvatar.src} width={120} height={120} alt="avatar" />
+      <StyledAvatarImage
+        src={selectedAvatar.src}
+        width={120}
+        height={120}
+        alt="avatar"
+        priority
+      />
     </StyledAvatarDiv>
   );
 }
