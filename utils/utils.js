@@ -384,14 +384,14 @@ export function getGrid(crosswordClues) {
 }
 
 export const avatars = [
-  { id: 1, src: "/../public/avatars/avatar-1.png", name: "Avatar 1" },
-  { id: 2, src: "/../public/avatars/avatar-2.png", name: "Avatar 2" },
-  { id: 3, src: "/../public/avatars/avatar-3.png", name: "Avatar 3" },
-  { id: 4, src: "/../public/avatars/avatar-4.png", name: "Avatar 4" },
-  { id: 5, src: "/../public/avatars/avatar-5.png", name: "Avatar 5" },
-  { id: 6, src: "/../public/avatars/avatar-6.png", name: "Avatar 6" },
-  { id: 7, src: "/../public/avatars/avatar-7.png", name: "Avatar 7" },
-  { id: 8, src: "/../public/avatars/avatar-8.png", name: "Avatar 8" },
+  { id: 1, src: "/../public/avatars/avatar-1.jpg", name: "Avatar 1" },
+  { id: 2, src: "/../public/avatars/avatar-2.jpg", name: "Avatar 2" },
+  { id: 3, src: "/../public/avatars/avatar-3.jpg", name: "Avatar 3" },
+  { id: 4, src: "/../public/avatars/avatar-4.jpg", name: "Avatar 4" },
+  { id: 5, src: "/../public/avatars/avatar-5.jpg", name: "Avatar 5" },
+  { id: 6, src: "/../public/avatars/avatar-6.jpg", name: "Avatar 6" },
+  { id: 7, src: "/../public/avatars/avatar-7.jpg", name: "Avatar 7" },
+  { id: 8, src: "/../public/avatars/avatar-8.jpg", name: "Avatar 8" },
 ];
 
 export const initialSolvedPuzzles = [

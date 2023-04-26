@@ -3,7 +3,7 @@ import { avatars } from "../../utils/utils";
 import { useState } from "react";
 import styled from "styled-components";
 
-const StyledAvatar = styled.div`
+const StyledAvatarDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -22,7 +22,7 @@ export default function SelectAvatar() {
   }
 
   return (
-    <StyledAvatar>
+    <StyledAvatarDiv>
       <form>
         <label htmlFor="avatars">Avatar: </label>
         <select name="avatars" id="avatars" onChange={handleAvatarChange}>
@@ -36,6 +36,6 @@ export default function SelectAvatar() {
         </select>
       </form>
       <Image src={selectedAvatar.src} width={120} height={120} alt="avatar" />
-    </StyledAvatar>
+    </StyledAvatarDiv>
   );
 }
