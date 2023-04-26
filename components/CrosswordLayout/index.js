@@ -117,7 +117,7 @@ export default function CrosswordLayout({
       />
 
       <StyledToggleList type="button" onClick={handleToggleList}>
-        {isActive ? "Hinweise verbergen" : "Hinweise anzeigen"}
+        {isActive ? "Fragen verbergen" : "Fragen anzeigen"}
       </StyledToggleList>
 
       {isActive && (

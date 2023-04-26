@@ -14,7 +14,7 @@ const StyledNavigation = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 50px;
   background-color: var(--my-blue);
   width: 375px;
   height: 86px;
