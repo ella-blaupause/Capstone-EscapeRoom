@@ -1,25 +1,25 @@
 import { useState } from "react";
 
 export default function UserName() {
-  const [userData, setUserData] = useState();
+  const [userName, setUserName] = useState();
 
   function handleUserName(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    setUserData(data);
+    setUserName(data);
   }
 
   function handleClick() {
-    setUserData();
+    setUserName();
   }
 
   return (
     <>
-      {userData ? (
+      {userName ? (
         <div>
-          <h2>{userData.userName}</h2>
+          <h2>{userName.userName}</h2>
           <button type="button" onClick={handleClick}>
             Name ändern
           </button>
