@@ -1,6 +1,9 @@
 import Image from "next/image";
 import { avatars } from "../../utils/utils";
 import { useState } from "react";
+import styled from "styled-components";
+
+const StyledAvatar = styled.div``;
 
 export default function SelectAvatar() {
   const [selectedAvatar, setSelectedAvatar] = useState(avatars[0]);
@@ -15,7 +18,7 @@ export default function SelectAvatar() {
   }
 
   return (
-    <>
+    <StyledAvatar>
       <form>
         <label htmlFor="avatars">Avatar: </label>
         <select name="avatars" id="avatars" onChange={handleAvatarChange}>
@@ -35,6 +38,6 @@ export default function SelectAvatar() {
         height={120}
         alt="avatar"
       />
-    </>
+    </StyledAvatar>
   );
 }
