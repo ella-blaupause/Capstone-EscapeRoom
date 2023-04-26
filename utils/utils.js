@@ -1,9 +1,9 @@
 export const colors = [
-  "yellow",
-  "green",
-  "lightblue",
-  "hotpink",
-  "red",
+  "#FF009A", // hotpink
+  "#009E10", //grün
+  "#385CFF", //blau
+  "#B55A10", //braun
+  "#FF110A", //rot
   "gray",
   "orange",
   "blueviolet",
