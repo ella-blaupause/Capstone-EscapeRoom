@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const PuzzleDiv = styled.div`
   border: solid;
+  background-color: #f5f4eb;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 20% 90%;

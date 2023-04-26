@@ -82,11 +82,15 @@ export default function CrosswordLayout({
                         isBlack={grid[row][column] === -1}
                         isSelected={
                           grid[row][column] !== -1 &&
-                          grid[row][column].id.includes(currentClueId)
+                          grid[row][column].refernceCluesId.includes(
+                            currentClueId
+                          )
                         }
                         disabled={grid[row][column] === -1}
                         onClick={() => {
-                          onCurrentClueId(grid[row][column].id[countClick % 2]);
+                          onCurrentClueId(
+                            grid[row][column].refernceCluesId[countClick % 2]
+                          );
                           setCountClick(countClick + 1);
                         }}
                       >

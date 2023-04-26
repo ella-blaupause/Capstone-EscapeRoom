@@ -6,6 +6,9 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 375px;
+  @media (max-width: 414px) {
+    width: 100%;
+  }
 `;
 
 const Main = styled.main`
@@ -15,6 +18,9 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width: 414px) {
+    width: 100%;
+  }
 `;
 
 export default function Layout({ children }) {

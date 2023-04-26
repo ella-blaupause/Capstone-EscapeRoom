@@ -17,17 +17,23 @@ const StartDiv = styled.div`
   top: 50%;
 `;
 
+const StyledIntroduction = styled.p`
+  padding: 0 25px;
+  font-size: 20px;
+  text-align: center;
+`;
+
 export default function HomePage({ onNewGame }) {
   return (
     <Wrapper>
       <Header>Code Breaker</Header>
 
       <h3>Finde den Code und entkomme!</h3>
-      <p>
+      <StyledIntroduction>
         In diesem Spiel findest du dich in einem Raum voller Puzzleteile und
         versteckter Hinweise wieder. Dein Ziel ist es, den Raum zu verlassen,
         indem du den Farbcode richtig eingibst.
-      </p>
+      </StyledIntroduction>
       <StartDiv>
         <MyButton type="button" fontSize={"24px"} onNewGame={onNewGame}>
           Start
