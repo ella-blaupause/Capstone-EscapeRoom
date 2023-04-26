@@ -18,6 +18,9 @@ const StyledNavigation = styled.nav`
   background-color: var(--my-blue);
   width: 375px;
   height: 86px;
+  @media (max-width: 414px) {
+    width: 100%;
+  }
 `;
 
 const StyledLink = styled(Link)`

@@ -12,6 +12,9 @@ const StyledHeader = styled.header`
   flex-direction: column;
   align-items: center;
   z-index: 1;
+  @media (max-width: 414px) {
+    width: 100%;
+  }
 `;
 
 const Title = styled.h1`
