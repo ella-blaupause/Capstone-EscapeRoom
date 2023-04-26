@@ -3,7 +3,11 @@ import { avatars } from "../../utils/utils";
 import { useState } from "react";
 import styled from "styled-components";
 
-const StyledAvatar = styled.div``;
+const StyledAvatar = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
 
 export default function SelectAvatar() {
   const [selectedAvatar, setSelectedAvatar] = useState(avatars[0]);

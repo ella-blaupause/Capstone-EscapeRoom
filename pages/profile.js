@@ -5,7 +5,7 @@ import UserName from "../components/UserName";
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 150px 150px;
+  grid-template-columns: 150px 160px;
   align-items: center;
   gap: 25px;
   padding: 20px;
@@ -19,6 +19,7 @@ export default function Profile() {
         <SelectAvatar />
         <UserName />
       </Wrapper>
+      <p>Du hast 0/4 Rätsel gelöst.</p>
     </>
   );
 }
