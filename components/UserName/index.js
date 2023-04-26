@@ -26,7 +26,7 @@ export default function UserName() {
         </div>
       ) : (
         <form onSubmit={handleUserName}>
-          <label htmlFor="userName">Gebe deinen Spielername ein! </label>
+          <label htmlFor="userName">Gebe deinen Spielername ein: </label>
           <input name="userName" id="userName" required />
           <button type="submit">Ok</button>
         </form>
