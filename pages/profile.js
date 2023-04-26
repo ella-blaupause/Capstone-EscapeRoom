@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   padding: 20px;
 `;
 
-export default function Profile() {
+export default function Profile({ isSolvedPuzzleSum }) {
   return (
     <>
       <Header>Profil</Header>
@@ -19,7 +19,7 @@ export default function Profile() {
         <SelectAvatar />
         <UserName />
       </Wrapper>
-      <p>Du hast 0/4 Rätsel gelöst.</p>
+      <p>Du hast {isSolvedPuzzleSum}/4 Rätsel gelöst.</p>
     </>
   );
 }

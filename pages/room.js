@@ -70,6 +70,7 @@ export default function Room({
   randomSymbols,
   onToggleOnOff,
   isOn,
+  onSolvedPuzzle,
 }) {
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
@@ -86,6 +87,7 @@ export default function Room({
             puzzlePieces={puzzlePieces}
             randomColors={randomColors}
             randomSymbols={randomSymbols}
+            onSolvedPuzzle={onSolvedPuzzle}
           />
           {!isOn && (
             <Clue randomColors={randomColors} randomSymbols={randomSymbols} />

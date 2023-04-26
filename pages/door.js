@@ -10,6 +10,7 @@ export default function Door({
   colors,
   randomColors,
   randomSymbols,
+  onSolvedPuzzles,
 }) {
   const [colorCounts, setcolorCounts] = useLocalStorageState("colorCounts", {
     defaultValue: { first: 2, second: 2, third: 2 },
@@ -43,6 +44,13 @@ export default function Door({
       setcolorCounts({ third: colorCounts.third, ...colorCounts });
     } else {
       setcolorCounts({ first: 0, second: 0, third: 0 });
+    }
+    if (
+      colors[colorCounts.first] === randomColors[2] &&
+      colors[colorCounts.second] === randomColors[0] &&
+      colors[colorCounts.third] === randomColors[1]
+    ) {
+      onSolvedPuzzles(4);
     }
   }
 

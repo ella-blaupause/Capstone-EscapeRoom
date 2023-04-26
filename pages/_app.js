@@ -5,6 +5,7 @@ import {
   getRandomColor,
   getRandomNumbers,
   initialPuzzlePieces,
+  initialSolvedPuzzles,
   symbols,
 } from "../utils/utils";
 import { useState } from "react";
@@ -14,6 +15,7 @@ import { useRouter } from "next/router";
 const randomNumbers = getRandomNumbers(symbols.length);
 
 export default function App({ Component, pageProps }) {
+  const [solvedPuzzles, setSolvedPuzzles] = useState(initialSolvedPuzzles);
   const [isOn, setIsOn] = useLocalStorageState("isOn", { defaultValue: true });
 
   const [randomColors, setRandomColors] = useState([
@@ -40,6 +42,7 @@ export default function App({ Component, pageProps }) {
 
   function handleCollect(puzzlePieceId) {
     const piece = puzzlePieces.find((piece) => piece.id === puzzlePieceId);
+
     if (!piece.isCollected) {
       setCountPieces(countPieces + 1);
       setPuzzlePieces((pieces) =>
@@ -47,6 +50,10 @@ export default function App({ Component, pageProps }) {
           p.id === puzzlePieceId ? { ...piece, isCollected: true } : p
         )
       );
+    }
+
+    if (countPieces + 1 === puzzlePieces.length) {
+      handleSolvedPuzzles(2);
     }
   }
 
@@ -76,7 +83,22 @@ export default function App({ Component, pageProps }) {
 
   function handleToggleOnOff() {
     setIsOn(!isOn);
+    handleSolvedPuzzles(1);
   }
+
+  function handleSolvedPuzzles(currentSolvedPuzzleId) {
+    setSolvedPuzzles(
+      solvedPuzzles.map((solvedPuzzle) =>
+        solvedPuzzle.id === currentSolvedPuzzleId
+          ? { ...solvedPuzzle, isSolved: true }
+          : solvedPuzzle
+      )
+    );
+  }
+  const isSolvedPuzzleSum = solvedPuzzles.filter(
+    (solvedPuzzle) => solvedPuzzle.isSolved && solvedPuzzle.id
+  ).length;
+
   return (
     <>
       <GlobalStyle />
@@ -91,6 +113,9 @@ export default function App({ Component, pageProps }) {
           puzzlePieces={puzzlePieces}
           countPieces={countPieces}
           isOn={isOn}
+          solvedPuzzles={solvedPuzzles}
+          onSolvedPuzzles={handleSolvedPuzzles}
+          isSolvedPuzzleSum={isSolvedPuzzleSum}
           {...pageProps}
         />
       </Layout>

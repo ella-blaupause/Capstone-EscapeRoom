@@ -27,7 +27,11 @@ const StyledColorDiv1 = styled.div`
 
 let toastProperties;
 
-export default function Crossword({ randomColors, randomSymbols }) {
+export default function Crossword({
+  randomColors,
+  randomSymbols,
+  onSolvedPuzzles,
+}) {
   const [currentClueId, setCurrentClueId] = useState(null);
   const [crosswordClues, setCrosswordClues] = useState(initialCrosswordClues);
   const [toasts, setToasts] = useState([]);
@@ -89,7 +93,11 @@ export default function Crossword({ randomColors, randomSymbols }) {
         )
       );
       setCountRightAnswer(countRightAnswer + 1);
+      console.log(countRightAnswer);
       setToasts([toastProperties]);
+      if (countRightAnswer + 1 === initialCrosswordClues.length) {
+        onSolvedPuzzles(3);
+      }
     } else if (enteredAnswer !== correctAnswer) {
       toastProperties = {
         id: 3,
@@ -109,6 +117,8 @@ export default function Crossword({ randomColors, randomSymbols }) {
   function handleChangeData(event) {
     setEntryCharacterLength(event.target.value.length);
   }
+
+  console.log();
 
   if (countRightAnswer === initialCrosswordClues.length) {
     return (

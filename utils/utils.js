@@ -393,3 +393,10 @@ export const avatars = [
   { id: 7, src: "/../public/avatars/avatar-7.png", name: "Avatar 7" },
   { id: 8, src: "/../public/avatars/avatar-8.png", name: "Avatar 8" },
 ];
+
+export const initialSolvedPuzzles = [
+  { id: 1, name: "light", isSolved: false },
+  { id: 2, name: "puzzle pieces", isSolved: false },
+  { id: 3, name: "crossword", isSolved: false },
+  { id: 4, name: "color code", isSolved: false },
+];
