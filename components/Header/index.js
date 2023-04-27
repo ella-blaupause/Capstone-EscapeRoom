@@ -22,6 +22,7 @@ const Title = styled.h1`
   top: 0px;
   font-size: 24px;
   color: var(--my-yellow);
+  text-shadow: 1px 0 10px var(--my-shadow);
 `;
 
 const StyledLink = styled(Link)`

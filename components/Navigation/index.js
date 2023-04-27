@@ -24,6 +24,7 @@ const StyledNavigation = styled.nav`
 `;
 
 const StyledLink = styled(Link)`
+  filter: drop-shadow(5px 5px 8px var(--my-shadow));
   &:hover {
     transform: scale(1.1);
   }
