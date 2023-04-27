@@ -13,7 +13,7 @@ const Area = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
-  box-shadow: inset 0px 0px 10px 2px var(--my-blue);
+  box-shadow: inset 1px 1px 10px 1px var(--my-blue);
 `;
 
 const StyledColorDiv0 = styled.div`
