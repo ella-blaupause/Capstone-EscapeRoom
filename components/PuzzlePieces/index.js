@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { SvgPuzzleElement } from "../../utils/icons";
-import usePuzzlePiecesStore from "../../stores/puzzlePiecesSore";
+import usePuzzlePiecesStore from "../../stores/puzzlePiecesStore";
 
 const PuzzlePiece = styled.button`
   background: none;

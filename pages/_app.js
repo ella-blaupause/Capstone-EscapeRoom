@@ -10,7 +10,7 @@ import { useState } from "react";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
 import useLightStore from "../stores/lightStore";
-import usePuzzlePiecesStore from "../stores/puzzlePiecesSore";
+import usePuzzlePiecesStore from "../stores/puzzlePiecesStore";
 
 const randomNumbers = getRandomNumbers(symbols.length);
 
