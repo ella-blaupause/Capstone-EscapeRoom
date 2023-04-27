@@ -1,9 +1,12 @@
-import ColorPuzzle from "../components/ColorPuzzle";
 import { useEffect, useState } from "react";
-
+import dynamic from "next/dynamic";
 import useLocalStorageState from "use-local-storage-state";
 import Header from "../components/Header";
 import MyButton from "../components/MyButton";
+
+const ColorPuzzle = dynamic(() => import("../components/ColorPuzzle"), {
+  ssr: false,
+});
 
 export default function Door({
   onNewGame,
@@ -15,10 +18,6 @@ export default function Door({
   const [colorCounts, setcolorCounts] = useLocalStorageState("colorCounts", {
     defaultValue: { first: 2, second: 2, third: 2 },
   });
-  const [isClient, setIsClient] = useState(false);
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   function handleColorSwitch(props) {
     if (props === "first") {
@@ -74,14 +73,12 @@ export default function Door({
     <>
       <Header isBackArrow>Tür</Header>
 
-      {isClient && (
-        <ColorPuzzle
-          colors={colors}
-          onColorSwitch={handleColorSwitch}
-          colorCounts={colorCounts}
-          randomSymbols={randomSymbols}
-        />
-      )}
+      <ColorPuzzle
+        colors={colors}
+        onColorSwitch={handleColorSwitch}
+        colorCounts={colorCounts}
+        randomSymbols={randomSymbols}
+      />
     </>
   );
 }
