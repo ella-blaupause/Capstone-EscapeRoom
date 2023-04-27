@@ -25,11 +25,8 @@ const StyledColorDiv0 = styled.div`
   background-color: ${(props) => props.color};
 `;
 
-export default function CollectingArea({
-  countPieces,
-  randomColors,
-  randomSymbols,
-}) {
+export default function CollectingArea({ randomColors, randomSymbols }) {
+  const countPieces = usePuzzlePiecesStore((state) => state.countPieces);
   const puzzlePieces = usePuzzlePiecesStore((state) => state.puzzlePieces);
   if (countPieces === puzzlePieces.length) {
     return (

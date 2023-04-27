@@ -28,7 +28,9 @@ export default function App({ Component, pageProps }) {
   const newGamePuzzlePieces = usePuzzlePiecesStore(
     (state) => state.newGamePuzzlePieces
   );
-  const ç = usePuzzlePiecesStore((state) => state.newGameCountPieces);
+  const newGameCountPieces = usePuzzlePiecesStore(
+    (state) => state.newGameCountPieces
+  );
 
   const [solvedPuzzles, setSolvedPuzzles] = useState(initialSolvedPuzzles);
 
@@ -80,7 +82,7 @@ export default function App({ Component, pageProps }) {
 
     //Puzzleteile beim neuen Spiel wieder sichtbar machen und counter auf null setzen
     newGamePuzzlePieces();
-    increaseCountPieces();
+    newGameCountPieces();
   }
 
   function handleToggleOnOff() {
@@ -112,7 +114,6 @@ export default function App({ Component, pageProps }) {
           randomSymbols={randomSymbols}
           onToggleOnOff={handleToggleOnOff}
           onCollect={handleCollect}
-          countPieces={countPieces}
           solvedPuzzles={solvedPuzzles}
           onSolvedPuzzles={handleSolvedPuzzles}
           isSolvedPuzzleSum={isSolvedPuzzleSum}

@@ -87,7 +87,6 @@ export default function Room({
         <GridContainer isOn={isOn}>
           <StyledImage src="/zimmer-real.jpg" fill alt="" priority />
           <CollectingArea
-            countPieces={countPieces}
             puzzlePieces={puzzlePieces}
             randomColors={randomColors}
             randomSymbols={randomSymbols}
