@@ -11,12 +11,15 @@ import {
 import { useState } from "react";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
+import useLightStore from "../store";
 
 const randomNumbers = getRandomNumbers(symbols.length);
 
 export default function App({ Component, pageProps }) {
+  const isOn = useLightStore((state) => state.isOn);
+  const switchLight = useLightStore((state) => state.switchLight);
+  const turnLight = useLightStore((state) => state.turnLight);
   const [solvedPuzzles, setSolvedPuzzles] = useState(initialSolvedPuzzles);
-  const [isOn, setIsOn] = useLocalStorageState("isOn", { defaultValue: true });
 
   const [randomColors, setRandomColors] = useState([
     colors[getRandomColor()],
@@ -74,7 +77,7 @@ export default function App({ Component, pageProps }) {
     ]);
 
     //Licht beim neuen Spiel wieder an machen
-    setIsOn(true);
+    turnLight();
 
     //Puzzleteile beim neuen Spiel wieder sichtbar machen und counter auf null setzen
     setPuzzlePieces(initialPuzzlePieces);
@@ -82,7 +85,7 @@ export default function App({ Component, pageProps }) {
   }
 
   function handleToggleOnOff() {
-    setIsOn(!isOn);
+    switchLight();
     handleSolvedPuzzles(1);
   }
 

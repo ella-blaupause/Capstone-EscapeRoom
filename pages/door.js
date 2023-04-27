@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import useLocalStorageState from "use-local-storage-state";
 import Header from "../components/Header";
@@ -60,6 +59,7 @@ export default function Door({
   ) {
     return (
       <>
+        <Header>Tür</Header>
         <h1>Freiheit</h1>
 
         <MyButton fontSize={"16px"} onNewGame={onNewGame}>
