@@ -6,6 +6,7 @@ import CollectingArea from "../components/CollectingArea";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Image from "next/image";
+import useLightStore from "../store";
 
 const GridContainer = styled.div`
   background-color: ghostwhite;
@@ -72,9 +73,9 @@ export default function Room({
   randomColors,
   randomSymbols,
   onToggleOnOff,
-  isOn,
   onSolvedPuzzle,
 }) {
+  const isOn = useLightStore((state) => state.isOn);
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
     setIsClient(true);

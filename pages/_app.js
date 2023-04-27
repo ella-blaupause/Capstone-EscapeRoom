@@ -16,7 +16,6 @@ import useLightStore from "../store";
 const randomNumbers = getRandomNumbers(symbols.length);
 
 export default function App({ Component, pageProps }) {
-  const isOn = useLightStore((state) => state.isOn);
   const switchLight = useLightStore((state) => state.switchLight);
   const turnLight = useLightStore((state) => state.turnLight);
   const [solvedPuzzles, setSolvedPuzzles] = useState(initialSolvedPuzzles);
@@ -115,7 +114,6 @@ export default function App({ Component, pageProps }) {
           onCollect={handleCollect}
           puzzlePieces={puzzlePieces}
           countPieces={countPieces}
-          isOn={isOn}
           solvedPuzzles={solvedPuzzles}
           onSolvedPuzzles={handleSolvedPuzzles}
           isSolvedPuzzleSum={isSolvedPuzzleSum}
