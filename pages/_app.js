@@ -11,7 +11,7 @@ import {
 import { useState } from "react";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
-import useLightStore from "../store";
+import useLightStore from "../stores/lightSore";
 
 const randomNumbers = getRandomNumbers(symbols.length);
 
