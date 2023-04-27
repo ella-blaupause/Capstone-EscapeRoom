@@ -19,7 +19,6 @@ export default createGlobalStyle`
     --my-blue: #1e3d59;
     --my-yellow: #ffc13b;
     --my-orange: #ff6e40;
-    --my-shadow: #fc0;
 
     //Font styles 
     --font-family: ${montserrat.style.fontFamily};
