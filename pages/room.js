@@ -9,7 +9,7 @@ import Image from "next/image";
 
 const GridContainer = styled.div`
   background-color: ghostwhite;
-  border: solid ghostwhite;
+  border: solid black;
   filter: ${(props) => (props.isOn ? "brightness(100%)" : "brightness(75%)")};
   display: grid;
   grid-template-columns: repeat(15, 1fr);
