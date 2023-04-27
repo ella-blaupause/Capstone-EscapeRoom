@@ -6,7 +6,7 @@ import CollectingArea from "../components/CollectingArea";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Image from "next/image";
-import useLightStore from "../stores/lightSore";
+import useLightStore from "../stores/lightStore";
 
 const GridContainer = styled.div`
   background-color: ghostwhite;

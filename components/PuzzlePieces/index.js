@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { SvgPuzzleElement } from "../../utils/icons";
+import usePuzzlePiecesStore from "../../stores/puzzlePiecesSore";
 
 const PuzzlePiece = styled.button`
   background: none;
@@ -9,7 +10,8 @@ const PuzzlePiece = styled.button`
   grid-column: ${({ position }) => position.column};
 `;
 
-export default function PuzzlePieces({ onCollect, puzzlePieces }) {
+export default function PuzzlePieces({ onCollect }) {
+  const puzzlePieces = usePuzzlePiecesStore((state) => state.puzzlePieces);
   return (
     <>
       {puzzlePieces.map((puzzlePiece) => (

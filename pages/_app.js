@@ -1,23 +1,35 @@
-import useLocalStorageState from "use-local-storage-state";
 import GlobalStyle from "../styles";
 import {
   colors,
   getRandomColor,
   getRandomNumbers,
-  initialPuzzlePieces,
   initialSolvedPuzzles,
   symbols,
 } from "../utils/utils";
 import { useState } from "react";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
-import useLightStore from "../stores/lightSore";
+import useLightStore from "../stores/lightStore";
+import usePuzzlePiecesStore from "../stores/puzzlePiecesSore";
 
 const randomNumbers = getRandomNumbers(symbols.length);
 
 export default function App({ Component, pageProps }) {
   const switchLight = useLightStore((state) => state.switchLight);
   const turnLight = useLightStore((state) => state.turnLight);
+  const puzzlePieces = usePuzzlePiecesStore((state) => state.puzzlePieces);
+  const countPieces = usePuzzlePiecesStore((state) => state.countPieces);
+  const collectPuzzlePiece = usePuzzlePiecesStore(
+    (state) => state.collectPuzzlePiece
+  );
+  const increaseCountPieces = usePuzzlePiecesStore(
+    (state) => state.increaseCountPieces
+  );
+  const newGamePuzzlePieces = usePuzzlePiecesStore(
+    (state) => state.newGamePuzzlePieces
+  );
+  const ç = usePuzzlePiecesStore((state) => state.newGameCountPieces);
+
   const [solvedPuzzles, setSolvedPuzzles] = useState(initialSolvedPuzzles);
 
   const [randomColors, setRandomColors] = useState([
@@ -32,26 +44,14 @@ export default function App({ Component, pageProps }) {
     symbols[randomNumbers[2]],
   ]);
 
-  const [puzzlePieces, setPuzzlePieces] = useLocalStorageState("puzzlePiece", {
-    defaultValue: initialPuzzlePieces,
-  });
-
-  const [countPieces, setCountPieces] = useLocalStorageState("countPieces", {
-    defaultValue: 0,
-  });
-
   const router = useRouter();
 
   function handleCollect(puzzlePieceId) {
     const piece = puzzlePieces.find((piece) => piece.id === puzzlePieceId);
 
     if (!piece.isCollected) {
-      setCountPieces(countPieces + 1);
-      setPuzzlePieces((pieces) =>
-        pieces.map((p) =>
-          p.id === puzzlePieceId ? { ...piece, isCollected: true } : p
-        )
-      );
+      increaseCountPieces();
+      collectPuzzlePiece(puzzlePieceId);
     }
 
     if (countPieces + 1 === puzzlePieces.length) {
@@ -79,8 +79,8 @@ export default function App({ Component, pageProps }) {
     turnLight();
 
     //Puzzleteile beim neuen Spiel wieder sichtbar machen und counter auf null setzen
-    setPuzzlePieces(initialPuzzlePieces);
-    setCountPieces(0);
+    newGamePuzzlePieces();
+    increaseCountPieces();
   }
 
   function handleToggleOnOff() {
@@ -112,7 +112,6 @@ export default function App({ Component, pageProps }) {
           randomSymbols={randomSymbols}
           onToggleOnOff={handleToggleOnOff}
           onCollect={handleCollect}
-          puzzlePieces={puzzlePieces}
           countPieces={countPieces}
           solvedPuzzles={solvedPuzzles}
           onSolvedPuzzles={handleSolvedPuzzles}
