@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import useColorCodePuzzleStore from "../../stores/colorCodePuzzleStore";
 
 const StyledColorDiv = styled.div`
   grid-column: 3 / span 6;
@@ -11,7 +12,9 @@ const StyledColorDiv = styled.div`
   background-color: ${(props) => props.color};
 `;
 
-export default function Clue({ randomColors, randomSymbols }) {
+export default function Clue() {
+  const randomColors = useColorCodePuzzleStore((state) => state.randomColors);
+  const randomSymbols = useColorCodePuzzleStore((state) => state.randomSymbols);
   return (
     <StyledColorDiv color={randomColors[2]} data-testid="color-div">
       {randomSymbols[2]}

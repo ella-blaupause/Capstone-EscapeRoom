@@ -88,8 +88,6 @@ export default function Room({
           <StyledImage src="/zimmer-real.jpg" fill alt="" priority />
           <CollectingArea
             puzzlePieces={puzzlePieces}
-            randomColors={randomColors}
-            randomSymbols={randomSymbols}
             onSolvedPuzzle={onSolvedPuzzle}
           />
           {!isOn && (

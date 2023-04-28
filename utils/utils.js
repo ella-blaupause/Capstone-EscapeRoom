@@ -72,6 +72,7 @@ export function getRandomNumbers(arrayLength) {
 
   return numbers;
 }
+export const randomNumbers = getRandomNumbers(symbols.length);
 
 export function getRandomColor() {
   return Math.floor(Math.random() * colors.length);

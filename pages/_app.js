@@ -11,8 +11,7 @@ import Layout from "../components/Layout";
 import { useRouter } from "next/router";
 import useLightStore from "../stores/lightStore";
 import usePuzzlePiecesStore from "../stores/puzzlePiecesStore";
-
-const randomNumbers = getRandomNumbers(symbols.length);
+import useColorCodePuzzleStore from "../stores/colorCodePuzzleStore";
 
 export default function App({ Component, pageProps }) {
   const switchLight = useLightStore((state) => state.switchLight);
@@ -34,17 +33,13 @@ export default function App({ Component, pageProps }) {
 
   const [solvedPuzzles, setSolvedPuzzles] = useState(initialSolvedPuzzles);
 
-  const [randomColors, setRandomColors] = useState([
-    colors[getRandomColor()],
-    colors[getRandomColor()],
-    colors[getRandomColor()],
-  ]);
+  const newGameRandomColors = useColorCodePuzzleStore(
+    (state) => state.newGameRandomColors
+  );
 
-  const [randomSymbols, setRandomSymbols] = useState([
-    symbols[randomNumbers[0]],
-    symbols[randomNumbers[1]],
-    symbols[randomNumbers[2]],
-  ]);
+  const newGameRandomSymbols = useColorCodePuzzleStore(
+    (state) => state.newGameRandomSymbols
+  );
 
   const router = useRouter();
 
@@ -63,19 +58,9 @@ export default function App({ Component, pageProps }) {
 
   function handleNewGame() {
     router.push("/room");
-    //generiert einen neuen Color Code
-    const randomNumbers = getRandomNumbers(symbols.length);
 
-    setRandomSymbols([
-      symbols[[randomNumbers[0]]],
-      symbols[[randomNumbers[1]]],
-      symbols[[randomNumbers[2]]],
-    ]);
-    setRandomColors([
-      colors[getRandomColor()],
-      colors[getRandomColor()],
-      colors[getRandomColor()],
-    ]);
+    newGameRandomColors();
+    newGameRandomSymbols();
 
     turnLight();
 
@@ -108,8 +93,6 @@ export default function App({ Component, pageProps }) {
         <Component
           onNewGame={handleNewGame}
           colors={colors}
-          randomColors={randomColors}
-          randomSymbols={randomSymbols}
           onToggleOnOff={handleToggleOnOff}
           onCollect={handleCollect}
           solvedPuzzles={solvedPuzzles}
