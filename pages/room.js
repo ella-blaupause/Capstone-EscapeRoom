@@ -66,12 +66,7 @@ const StyledImage = styled(Image)`
   z-index: -1;
 `;
 
-export default function Room({
-  onCollect,
-  puzzlePieces,
-  onSolvedPuzzles,
-  onSolvedPuzzle,
-}) {
+export default function Room({ onSolvedPuzzles }) {
   const isOn = useLightStore((state) => state.isOn);
   const switchLight = useLightStore((state) => state.switchLight);
   const [isClient, setIsClient] = useState(false);
