@@ -11,6 +11,7 @@ const useSolvedPuzlleStore = create((set) => ({
           : solvedPuzzle
       ),
     })),
+  resetSolvedPuzzle: () => set({ solvedPuzzles: initialSolvedPuzzles }),
 }));
 
 export default useSolvedPuzlleStore;

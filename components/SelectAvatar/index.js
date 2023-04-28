@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { avatars } from "../../utils/utils";
-import { useState } from "react";
 import styled from "styled-components";
 import useProfileStore from "../../stores/profileStore";
 

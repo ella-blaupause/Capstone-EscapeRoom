@@ -1,18 +1,20 @@
-import { useState } from "react";
+import useProfileStore from "../../stores/profileStore";
 
 export default function UserName() {
-  const [userName, setUserName] = useState();
+  const userName = useProfileStore((state) => state.userName);
+  const chooseUserName = useProfileStore((state) => state.chooseUserName);
+  const resetUserName = useProfileStore((state) => state.resetUserName);
 
   function handleUserName(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    setUserName(data);
+    chooseUserName(data);
   }
 
   function handleClick() {
-    setUserName();
+    resetUserName();
   }
 
   return (
