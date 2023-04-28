@@ -7,6 +7,7 @@ import Header from "../components/Header";
 import EntryChatGPT from "../components/EntryChatGPT";
 import useColorCodePuzzleStore from "../stores/colorCodePuzzleStore";
 import useCrosswordStore from "../stores/crosswordStore";
+import useToastStore from "../stores/toastStore";
 
 const Wrapper = styled.div`
   display: flex;
@@ -34,12 +35,16 @@ export default function Crossword({ onSolvedPuzzles }) {
   const randomSymbols = useColorCodePuzzleStore((state) => state.randomSymbols);
   //CrosswordStore
 
+  const currentClueId = useCrosswordStore((state) => state.currentClueId);
+
   const [crosswordClues, setCrosswordClues] = useState(initialCrosswordClues);
-  const [countSubmits, setCountSubmits] = useState(0);
   const [entryCharacterLength, setEntryCharacterLength] = useState(0);
   const [countRightAnswer, setCountRightAnswer] = useState(0);
 
   const [toasts, setToasts] = useState([]);
+  const increaseCountSubmits = useToastStore(
+    (state) => state.increaseCountSubmits
+  );
 
   function handleData(event) {
     event.preventDefault();
@@ -47,7 +52,7 @@ export default function Crossword({ onSolvedPuzzles }) {
     const data = Object.fromEntries(formData);
 
     checkAnswer(data);
-    setCountSubmits(countSubmits + 1);
+    increaseCountSubmits();
 
     event.target.reset();
     setEntryCharacterLength(0);
@@ -142,11 +147,7 @@ export default function Crossword({ onSolvedPuzzles }) {
           entryCharacterLength={entryCharacterLength}
         />
 
-        <Toast
-          countSubmits={countSubmits}
-          toasts={toasts}
-          onDeleteToast={handleDeleteToast}
-        />
+        <Toast toasts={toasts} onDeleteToast={handleDeleteToast} />
         <EntryChatGPT />
       </Wrapper>
     </>

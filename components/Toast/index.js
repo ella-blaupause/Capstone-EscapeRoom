@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import styled from "styled-components";
+import useToastStore from "../../stores/toastStore";
 
 const StyledToast = styled.div`
   position: absolute;
@@ -56,7 +57,8 @@ const Progress = styled.div`
   }
 `;
 
-export default function Toast({ toasts, onDeleteToast, countSubmits }) {
+export default function Toast({ toasts, onDeleteToast }) {
+  const countSubmits = useToastStore((state) => state.countSubmits);
   useEffect(() => {
     let interval;
     if (countSubmits) {
