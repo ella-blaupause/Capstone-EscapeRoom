@@ -58,8 +58,12 @@ export default function CrosswordLayout({ onSolvedPuzzles }) {
 
   const crosswordClues = useCrosswordStore((state) => state.crosswordClues);
 
-  const [countClickGrid, setCountClickGrid] = useState(0);
-  const [isActive, setIsActive] = useState(false);
+  const countClickGrid = useCrosswordStore((state) => state.countClickGrid);
+  const increaseCountClickGrid = useCrosswordStore(
+    (state) => state.increaseCountClickGrid
+  );
+  const isActive = useCrosswordStore((state) => state.isActive);
+  const toggleIsActive = useCrosswordStore((state) => state.toggleIsActive);
 
   const grid = getGrid(crosswordClues);
 
@@ -68,7 +72,7 @@ export default function CrosswordLayout({ onSolvedPuzzles }) {
   }
 
   function handleToggleList() {
-    setIsActive(!isActive);
+    toggleIsActive();
   }
 
   return (
@@ -97,7 +101,7 @@ export default function CrosswordLayout({ onSolvedPuzzles }) {
                               countClickGrid % 2
                             ]
                           );
-                          setCountClickGrid(countClickGrid + 1);
+                          increaseCountClickGrid();
                         }}
                       >
                         <small>

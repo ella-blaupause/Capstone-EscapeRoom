@@ -6,6 +6,8 @@ const useCrosswordStore = create((set) => ({
   countRightAnswer: 0,
   entryCharacterLength: 0,
   crosswordClues: initialCrosswordClues,
+  countClickGrid: 0,
+  isActive: false,
 
   pickCurrentClueId: (crosswordCluesId) =>
     set({ currentClueId: crosswordCluesId }),
@@ -24,6 +26,9 @@ const useCrosswordStore = create((set) => ({
       ),
     })),
   resetCrosswordClues: () => set({ crosswordClues: initialCrosswordClues }),
+  increaseCountClickGrid: () =>
+    set((state) => ({ countClickGrid: state.countClickGrid + 1 })),
+  toggleIsActive: () => set((state) => ({ isActive: !state.isActive })),
 }));
 
 export default useCrosswordStore;
