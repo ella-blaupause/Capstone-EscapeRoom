@@ -10,8 +10,28 @@ const PuzzlePiece = styled.button`
   grid-column: ${({ position }) => position.column};
 `;
 
-export default function PuzzlePieces({ onCollect }) {
+export default function PuzzlePieces({ onSolvedPuzzles }) {
   const puzzlePieces = usePuzzlePiecesStore((state) => state.puzzlePieces);
+  const countPieces = usePuzzlePiecesStore((state) => state.countPieces);
+  const increaseCountPieces = usePuzzlePiecesStore(
+    (state) => state.increaseCountPieces
+  );
+  const collectPuzzlePiece = usePuzzlePiecesStore(
+    (state) => state.collectPuzzlePiece
+  );
+
+  function handleCollect(puzzlePieceId) {
+    const piece = puzzlePieces.find((piece) => piece.id === puzzlePieceId);
+
+    if (!piece.isCollected) {
+      increaseCountPieces();
+      collectPuzzlePiece(puzzlePieceId);
+    }
+
+    if (countPieces + 1 === puzzlePieces.length) {
+      onSolvedPuzzles(2);
+    }
+  }
   return (
     <>
       {puzzlePieces.map((puzzlePiece) => (
@@ -19,7 +39,7 @@ export default function PuzzlePieces({ onCollect }) {
           key={puzzlePiece.id}
           type="button"
           onClick={() => {
-            onCollect(puzzlePiece.id);
+            handleCollect(puzzlePiece.id);
           }}
           position={puzzlePiece.position}
         >

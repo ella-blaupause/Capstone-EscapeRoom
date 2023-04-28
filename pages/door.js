@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import useLocalStorageState from "use-local-storage-state";
 import Header from "../components/Header";
 import MyButton from "../components/MyButton";
 import useColorCodePuzzleStore from "../stores/colorCodePuzzleStore";

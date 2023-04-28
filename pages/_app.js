@@ -1,50 +1,16 @@
 import GlobalStyle from "../styles";
-import { colors, initialSolvedPuzzles } from "../utils/utils";
-import { useState } from "react";
+import { colors } from "../utils/utils";
 import Layout from "../components/Layout";
-
-import useLightStore from "../stores/lightStore";
-import usePuzzlePiecesStore from "../stores/puzzlePiecesStore";
+import useSolvedPuzlleStore from "../stores/solvedPuzzleStore";
 
 export default function App({ Component, pageProps }) {
-  const switchLight = useLightStore((state) => state.switchLight);
-  const puzzlePieces = usePuzzlePiecesStore((state) => state.puzzlePieces);
-  const countPieces = usePuzzlePiecesStore((state) => state.countPieces);
-  const collectPuzzlePiece = usePuzzlePiecesStore(
-    (state) => state.collectPuzzlePiece
+  const solvedPuzzles = useSolvedPuzlleStore((state) => state.solvedPuzzles);
+  const increaseSolvedPuzzles = useSolvedPuzlleStore(
+    (state) => state.increaseSolvedPuzzles
   );
-  const increaseCountPieces = usePuzzlePiecesStore(
-    (state) => state.increaseCountPieces
-  );
-
-  const [solvedPuzzles, setSolvedPuzzles] = useState(initialSolvedPuzzles);
-
-  function handleCollect(puzzlePieceId) {
-    const piece = puzzlePieces.find((piece) => piece.id === puzzlePieceId);
-
-    if (!piece.isCollected) {
-      increaseCountPieces();
-      collectPuzzlePiece(puzzlePieceId);
-    }
-
-    if (countPieces + 1 === puzzlePieces.length) {
-      handleSolvedPuzzles(2);
-    }
-  }
-
-  function handleToggleOnOff() {
-    switchLight();
-    handleSolvedPuzzles(1);
-  }
 
   function handleSolvedPuzzles(currentSolvedPuzzleId) {
-    setSolvedPuzzles(
-      solvedPuzzles.map((solvedPuzzle) =>
-        solvedPuzzle.id === currentSolvedPuzzleId
-          ? { ...solvedPuzzle, isSolved: true }
-          : solvedPuzzle
-      )
-    );
+    increaseSolvedPuzzles(currentSolvedPuzzleId);
   }
   const isSolvedPuzzleSum = solvedPuzzles.filter(
     (solvedPuzzle) => solvedPuzzle.isSolved && solvedPuzzle.id
@@ -56,8 +22,6 @@ export default function App({ Component, pageProps }) {
       <Layout>
         <Component
           colors={colors}
-          onToggleOnOff={handleToggleOnOff}
-          onCollect={handleCollect}
           solvedPuzzles={solvedPuzzles}
           onSolvedPuzzles={handleSolvedPuzzles}
           isSolvedPuzzleSum={isSolvedPuzzleSum}

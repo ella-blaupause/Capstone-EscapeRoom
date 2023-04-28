@@ -69,37 +69,34 @@ const StyledImage = styled(Image)`
 export default function Room({
   onCollect,
   puzzlePieces,
-  countPieces,
-  randomColors,
-  randomSymbols,
-  onToggleOnOff,
+  onSolvedPuzzles,
   onSolvedPuzzle,
 }) {
   const isOn = useLightStore((state) => state.isOn);
+  const switchLight = useLightStore((state) => state.switchLight);
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
     setIsClient(true);
   }, []);
+  function handleToggleOnOff() {
+    switchLight();
+    onSolvedPuzzles(1);
+  }
   return (
     <>
       <Header>Zimmer</Header>
       {isClient && (
         <GridContainer isOn={isOn}>
           <StyledImage src="/zimmer-real.jpg" fill alt="" priority />
-          <CollectingArea
-            puzzlePieces={puzzlePieces}
-            onSolvedPuzzle={onSolvedPuzzle}
-          />
-          {!isOn && (
-            <Clue randomColors={randomColors} randomSymbols={randomSymbols} />
-          )}
+          <CollectingArea />
+          {!isOn && <Clue />}
           <StyledDoor href={"/door"}>
             <DoorDiv />
           </StyledDoor>
-          <PuzzlePieces onCollect={onCollect} puzzlePieces={puzzlePieces} />
+          <PuzzlePieces onSolvedPuzzles={onSolvedPuzzles} />
           <StyledLightButton
             type="button"
-            onClick={onToggleOnOff}
+            onClick={handleToggleOnOff}
           ></StyledLightButton>
           <StyledPaper href={"/crossword"}>
             <PaperDiv />
