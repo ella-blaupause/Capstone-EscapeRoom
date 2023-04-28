@@ -57,12 +57,18 @@ const Progress = styled.div`
   }
 `;
 
-export default function Toast({ toasts, onDeleteToast }) {
+export default function Toast() {
   const countSubmits = useToastStore((state) => state.countSubmits);
+  const toasts = useToastStore((state) => state.toasts);
+  const deleteToasts = useToastStore((state) => state.deleteToasts);
+
+  function handleDeleteToast() {
+    deleteToasts();
+  }
   useEffect(() => {
     let interval;
     if (countSubmits) {
-      interval = setTimeout(() => onDeleteToast(), 3000);
+      interval = setTimeout(() => handleDeleteToast(), 3000);
     }
     return () => {
       clearTimeout(interval);
@@ -77,7 +83,7 @@ export default function Toast({ toasts, onDeleteToast }) {
             {toast.emoji}
           </span>
           <span>{toast.title}</span>
-          <DeleteButton onClick={() => onDeleteToast()}>x</DeleteButton>
+          <DeleteButton onClick={() => handleDeleteToast()}>x</DeleteButton>
           <Progress />
         </StyledToast>
       ))}

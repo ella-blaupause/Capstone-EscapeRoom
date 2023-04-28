@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 import EntryForm from "../EntryForm/index.js";
 import { useState } from "react";
 import { columns, getGrid, rows } from "../../utils/utils.js";
@@ -51,16 +50,14 @@ const StyledLi = styled.li`
     ${({ isSelected }) => (isSelected ? "var(--my-orange)" : "transparent")};
 `;
 
-export default function CrosswordLayout({
-  crosswordClues,
-  onData,
-  onChangeData,
-  entryCharacterLength,
-}) {
+export default function CrosswordLayout({ onSolvedPuzzles }) {
   const currentClueId = useCrosswordStore((state) => state.currentClueId);
   const pickCurrentClueId = useCrosswordStore(
     (state) => state.pickCurrentClueId
   );
+
+  const crosswordClues = useCrosswordStore((state) => state.crosswordClues);
+
   const [countClickGrid, setCountClickGrid] = useState(0);
   const [isActive, setIsActive] = useState(false);
 
@@ -118,12 +115,7 @@ export default function CrosswordLayout({
         </tbody>
       </StyledTable>
 
-      <EntryForm
-        onData={onData}
-        onChangeData={onChangeData}
-        currentClueId={currentClueId}
-        entryCharacterLength={entryCharacterLength}
-      />
+      <EntryForm onSolvedPuzzles={onSolvedPuzzles} />
 
       <StyledToggleList type="button" onClick={handleToggleList}>
         {isActive ? "Fragen verbergen" : "Fragen anzeigen"}
