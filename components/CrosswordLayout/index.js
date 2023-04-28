@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import EntryForm from "../EntryForm/index.js";
-import { useState } from "react";
 import { columns, getGrid, rows } from "../../utils/utils.js";
 import useCrosswordStore from "../../stores/crosswordStore.js";
 
