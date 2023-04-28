@@ -49,7 +49,10 @@ export default function Crossword({ onSolvedPuzzles }) {
     (state) => state.resetEntryCharacterLength
   );
 
-  const [crosswordClues, setCrosswordClues] = useState(initialCrosswordClues);
+  const crosswordClues = useCrosswordStore((state) => state.crosswordClues);
+  const correctlyAnsweredCrosswordClue = useCrosswordStore(
+    (state) => state.correctlyAnsweredCrosswordClue
+  );
 
   const [toasts, setToasts] = useState([]);
   const increaseCountSubmits = useToastStore(
@@ -98,13 +101,7 @@ export default function Crossword({ onSolvedPuzzles }) {
         ariaLabel: "Richtig Haken",
         borderColor: "green",
       };
-      setCrosswordClues((clues) =>
-        clues.map((clue) =>
-          clue.id === currentClueId
-            ? { ...clue, isCorrectlyAnswered: true }
-            : clue
-        )
-      );
+      correctlyAnsweredCrosswordClue();
       increaseCountRightAnswer();
 
       setToasts([toastProperties]);
