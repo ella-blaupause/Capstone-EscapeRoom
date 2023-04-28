@@ -5,6 +5,7 @@ import usePuzzlePiecesStore from "../../stores/puzzlePiecesStore";
 import useColorCodePuzzleStore from "../../stores/colorCodePuzzleStore";
 import useCrosswordStore from "../../stores/crosswordStore";
 import useToastStore from "../../stores/toastStore";
+import useChatGPTStore from "../../stores/chatGPTStore";
 
 const StyledButton = styled.button`
   padding: 10px 20px 10px 20px;
@@ -39,6 +40,7 @@ export default function MyButton({ children, fontSize }) {
     (state) => state.resetCrosswordClues
   );
   const deleteToasts = useToastStore((state) => state.deleteToasts);
+  const resetIsAnswered = useChatGPTStore((state) => state.resetIsAnswered);
 
   const router = useRouter();
 
@@ -57,6 +59,7 @@ export default function MyButton({ children, fontSize }) {
     resetCrosswordClues();
 
     deleteToasts();
+    resetIsAnswered();
   }
 
   return (

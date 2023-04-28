@@ -21,7 +21,10 @@ export default function EntryChatGPT() {
     (state) => state.cacheQuestionInput
   );
   const [result, setResult] = useState();
-  const [isAnswered, setIsAnswered] = useState(false);
+  const isAnswered = useChatGPTStore((state) => state.isAnswered);
+  const setIsAnsweredToTrue = useChatGPTStore(
+    (state) => state.setIsAnsweredToTrue
+  );
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -43,7 +46,7 @@ export default function EntryChatGPT() {
       }
 
       setResult(data.result);
-      setIsAnswered(true);
+      setIsAnsweredToTrue();
     } catch (error) {
       toastProperties = {
         id: 1,
