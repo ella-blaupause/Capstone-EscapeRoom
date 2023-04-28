@@ -6,7 +6,6 @@ import Header from "../components/Header";
 import EntryChatGPT from "../components/EntryChatGPT";
 import useColorCodePuzzleStore from "../stores/colorCodePuzzleStore";
 import useCrosswordStore from "../stores/crosswordStore";
-import useToastStore from "../stores/toastStore";
 
 const Wrapper = styled.div`
   display: flex;

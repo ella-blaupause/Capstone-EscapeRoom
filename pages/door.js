@@ -2,14 +2,14 @@ import dynamic from "next/dynamic";
 import Header from "../components/Header";
 import MyButton from "../components/MyButton";
 import useColorCodePuzzleStore from "../stores/colorCodePuzzleStore";
+import { colors } from "../utils/utils";
 
 const ColorPuzzle = dynamic(() => import("../components/ColorPuzzle"), {
   ssr: false,
 });
 
-export default function Door({ colors, onSolvedPuzzles }) {
+export default function Door({ onSolvedPuzzles }) {
   const colorCounts = useColorCodePuzzleStore((state) => state.colorCounts);
-
   const randomColors = useColorCodePuzzleStore((state) => state.randomColors);
 
   if (
@@ -31,7 +31,7 @@ export default function Door({ colors, onSolvedPuzzles }) {
     <>
       <Header isBackArrow>Tür</Header>
 
-      <ColorPuzzle colors={colors} onSolvedPuzzles={onSolvedPuzzles} />
+      <ColorPuzzle onSolvedPuzzles={onSolvedPuzzles} />
     </>
   );
 }

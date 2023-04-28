@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import useColorCodePuzzleStore from "../../stores/colorCodePuzzleStore";
+import { colors } from "../../utils/utils";
 
 const PuzzleDiv = styled.div`
   border: solid;
@@ -19,7 +20,7 @@ const ColorDiv = styled.div`
   background-color: ${(props) => props.color};
 `;
 
-export default function ColorPuzzle({ colors, onSolvedPuzzles }) {
+export default function ColorPuzzle({ onSolvedPuzzles }) {
   const colorCounts = useColorCodePuzzleStore((state) => state.colorCounts);
   const randomColors = useColorCodePuzzleStore((state) => state.randomColors);
   const randomSymbols = useColorCodePuzzleStore((state) => state.randomSymbols);

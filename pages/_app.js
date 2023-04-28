@@ -21,7 +21,6 @@ export default function App({ Component, pageProps }) {
       <GlobalStyle />
       <Layout>
         <Component
-          colors={colors}
           solvedPuzzles={solvedPuzzles}
           onSolvedPuzzles={handleSolvedPuzzles}
           isSolvedPuzzleSum={isSolvedPuzzleSum}
