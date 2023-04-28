@@ -5,6 +5,8 @@ import { initialCrosswordClues } from "../utils/utils";
 import Toast from "../components/Toast";
 import Header from "../components/Header";
 import EntryChatGPT from "../components/EntryChatGPT";
+import useColorCodePuzzleStore from "../stores/colorCodePuzzleStore";
+import useCrosswordStore from "../stores/crosswordStore";
 
 const Wrapper = styled.div`
   display: flex;
@@ -27,17 +29,17 @@ const StyledColorDiv1 = styled.div`
 
 let toastProperties;
 
-export default function Crossword({
-  randomColors,
-  randomSymbols,
-  onSolvedPuzzles,
-}) {
-  const [currentClueId, setCurrentClueId] = useState(null);
+export default function Crossword({ onSolvedPuzzles }) {
+  const randomColors = useColorCodePuzzleStore((state) => state.randomColors);
+  const randomSymbols = useColorCodePuzzleStore((state) => state.randomSymbols);
+  //CrosswordStore
+
   const [crosswordClues, setCrosswordClues] = useState(initialCrosswordClues);
-  const [toasts, setToasts] = useState([]);
   const [countSubmits, setCountSubmits] = useState(0);
   const [entryCharacterLength, setEntryCharacterLength] = useState(0);
   const [countRightAnswer, setCountRightAnswer] = useState(0);
+
+  const [toasts, setToasts] = useState([]);
 
   function handleData(event) {
     event.preventDefault();
@@ -49,10 +51,6 @@ export default function Crossword({
 
     event.target.reset();
     setEntryCharacterLength(0);
-  }
-
-  function handleCurrentClueId(crosswordCluesId) {
-    setCurrentClueId(crosswordCluesId);
   }
 
   //Überprüft Antwort und gibt Toastmassege
@@ -138,11 +136,9 @@ export default function Crossword({
 
       <Wrapper>
         <CrosswordLayout
-          onCurrentClueId={handleCurrentClueId}
           crosswordClues={crosswordClues}
           onData={handleData}
           onChangeData={handleChangeData}
-          currentClueId={currentClueId}
           entryCharacterLength={entryCharacterLength}
         />
 

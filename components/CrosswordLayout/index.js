@@ -3,6 +3,7 @@ import styled from "styled-components";
 import EntryForm from "../EntryForm/index.js";
 import { useState } from "react";
 import { columns, getGrid, rows } from "../../utils/utils.js";
+import useCrosswordStore from "../../stores/crosswordStore.js";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -51,17 +52,23 @@ const StyledLi = styled.li`
 `;
 
 export default function CrosswordLayout({
-  onCurrentClueId,
   crosswordClues,
   onData,
   onChangeData,
-  currentClueId,
   entryCharacterLength,
 }) {
-  const [countClick, setCountClick] = useState(0);
+  const currentClueId = useCrosswordStore((state) => state.currentClueId);
+  const pickCurrentClueId = useCrosswordStore(
+    (state) => state.pickCurrentClueId
+  );
+  const [countClickGrid, setCountClickGrid] = useState(0);
   const [isActive, setIsActive] = useState(false);
 
   const grid = getGrid(crosswordClues);
+
+  function handleCurrentClueId(crosswordCluesId) {
+    pickCurrentClueId(crosswordCluesId);
+  }
 
   function handleToggleList() {
     setIsActive(!isActive);
@@ -88,10 +95,12 @@ export default function CrosswordLayout({
                         }
                         disabled={grid[row][column] === -1}
                         onClick={() => {
-                          onCurrentClueId(
-                            grid[row][column].refernceCluesId[countClick % 2]
+                          handleCurrentClueId(
+                            grid[row][column].refernceCluesId[
+                              countClickGrid % 2
+                            ]
                           );
-                          setCountClick(countClick + 1);
+                          setCountClickGrid(countClickGrid + 1);
                         }}
                       >
                         <small>
@@ -126,7 +135,7 @@ export default function CrosswordLayout({
             <StyledLi
               key={crosswordClue.id}
               isSelected={crosswordClue.id === currentClueId}
-              onClick={() => onCurrentClueId(crosswordClue.id)}
+              onClick={() => handleCurrentClueId(crosswordClue.id)}
             >
               {crosswordClue.question}
             </StyledLi>

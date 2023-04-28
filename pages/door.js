@@ -11,7 +11,6 @@ export default function Door({ colors, onSolvedPuzzles }) {
   const colorCounts = useColorCodePuzzleStore((state) => state.colorCounts);
 
   const randomColors = useColorCodePuzzleStore((state) => state.randomColors);
-  const randomSymbols = useColorCodePuzzleStore((state) => state.randomSymbols);
 
   if (
     colors[colorCounts.first] === randomColors[2] &&
