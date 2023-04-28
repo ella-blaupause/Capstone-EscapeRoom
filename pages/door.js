@@ -8,7 +8,7 @@ const ColorPuzzle = dynamic(() => import("../components/ColorPuzzle"), {
   ssr: false,
 });
 
-export default function Door({ onNewGame, colors, onSolvedPuzzles }) {
+export default function Door({ colors, onSolvedPuzzles }) {
   const [colorCounts, setcolorCounts] = useLocalStorageState("colorCounts", {
     defaultValue: { first: 2, second: 2, third: 2 },
   });
@@ -19,27 +19,24 @@ export default function Door({ onNewGame, colors, onSolvedPuzzles }) {
     if (props === "first") {
       if (colorCounts.first >= colors.length - 1) {
         colorCounts.first = -1;
-        setcolorCounts({ first: colorCounts.first, ...colorCounts });
       }
-      colorCounts.first++;
-      setcolorCounts({ first: colorCounts.first, ...colorCounts });
+      setcolorCounts({ first: colorCounts.first++, ...colorCounts });
     } else if (props === "second") {
       if (colorCounts.second >= colors.length - 1) {
         colorCounts.second = -1;
-        setcolorCounts({ second: colorCounts.second, ...colorCounts });
       }
-      colorCounts.second++;
-      setcolorCounts({ second: colorCounts.second, ...colorCounts });
+
+      setcolorCounts({ second: colorCounts.second++, ...colorCounts });
     } else if (props === "third") {
       if (colorCounts.third >= colors.length - 1) {
         colorCounts.third = -1;
-        setcolorCounts({ third: colorCounts.third, ...colorCounts });
       }
-      colorCounts.third++;
-      setcolorCounts({ third: colorCounts.third, ...colorCounts });
+
+      setcolorCounts({ third: colorCounts.third++, ...colorCounts });
     } else {
       setcolorCounts({ first: 0, second: 0, third: 0 });
     }
+
     if (
       colors[colorCounts.first] === randomColors[2] &&
       colors[colorCounts.second] === randomColors[0] &&
@@ -59,9 +56,7 @@ export default function Door({ onNewGame, colors, onSolvedPuzzles }) {
         <Header>Tür</Header>
         <h1>Freiheit</h1>
 
-        <MyButton fontSize={"16px"} onNewGame={onNewGame}>
-          Noch mal spielen
-        </MyButton>
+        <MyButton fontSize={"16px"}>Noch mal spielen</MyButton>
       </>
     );
   }

@@ -2,7 +2,7 @@ export const colors = [
   "#FF009A", // hotpink
   "#009E10", //grün
   "#385CFF", //blau
-  "#B55A10", //braun
+  "#994C0E", //braun
   "#FF110A", //rot
   "gray",
   "orange",

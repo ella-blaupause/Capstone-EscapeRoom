@@ -1,4 +1,8 @@
+import { useRouter } from "next/router";
 import styled from "styled-components";
+import useLightStore from "../../stores/lightStore";
+import usePuzzlePiecesStore from "../../stores/puzzlePiecesStore";
+import useColorCodePuzzleStore from "../../stores/colorCodePuzzleStore";
 
 const StyledButton = styled.button`
   padding: 10px 20px 10px 20px;
@@ -12,9 +16,42 @@ const StyledButton = styled.button`
   }
 `;
 
-export default function MyButton({ children, fontSize, onNewGame }) {
+export default function MyButton({ children, fontSize }) {
+  const turnLight = useLightStore((state) => state.turnLight);
+  const newGamePuzzlePieces = usePuzzlePiecesStore(
+    (state) => state.newGamePuzzlePieces
+  );
+  const newGameCountPieces = usePuzzlePiecesStore(
+    (state) => state.newGameCountPieces
+  );
+  const newGameRandomColors = useColorCodePuzzleStore(
+    (state) => state.newGameRandomColors
+  );
+
+  const newGameRandomSymbols = useColorCodePuzzleStore(
+    (state) => state.newGameRandomSymbols
+  );
+
+  const router = useRouter();
+
+  function handleNewGame() {
+    router.push("/room");
+
+    newGameRandomColors();
+    newGameRandomSymbols();
+
+    turnLight();
+
+    newGamePuzzlePieces();
+    newGameCountPieces();
+  }
+
   return (
-    <StyledButton type="button" fontSize={fontSize} onClick={() => onNewGame()}>
+    <StyledButton
+      type="button"
+      fontSize={fontSize}
+      onClick={() => handleNewGame()}
+    >
       {children}
     </StyledButton>
   );
