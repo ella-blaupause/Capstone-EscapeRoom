@@ -34,6 +34,9 @@ export default function MyButton({ children, fontSize }) {
   const resetCountRightAnswer = useCrosswordStore(
     (state) => state.resetCountRightAnswer
   );
+  const resetCrosswordClues = useCrosswordStore(
+    (state) => state.resetCrosswordClues
+  );
 
   const router = useRouter();
 
@@ -49,6 +52,7 @@ export default function MyButton({ children, fontSize }) {
     resetCountPieces();
 
     resetCountRightAnswer();
+    resetCrosswordClues();
   }
 
   return (

@@ -23,6 +23,7 @@ const useCrosswordStore = create((set) => ({
           : clue
       ),
     })),
+  resetCrosswordClues: () => set({ crosswordClues: initialCrosswordClues }),
 }));
 
 export default useCrosswordStore;
