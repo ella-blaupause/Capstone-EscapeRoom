@@ -14,7 +14,7 @@ const useColorCodePuzzleStore = create((set) => ({
   ],
   colorCounts: { first: 2, second: 2, third: 2 },
 
-  newGameRandomColors: () =>
+  resetRandomColors: () =>
     set({
       randomColors: [
         colors[getRandomColor()],
@@ -22,7 +22,7 @@ const useColorCodePuzzleStore = create((set) => ({
         colors[getRandomColor()],
       ],
     }),
-  newGameRandomSymbols: () =>
+  resetRandomSymbols: () =>
     set({
       randomSymbols: [
         symbols[[randomNumbers[0]]],

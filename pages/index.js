@@ -23,7 +23,7 @@ const StyledIntroduction = styled.p`
   text-align: center;
 `;
 
-export default function HomePage({ onNewGame }) {
+export default function HomePage() {
   return (
     <Wrapper>
       <Header>Code Breaker</Header>
@@ -35,7 +35,7 @@ export default function HomePage({ onNewGame }) {
         indem du den Farbcode richtig eingibst.
       </StyledIntroduction>
       <StartDiv>
-        <MyButton type="button" fontSize={"24px"} onNewGame={onNewGame}>
+        <MyButton type="button" fontSize={"24px"}>
           Start
         </MyButton>
       </StartDiv>

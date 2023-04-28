@@ -12,8 +12,8 @@ const usePuzzlePiecesStore = create((set) => ({
     })),
   increaseCountPieces: () =>
     set((state) => ({ countPieces: state.countPieces + 1 })),
-  newGamePuzzlePieces: () => set({ puzzlePieces: initialPuzzlePieces }),
-  newGameCountPieces: () => set({ countPieces: 0 }),
+  resetPuzzlePieces: () => set({ puzzlePieces: initialPuzzlePieces }),
+  resetCountPieces: () => set({ countPieces: 0 }),
 }));
 
 export default usePuzzlePiecesStore;

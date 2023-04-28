@@ -33,13 +33,23 @@ let toastProperties;
 export default function Crossword({ onSolvedPuzzles }) {
   const randomColors = useColorCodePuzzleStore((state) => state.randomColors);
   const randomSymbols = useColorCodePuzzleStore((state) => state.randomSymbols);
-  //CrosswordStore
 
   const currentClueId = useCrosswordStore((state) => state.currentClueId);
+  const countRightAnswer = useCrosswordStore((state) => state.countRightAnswer);
+  const increaseCountRightAnswer = useCrosswordStore(
+    (state) => state.increaseCountRightAnswer
+  );
+  const entryCharacterLength = useCrosswordStore(
+    (state) => state.entryCharacterLength
+  );
+  const countEntryCharacterLength = useCrosswordStore(
+    (state) => state.countEntryCharacterLength
+  );
+  const resetEntryCharacterLength = useCrosswordStore(
+    (state) => state.resetEntryCharacterLength
+  );
 
   const [crosswordClues, setCrosswordClues] = useState(initialCrosswordClues);
-  const [entryCharacterLength, setEntryCharacterLength] = useState(0);
-  const [countRightAnswer, setCountRightAnswer] = useState(0);
 
   const [toasts, setToasts] = useState([]);
   const increaseCountSubmits = useToastStore(
@@ -55,7 +65,7 @@ export default function Crossword({ onSolvedPuzzles }) {
     increaseCountSubmits();
 
     event.target.reset();
-    setEntryCharacterLength(0);
+    resetEntryCharacterLength();
   }
 
   //Überprüft Antwort und gibt Toastmassege
@@ -95,8 +105,8 @@ export default function Crossword({ onSolvedPuzzles }) {
             : clue
         )
       );
-      setCountRightAnswer(countRightAnswer + 1);
-      console.log(countRightAnswer);
+      increaseCountRightAnswer();
+
       setToasts([toastProperties]);
       if (countRightAnswer + 1 === initialCrosswordClues.length) {
         onSolvedPuzzles(3);
@@ -118,10 +128,8 @@ export default function Crossword({ onSolvedPuzzles }) {
   }
 
   function handleChangeData(event) {
-    setEntryCharacterLength(event.target.value.length);
+    countEntryCharacterLength(event);
   }
-
-  console.log();
 
   if (countRightAnswer === initialCrosswordClues.length) {
     return (

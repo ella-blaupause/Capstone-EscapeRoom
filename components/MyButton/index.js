@@ -3,6 +3,7 @@ import styled from "styled-components";
 import useLightStore from "../../stores/lightStore";
 import usePuzzlePiecesStore from "../../stores/puzzlePiecesStore";
 import useColorCodePuzzleStore from "../../stores/colorCodePuzzleStore";
+import useCrosswordStore from "../../stores/crosswordStore";
 
 const StyledButton = styled.button`
   padding: 10px 20px 10px 20px;
@@ -18,18 +19,20 @@ const StyledButton = styled.button`
 
 export default function MyButton({ children, fontSize }) {
   const turnLight = useLightStore((state) => state.turnLight);
-  const newGamePuzzlePieces = usePuzzlePiecesStore(
-    (state) => state.newGamePuzzlePieces
+  const resetPuzzlePieces = usePuzzlePiecesStore(
+    (state) => state.resetPuzzlePieces
   );
-  const newGameCountPieces = usePuzzlePiecesStore(
-    (state) => state.newGameCountPieces
+  const resetCountPieces = usePuzzlePiecesStore(
+    (state) => state.resetCountPieces
   );
-  const newGameRandomColors = useColorCodePuzzleStore(
-    (state) => state.newGameRandomColors
+  const resetRandomColors = useColorCodePuzzleStore(
+    (state) => state.resetRandomColors
   );
-
-  const newGameRandomSymbols = useColorCodePuzzleStore(
-    (state) => state.newGameRandomSymbols
+  const resetRandomSymbols = useColorCodePuzzleStore(
+    (state) => state.resetRandomSymbols
+  );
+  const resetCountRightAnswer = useCrosswordStore(
+    (state) => state.resetCountRightAnswer
   );
 
   const router = useRouter();
@@ -37,13 +40,15 @@ export default function MyButton({ children, fontSize }) {
   function handleNewGame() {
     router.push("/room");
 
-    newGameRandomColors();
-    newGameRandomSymbols();
+    resetRandomColors();
+    resetRandomSymbols();
 
     turnLight();
 
-    newGamePuzzlePieces();
-    newGameCountPieces();
+    resetPuzzlePieces();
+    resetCountPieces();
+
+    resetCountRightAnswer();
   }
 
   return (
