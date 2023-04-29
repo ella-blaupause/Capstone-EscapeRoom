@@ -2,6 +2,7 @@ import styled from "styled-components";
 import EntryForm from "../EntryForm/index.js";
 import { columns, getGrid, rows } from "../../utils/utils.js";
 import useGlobalStore from "../../store/index.js";
+import { useRef } from "react";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -50,6 +51,7 @@ const StyledLi = styled.li`
 `;
 
 export default function CrosswordLayout({ onSolvedPuzzles }) {
+  const inputRef = useRef();
   const currentClueId = useGlobalStore((state) => state.currentClueId);
   const pickCurrentClueId = useGlobalStore((state) => state.pickCurrentClueId);
 
@@ -70,6 +72,9 @@ export default function CrosswordLayout({ onSolvedPuzzles }) {
 
   function handleToggleList() {
     toggleIsActive();
+  }
+  function focus() {
+    inputRef.current.focus();
   }
 
   return (
@@ -99,6 +104,7 @@ export default function CrosswordLayout({ onSolvedPuzzles }) {
                             ]
                           );
                           increaseCountClickGrid();
+                          focus();
                         }}
                       >
                         <small>
@@ -116,7 +122,7 @@ export default function CrosswordLayout({ onSolvedPuzzles }) {
         </tbody>
       </StyledTable>
 
-      <EntryForm onSolvedPuzzles={onSolvedPuzzles} />
+      <EntryForm onSolvedPuzzles={onSolvedPuzzles} inputRef={inputRef} />
 
       <StyledToggleList type="button" onClick={handleToggleList}>
         {isActive ? "Fragen verbergen" : "Fragen anzeigen"}
