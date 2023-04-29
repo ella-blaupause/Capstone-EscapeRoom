@@ -1,21 +1,21 @@
 import dynamic from "next/dynamic";
 import Header from "../components/Header";
 import MyButton from "../components/MyButton";
-import useColorCodePuzzleStore from "../stores/colorCodePuzzleStore";
 import { colors } from "../utils/utils";
+import useGlobalStore from "../store";
 
 const ColorPuzzle = dynamic(() => import("../components/ColorPuzzle"), {
   ssr: false,
 });
 
 export default function Door({ onSolvedPuzzles }) {
-  const colorCounts = useColorCodePuzzleStore((state) => state.colorCounts);
-  const randomColors = useColorCodePuzzleStore((state) => state.randomColors);
+  const colorCounts = useGlobalStore((state) => state.colorCounts);
+  const randomColors = useGlobalStore((state) => state.randomColors);
 
   if (
-    colors[colorCounts.first] === randomColors[2] &&
-    colors[colorCounts.second] === randomColors[0] &&
-    colors[colorCounts.third] === randomColors[1]
+    colors[colorCounts.firstDiv] === randomColors[2] &&
+    colors[colorCounts.secondDiv] === randomColors[0] &&
+    colors[colorCounts.thirdDiv] === randomColors[1]
   ) {
     return (
       <>

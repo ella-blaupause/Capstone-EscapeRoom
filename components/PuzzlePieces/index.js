@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { SvgPuzzleElement } from "../../utils/icons";
-import usePuzzlePiecesStore from "../../stores/puzzlePiecesStore";
+import useGlobalStore from "../../store";
 
 const PuzzlePiece = styled.button`
   background: none;
@@ -11,12 +11,12 @@ const PuzzlePiece = styled.button`
 `;
 
 export default function PuzzlePieces({ onSolvedPuzzles }) {
-  const puzzlePieces = usePuzzlePiecesStore((state) => state.puzzlePieces);
-  const countPieces = usePuzzlePiecesStore((state) => state.countPieces);
-  const increaseCountPieces = usePuzzlePiecesStore(
+  const puzzlePieces = useGlobalStore((state) => state.puzzlePieces);
+  const countPieces = useGlobalStore((state) => state.countPieces);
+  const increaseCountPieces = useGlobalStore(
     (state) => state.increaseCountPieces
   );
-  const collectPuzzlePiece = usePuzzlePiecesStore(
+  const collectPuzzlePiece = useGlobalStore(
     (state) => state.collectPuzzlePiece
   );
 

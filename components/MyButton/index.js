@@ -1,12 +1,6 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import useLightStore from "../../stores/lightStore";
-import usePuzzlePiecesStore from "../../stores/puzzlePiecesStore";
-import useColorCodePuzzleStore from "../../stores/colorCodePuzzleStore";
-import useCrosswordStore from "../../stores/crosswordStore";
-import useToastStore from "../../stores/toastStore";
-import useChatGPTStore from "../../stores/chatGPTStore";
-import useSolvedPuzlleStore from "../../stores/solvedPuzzleStore";
+import useGlobalStore from "../../store";
 
 const StyledButton = styled.button`
   padding: 10px 20px 10px 20px;
@@ -21,30 +15,22 @@ const StyledButton = styled.button`
 `;
 
 export default function MyButton({ children, fontSize }) {
-  const turnLight = useLightStore((state) => state.turnLight);
-  const resetPuzzlePieces = usePuzzlePiecesStore(
-    (state) => state.resetPuzzlePieces
-  );
-  const resetCountPieces = usePuzzlePiecesStore(
-    (state) => state.resetCountPieces
-  );
-  const resetRandomColors = useColorCodePuzzleStore(
-    (state) => state.resetRandomColors
-  );
-  const resetRandomSymbols = useColorCodePuzzleStore(
+  const turnLight = useGlobalStore((state) => state.turnLight);
+  const resetPuzzlePieces = useGlobalStore((state) => state.resetPuzzlePieces);
+  const resetCountPieces = useGlobalStore((state) => state.resetCountPieces);
+  const resetRandomColors = useGlobalStore((state) => state.resetRandomColors);
+  const resetRandomSymbols = useGlobalStore(
     (state) => state.resetRandomSymbols
   );
-  const resetCountRightAnswer = useCrosswordStore(
+  const resetCountRightAnswer = useGlobalStore(
     (state) => state.resetCountRightAnswer
   );
-  const resetCrosswordClues = useCrosswordStore(
+  const resetCrosswordClues = useGlobalStore(
     (state) => state.resetCrosswordClues
   );
-  const deleteToasts = useToastStore((state) => state.deleteToasts);
-  const resetIsAnswered = useChatGPTStore((state) => state.resetIsAnswered);
-  const resetSolvedPuzzle = useSolvedPuzlleStore(
-    (state) => state.resetSolvedPuzzle
-  );
+  const deleteToasts = useGlobalStore((state) => state.deleteToasts);
+  const setIsAnswered = useGlobalStore((state) => state.setIsAnswered);
+  const resetSolvedPuzzle = useGlobalStore((state) => state.resetSolvedPuzzle);
 
   const router = useRouter();
 
@@ -63,7 +49,7 @@ export default function MyButton({ children, fontSize }) {
     resetCrosswordClues();
 
     deleteToasts();
-    resetIsAnswered();
+    setIsAnswered(false);
     resetSolvedPuzzle();
   }
 

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { SvgPuzzleElement } from "../../utils/icons";
-import usePuzzlePiecesStore from "../../stores/puzzlePiecesStore";
-import useColorCodePuzzleStore from "../../stores/colorCodePuzzleStore";
+import useGlobalStore from "../../store";
 
 const Area = styled.div`
   width: 100px;
@@ -27,10 +26,10 @@ const StyledColorDiv0 = styled.div`
 `;
 
 export default function CollectingArea() {
-  const randomColors = useColorCodePuzzleStore((state) => state.randomColors);
-  const randomSymbols = useColorCodePuzzleStore((state) => state.randomSymbols);
-  const countPieces = usePuzzlePiecesStore((state) => state.countPieces);
-  const puzzlePieces = usePuzzlePiecesStore((state) => state.puzzlePieces);
+  const randomColors = useGlobalStore((state) => state.randomColors);
+  const randomSymbols = useGlobalStore((state) => state.randomSymbols);
+  const countPieces = useGlobalStore((state) => state.countPieces);
+  const puzzlePieces = useGlobalStore((state) => state.puzzlePieces);
   if (countPieces === puzzlePieces.length) {
     return (
       <Area countPieces={countPieces}>

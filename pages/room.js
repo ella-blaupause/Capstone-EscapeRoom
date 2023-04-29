@@ -6,7 +6,7 @@ import CollectingArea from "../components/CollectingArea";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Image from "next/image";
-import useLightStore from "../stores/lightStore";
+import useGlobalStore from "../store";
 
 const GridContainer = styled.div`
   background-color: ghostwhite;
@@ -67,8 +67,8 @@ const StyledImage = styled(Image)`
 `;
 
 export default function Room({ onSolvedPuzzles }) {
-  const isOn = useLightStore((state) => state.isOn);
-  const switchLight = useLightStore((state) => state.switchLight);
+  const isOn = useGlobalStore((state) => state.isOn);
+  const switchLight = useGlobalStore((state) => state.switchLight);
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
     setIsClient(true);

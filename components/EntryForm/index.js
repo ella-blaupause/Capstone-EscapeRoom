@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { initialCrosswordClues } from "../../utils/utils";
-import useCrosswordStore from "../../stores/crosswordStore";
-import useToastStore from "../../stores/toastStore";
+import useGlobalStore from "../../store";
 
 const StyledForm = styled.form`
   grid-column: 1 / span 2;
@@ -13,28 +12,28 @@ let answerLength;
 let toastProperties;
 
 export default function EntryForm({ onSolvedPuzzles }) {
-  const currentClueId = useCrosswordStore((state) => state.currentClueId);
-  const entryCharacterLength = useCrosswordStore(
+  const currentClueId = useGlobalStore((state) => state.currentClueId);
+  const entryCharacterLength = useGlobalStore(
     (state) => state.entryCharacterLength
   );
-  const increaseCountRightAnswer = useCrosswordStore(
+  const increaseCountRightAnswer = useGlobalStore(
     (state) => state.increaseCountRightAnswer
   );
-  const resetEntryCharacterLength = useCrosswordStore(
+  const resetEntryCharacterLength = useGlobalStore(
     (state) => state.resetEntryCharacterLength
   );
-  const crosswordClues = useCrosswordStore((state) => state.crosswordClues);
-  const correctlyAnsweredCrosswordClue = useCrosswordStore(
+  const crosswordClues = useGlobalStore((state) => state.crosswordClues);
+  const correctlyAnsweredCrosswordClue = useGlobalStore(
     (state) => state.correctlyAnsweredCrosswordClue
   );
-  const countEntryCharacterLength = useCrosswordStore(
+  const countEntryCharacterLength = useGlobalStore(
     (state) => state.countEntryCharacterLength
   );
-  const createToasts = useToastStore((state) => state.createToasts);
-  const increaseCountSubmits = useToastStore(
+  const createToasts = useGlobalStore((state) => state.createToasts);
+  const increaseCountSubmits = useGlobalStore(
     (state) => state.increaseCountSubmits
   );
-  const countRightAnswer = useCrosswordStore((state) => state.countRightAnswer);
+  const countRightAnswer = useGlobalStore((state) => state.countRightAnswer);
 
   if (currentClueId === null) {
     answerLength = 0;

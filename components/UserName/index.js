@@ -1,9 +1,9 @@
-import useProfileStore from "../../stores/profileStore";
+import useGlobalStore from "../../store";
 
 export default function UserName() {
-  const userName = useProfileStore((state) => state.userName);
-  const chooseUserName = useProfileStore((state) => state.chooseUserName);
-  const resetUserName = useProfileStore((state) => state.resetUserName);
+  const userName = useGlobalStore((state) => state.userName);
+  const chooseUserName = useGlobalStore((state) => state.chooseUserName);
+  const resetUserName = useGlobalStore((state) => state.resetUserName);
 
   function handleUserName(event) {
     event.preventDefault();

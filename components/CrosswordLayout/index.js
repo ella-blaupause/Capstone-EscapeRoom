@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import EntryForm from "../EntryForm/index.js";
 import { columns, getGrid, rows } from "../../utils/utils.js";
-import useCrosswordStore from "../../stores/crosswordStore.js";
+import useGlobalStore from "../../store/index.js";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -50,19 +50,17 @@ const StyledLi = styled.li`
 `;
 
 export default function CrosswordLayout({ onSolvedPuzzles }) {
-  const currentClueId = useCrosswordStore((state) => state.currentClueId);
-  const pickCurrentClueId = useCrosswordStore(
-    (state) => state.pickCurrentClueId
-  );
+  const currentClueId = useGlobalStore((state) => state.currentClueId);
+  const pickCurrentClueId = useGlobalStore((state) => state.pickCurrentClueId);
 
-  const crosswordClues = useCrosswordStore((state) => state.crosswordClues);
+  const crosswordClues = useGlobalStore((state) => state.crosswordClues);
 
-  const countClickGrid = useCrosswordStore((state) => state.countClickGrid);
-  const increaseCountClickGrid = useCrosswordStore(
+  const countClickGrid = useGlobalStore((state) => state.countClickGrid);
+  const increaseCountClickGrid = useGlobalStore(
     (state) => state.increaseCountClickGrid
   );
-  const isActive = useCrosswordStore((state) => state.isActive);
-  const toggleIsActive = useCrosswordStore((state) => state.toggleIsActive);
+  const isActive = useGlobalStore((state) => state.isActive);
+  const toggleIsActive = useGlobalStore((state) => state.toggleIsActive);
 
   const grid = getGrid(crosswordClues);
 

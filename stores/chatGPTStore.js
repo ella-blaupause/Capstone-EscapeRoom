@@ -5,8 +5,7 @@ const useChatGPTStore = create((set) => ({
   isAnswered: false,
 
   cacheQuestionInput: (event) => set({ questionInput: event.target.value }),
-  setIsAnsweredToTrue: () => set({ isAnswered: true }),
-  resetIsAnswered: () => set({ isAnswered: false }),
+  setIsAnswered: (bool) => set({ isAnswered: bool }),
 }));
 
 export default useChatGPTStore;

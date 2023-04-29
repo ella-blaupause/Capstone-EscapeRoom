@@ -4,8 +4,7 @@ import { initialCrosswordClues } from "../utils/utils";
 import Toast from "../components/Toast";
 import Header from "../components/Header";
 import EntryChatGPT from "../components/EntryChatGPT";
-import useColorCodePuzzleStore from "../stores/colorCodePuzzleStore";
-import useCrosswordStore from "../stores/crosswordStore";
+import useGlobalStore from "../store";
 
 const Wrapper = styled.div`
   display: flex;
@@ -27,10 +26,9 @@ const StyledColorDiv1 = styled.div`
 `;
 
 export default function Crossword({ onSolvedPuzzles }) {
-  const randomColors = useColorCodePuzzleStore((state) => state.randomColors);
-  const randomSymbols = useColorCodePuzzleStore((state) => state.randomSymbols);
-
-  const countRightAnswer = useCrosswordStore((state) => state.countRightAnswer);
+  const randomColors = useGlobalStore((state) => state.randomColors);
+  const randomSymbols = useGlobalStore((state) => state.randomSymbols);
+  const countRightAnswer = useGlobalStore((state) => state.countRightAnswer);
 
   if (countRightAnswer === initialCrosswordClues.length) {
     return (

@@ -1,7 +1,7 @@
-import { create } from "zustand";
+import { create as createStore } from "zustand";
 import { initialSolvedPuzzles } from "../utils/utils";
 
-const useSolvedPuzlleStore = create((set) => ({
+const useSolvedPuzlleStore = createStore((set) => ({
   solvedPuzzles: initialSolvedPuzzles,
   increaseSolvedPuzzles: (currentSolvedPuzzleId) =>
     set((state) => ({

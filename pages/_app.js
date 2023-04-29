@@ -1,11 +1,10 @@
 import GlobalStyle from "../styles";
-import { colors } from "../utils/utils";
 import Layout from "../components/Layout";
-import useSolvedPuzlleStore from "../stores/solvedPuzzleStore";
+import useGlobalStore from "../store";
 
 export default function App({ Component, pageProps }) {
-  const solvedPuzzles = useSolvedPuzlleStore((state) => state.solvedPuzzles);
-  const increaseSolvedPuzzles = useSolvedPuzlleStore(
+  const solvedPuzzles = useGlobalStore((state) => state.solvedPuzzles);
+  const increaseSolvedPuzzles = useGlobalStore(
     (state) => state.increaseSolvedPuzzles
   );
 

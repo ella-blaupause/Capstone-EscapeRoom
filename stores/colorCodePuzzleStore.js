@@ -12,7 +12,7 @@ const useColorCodePuzzleStore = create((set) => ({
     symbols[randomNumbers[1]],
     symbols[randomNumbers[2]],
   ],
-  colorCounts: { first: 2, second: 2, third: 2 },
+  colorCounts: { firstDiv: 2, secondDiv: 2, thirdDiv: 2 },
 
   resetRandomColors: () =>
     set({
@@ -32,17 +32,26 @@ const useColorCodePuzzleStore = create((set) => ({
     }),
   increaseFirstColorDiv: () =>
     set((state) => ({
-      colorCounts: { first: state.colorCounts.first++, ...state.colorCounts },
+      colorCounts: {
+        firstDiv: state.colorCounts.firstDiv++,
+        ...state.colorCounts,
+      },
     })),
   increaseSecondColorDiv: () =>
     set((state) => ({
-      colorCounts: { second: state.colorCounts.second++, ...state.colorCounts },
+      colorCounts: {
+        secondDiv: state.colorCounts.secondDiv++,
+        ...state.colorCounts,
+      },
     })),
   increaseThirdColorDiv: () =>
     set((state) => ({
-      colorCounts: { third: state.colorCounts.third++, ...state.colorCounts },
+      colorCounts: {
+        thirdDiv: state.colorCounts.thirdDiv++,
+        ...state.colorCounts,
+      },
     })),
-  defaultColorCode: () => set({ first: 2, second: 2, third: 2 }),
+  defaultColorCode: () => set({ firstDiv: 2, secondDiv: 2, thirdDiv: 2 }),
 }));
 
 export default useColorCodePuzzleStore;

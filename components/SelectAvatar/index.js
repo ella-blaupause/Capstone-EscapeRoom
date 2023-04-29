@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { avatars } from "../../utils/utils";
 import styled from "styled-components";
-import useProfileStore from "../../stores/profileStore";
+import useGlobalStore from "../../store";
 
 const StyledAvatarDiv = styled.div`
   display: flex;
@@ -14,8 +14,8 @@ const StyledAvatarImage = styled(Image)`
 `;
 
 export default function SelectAvatar() {
-  const avatar = useProfileStore((state) => state.avatar);
-  const chooseAvatar = useProfileStore((state) => state.chooseAvatar);
+  const avatar = useGlobalStore((state) => state.avatar);
+  const chooseAvatar = useGlobalStore((state) => state.chooseAvatar);
 
   function handleAvatarChange(event) {
     event.preventDefault();

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import styled from "styled-components";
-import useToastStore from "../../stores/toastStore";
+import useGlobalStore from "../../store";
 
 const StyledToast = styled.div`
   position: absolute;
@@ -58,9 +58,9 @@ const Progress = styled.div`
 `;
 
 export default function Toast() {
-  const countSubmits = useToastStore((state) => state.countSubmits);
-  const toasts = useToastStore((state) => state.toasts);
-  const deleteToasts = useToastStore((state) => state.deleteToasts);
+  const countSubmits = useGlobalStore((state) => state.countSubmits);
+  const toasts = useGlobalStore((state) => state.toasts);
+  const deleteToasts = useGlobalStore((state) => state.deleteToasts);
 
   function handleDeleteToast() {
     deleteToasts();

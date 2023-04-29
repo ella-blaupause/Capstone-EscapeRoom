@@ -2,8 +2,7 @@ import { useState } from "react";
 import Toast from "../Toast";
 import SvgChatGPT from "../../utils/icons";
 import styled from "styled-components";
-import useToastStore from "../../stores/toastStore";
-import useChatGPTStore from "../../stores/chatGPTStore";
+import useGlobalStore from "../../store";
 
 const StyledFormChatGPT = styled.form`
   width: 260px;
@@ -12,19 +11,17 @@ const StyledFormChatGPT = styled.form`
 let toastProperties;
 
 export default function EntryChatGPT() {
-  const createToasts = useToastStore((state) => state.createToasts);
-  const increaseCountSubmits = useToastStore(
+  const createToasts = useGlobalStore((state) => state.createToasts);
+  const increaseCountSubmits = useGlobalStore(
     (state) => state.increaseCountSubmits
   );
-  const questionInput = useChatGPTStore((state) => state.questionInput);
-  const cacheQuestionInput = useChatGPTStore(
+  const questionInput = useGlobalStore((state) => state.questionInput);
+  const cacheQuestionInput = useGlobalStore(
     (state) => state.cacheQuestionInput
   );
   const [result, setResult] = useState();
-  const isAnswered = useChatGPTStore((state) => state.isAnswered);
-  const setIsAnsweredToTrue = useChatGPTStore(
-    (state) => state.setIsAnsweredToTrue
-  );
+  const isAnswered = useGlobalStore((state) => state.isAnswered);
+  const setIsAnswered = useGlobalStore((state) => state.setIsAnswered);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -46,7 +43,7 @@ export default function EntryChatGPT() {
       }
 
       setResult(data.result);
-      setIsAnsweredToTrue();
+      setIsAnswered(true);
     } catch (error) {
       toastProperties = {
         id: 1,
