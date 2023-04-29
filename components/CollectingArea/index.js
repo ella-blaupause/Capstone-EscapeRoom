@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { SvgPuzzleElement } from "../../utils/icons";
+import useGlobalStore from "../../store";
 
 const Area = styled.div`
   width: 100px;
@@ -24,12 +25,11 @@ const StyledColorDiv0 = styled.div`
   background-color: ${(props) => props.color};
 `;
 
-export default function CollectingArea({
-  countPieces,
-  puzzlePieces,
-  randomColors,
-  randomSymbols,
-}) {
+export default function CollectingArea() {
+  const randomColors = useGlobalStore((state) => state.randomColors);
+  const randomSymbols = useGlobalStore((state) => state.randomSymbols);
+  const countPieces = useGlobalStore((state) => state.countPieces);
+  const puzzlePieces = useGlobalStore((state) => state.puzzlePieces);
   if (countPieces === puzzlePieces.length) {
     return (
       <Area countPieces={countPieces}>

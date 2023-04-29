@@ -1,18 +1,20 @@
-import { useState } from "react";
+import useGlobalStore from "../../store";
 
 export default function UserName() {
-  const [userName, setUserName] = useState();
+  const userName = useGlobalStore((state) => state.userName);
+  const chooseUserName = useGlobalStore((state) => state.chooseUserName);
+  const resetUserName = useGlobalStore((state) => state.resetUserName);
 
   function handleUserName(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    setUserName(data);
+    chooseUserName(data);
   }
 
   function handleClick() {
-    setUserName();
+    resetUserName();
   }
 
   return (

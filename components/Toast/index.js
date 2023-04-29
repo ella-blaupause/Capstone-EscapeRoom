@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import styled from "styled-components";
+import useGlobalStore from "../../store";
 
 const StyledToast = styled.div`
   position: absolute;
@@ -56,11 +57,18 @@ const Progress = styled.div`
   }
 `;
 
-export default function Toast({ toasts, onDeleteToast, countSubmits }) {
+export default function Toast() {
+  const countSubmits = useGlobalStore((state) => state.countSubmits);
+  const toasts = useGlobalStore((state) => state.toasts);
+  const deleteToasts = useGlobalStore((state) => state.deleteToasts);
+
+  function handleDeleteToast() {
+    deleteToasts();
+  }
   useEffect(() => {
     let interval;
     if (countSubmits) {
-      interval = setTimeout(() => onDeleteToast(), 3000);
+      interval = setTimeout(() => handleDeleteToast(), 3000);
     }
     return () => {
       clearTimeout(interval);
@@ -75,7 +83,7 @@ export default function Toast({ toasts, onDeleteToast, countSubmits }) {
             {toast.emoji}
           </span>
           <span>{toast.title}</span>
-          <DeleteButton onClick={() => onDeleteToast()}>x</DeleteButton>
+          <DeleteButton onClick={() => handleDeleteToast()}>x</DeleteButton>
           <Progress />
         </StyledToast>
       ))}

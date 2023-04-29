@@ -2,6 +2,7 @@ import { useState } from "react";
 import Toast from "../Toast";
 import SvgChatGPT from "../../utils/icons";
 import styled from "styled-components";
+import useGlobalStore from "../../store";
 
 const StyledFormChatGPT = styled.form`
   width: 260px;
@@ -10,11 +11,17 @@ const StyledFormChatGPT = styled.form`
 let toastProperties;
 
 export default function EntryChatGPT() {
-  const [questionInput, setQuestionInput] = useState("");
+  const createToasts = useGlobalStore((state) => state.createToasts);
+  const increaseCountSubmits = useGlobalStore(
+    (state) => state.increaseCountSubmits
+  );
+  const questionInput = useGlobalStore((state) => state.questionInput);
+  const cacheQuestionInput = useGlobalStore(
+    (state) => state.cacheQuestionInput
+  );
   const [result, setResult] = useState();
-  const [toasts, setToasts] = useState([]);
-  const [countSubmits, setCountSubmits] = useState(0);
-  const [isAnswered, setIsAnswered] = useState(false);
+  const isAnswered = useGlobalStore((state) => state.isAnswered);
+  const setIsAnswered = useGlobalStore((state) => state.setIsAnswered);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -45,12 +52,9 @@ export default function EntryChatGPT() {
         ariaLabel: "",
         borderColor: "grey",
       };
-      setCountSubmits(countSubmits + 1);
-      return setToasts([toastProperties]);
+      increaseCountSubmits();
+      return createToasts(toastProperties);
     }
-  }
-  function handleDeleteToast() {
-    setToasts([]);
   }
 
   return (
@@ -78,7 +82,7 @@ export default function EntryChatGPT() {
                   id="question"
                   placeholder="Gib deine Frage ein ..."
                   value={questionInput}
-                  onChange={(event) => setQuestionInput(event.target.value)}
+                  onChange={(event) => cacheQuestionInput(event)}
                 />
                 <button type="submit">Frage absenden</button>
               </>
@@ -87,11 +91,7 @@ export default function EntryChatGPT() {
         </fieldset>
       </StyledFormChatGPT>
 
-      <Toast
-        countSubmits={countSubmits}
-        toasts={toasts}
-        onDeleteToast={handleDeleteToast}
-      />
+      <Toast />
     </>
   );
 }

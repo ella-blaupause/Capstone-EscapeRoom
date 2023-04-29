@@ -1,4 +1,6 @@
+import { useRouter } from "next/router";
 import styled from "styled-components";
+import useGlobalStore from "../../store";
 
 const StyledButton = styled.button`
   padding: 10px 20px 10px 20px;
@@ -12,9 +14,51 @@ const StyledButton = styled.button`
   }
 `;
 
-export default function MyButton({ children, fontSize, onNewGame }) {
+export default function MyButton({ children, fontSize }) {
+  const turnLight = useGlobalStore((state) => state.turnLight);
+  const resetPuzzlePieces = useGlobalStore((state) => state.resetPuzzlePieces);
+  const resetCountPieces = useGlobalStore((state) => state.resetCountPieces);
+  const resetRandomColors = useGlobalStore((state) => state.resetRandomColors);
+  const resetRandomSymbols = useGlobalStore(
+    (state) => state.resetRandomSymbols
+  );
+  const resetCountRightAnswer = useGlobalStore(
+    (state) => state.resetCountRightAnswer
+  );
+  const resetCrosswordClues = useGlobalStore(
+    (state) => state.resetCrosswordClues
+  );
+  const deleteToasts = useGlobalStore((state) => state.deleteToasts);
+  const setIsAnswered = useGlobalStore((state) => state.setIsAnswered);
+  const resetSolvedPuzzle = useGlobalStore((state) => state.resetSolvedPuzzle);
+
+  const router = useRouter();
+
+  function handleNewGame() {
+    router.push("/room");
+
+    resetRandomColors();
+    resetRandomSymbols();
+
+    turnLight();
+
+    resetPuzzlePieces();
+    resetCountPieces();
+
+    resetCountRightAnswer();
+    resetCrosswordClues();
+
+    deleteToasts();
+    setIsAnswered(false);
+    resetSolvedPuzzle();
+  }
+
   return (
-    <StyledButton type="button" fontSize={fontSize} onClick={() => onNewGame()}>
+    <StyledButton
+      type="button"
+      fontSize={fontSize}
+      onClick={() => handleNewGame()}
+    >
       {children}
     </StyledButton>
   );

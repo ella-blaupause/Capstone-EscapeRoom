@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { SvgPuzzleElement } from "../../utils/icons";
+import useGlobalStore from "../../store";
 
 const PuzzlePiece = styled.button`
   background: none;
@@ -9,7 +10,28 @@ const PuzzlePiece = styled.button`
   grid-column: ${({ position }) => position.column};
 `;
 
-export default function PuzzlePieces({ onCollect, puzzlePieces }) {
+export default function PuzzlePieces({ onSolvedPuzzles }) {
+  const puzzlePieces = useGlobalStore((state) => state.puzzlePieces);
+  const countPieces = useGlobalStore((state) => state.countPieces);
+  const increaseCountPieces = useGlobalStore(
+    (state) => state.increaseCountPieces
+  );
+  const collectPuzzlePiece = useGlobalStore(
+    (state) => state.collectPuzzlePiece
+  );
+
+  function handleCollect(puzzlePieceId) {
+    const piece = puzzlePieces.find((piece) => piece.id === puzzlePieceId);
+
+    if (!piece.isCollected) {
+      increaseCountPieces();
+      collectPuzzlePiece(puzzlePieceId);
+    }
+
+    if (countPieces + 1 === puzzlePieces.length) {
+      onSolvedPuzzles(2);
+    }
+  }
   return (
     <>
       {puzzlePieces.map((puzzlePiece) => (
@@ -17,7 +39,7 @@ export default function PuzzlePieces({ onCollect, puzzlePieces }) {
           key={puzzlePiece.id}
           type="button"
           onClick={() => {
-            onCollect(puzzlePiece.id);
+            handleCollect(puzzlePiece.id);
           }}
           position={puzzlePiece.position}
         >

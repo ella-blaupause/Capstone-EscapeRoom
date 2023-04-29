@@ -6,6 +6,7 @@ import CollectingArea from "../components/CollectingArea";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Image from "next/image";
+import useGlobalStore from "../store";
 
 const GridContainer = styled.div`
   background-color: ghostwhite;
@@ -65,43 +66,32 @@ const StyledImage = styled(Image)`
   z-index: -1;
 `;
 
-export default function Room({
-  onCollect,
-  puzzlePieces,
-  countPieces,
-  randomColors,
-  randomSymbols,
-  onToggleOnOff,
-  isOn,
-  onSolvedPuzzle,
-}) {
+export default function Room({ onSolvedPuzzles }) {
+  const isOn = useGlobalStore((state) => state.isOn);
+  const switchLight = useGlobalStore((state) => state.switchLight);
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
     setIsClient(true);
   }, []);
+  function handleToggleOnOff() {
+    switchLight();
+    onSolvedPuzzles(1);
+  }
   return (
     <>
       <Header>Zimmer</Header>
       {isClient && (
         <GridContainer isOn={isOn}>
           <StyledImage src="/zimmer-real.jpg" fill alt="" priority />
-          <CollectingArea
-            countPieces={countPieces}
-            puzzlePieces={puzzlePieces}
-            randomColors={randomColors}
-            randomSymbols={randomSymbols}
-            onSolvedPuzzle={onSolvedPuzzle}
-          />
-          {!isOn && (
-            <Clue randomColors={randomColors} randomSymbols={randomSymbols} />
-          )}
+          <CollectingArea />
+          {!isOn && <Clue />}
           <StyledDoor href={"/door"}>
             <DoorDiv />
           </StyledDoor>
-          <PuzzlePieces onCollect={onCollect} puzzlePieces={puzzlePieces} />
+          <PuzzlePieces onSolvedPuzzles={onSolvedPuzzles} />
           <StyledLightButton
             type="button"
-            onClick={onToggleOnOff}
+            onClick={handleToggleOnOff}
           ></StyledLightButton>
           <StyledPaper href={"/crossword"}>
             <PaperDiv />

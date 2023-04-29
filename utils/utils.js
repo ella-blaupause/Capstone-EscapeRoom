@@ -2,7 +2,7 @@ export const colors = [
   "#FF009A", // hotpink
   "#009E10", //grün
   "#385CFF", //blau
-  "#B55A10", //braun
+  "#994C0E", //braun
   "#FF110A", //rot
   "gray",
   "orange",
@@ -72,6 +72,7 @@ export function getRandomNumbers(arrayLength) {
 
   return numbers;
 }
+export const randomNumbers = getRandomNumbers(symbols.length);
 
 export function getRandomColor() {
   return Math.floor(Math.random() * colors.length);

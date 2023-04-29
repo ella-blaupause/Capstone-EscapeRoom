@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { avatars } from "../../utils/utils";
-import { useState } from "react";
 import styled from "styled-components";
+import useGlobalStore from "../../store";
 
 const StyledAvatarDiv = styled.div`
   display: flex;
@@ -14,7 +14,9 @@ const StyledAvatarImage = styled(Image)`
 `;
 
 export default function SelectAvatar() {
-  const [selectedAvatar, setSelectedAvatar] = useState(avatars[0]);
+  const avatar = useGlobalStore((state) => state.avatar);
+  const chooseAvatar = useGlobalStore((state) => state.chooseAvatar);
+
   function handleAvatarChange(event) {
     event.preventDefault();
     const selectedAvatarId = parseInt(event.target.value);
@@ -22,7 +24,7 @@ export default function SelectAvatar() {
       (avatar) => avatar.id === selectedAvatarId
     );
 
-    setSelectedAvatar(selectedAvatar);
+    chooseAvatar(selectedAvatar);
   }
 
   return (
@@ -40,7 +42,7 @@ export default function SelectAvatar() {
         </select>
       </form>
       <StyledAvatarImage
-        src={selectedAvatar.src}
+        src={avatar.src}
         width={120}
         height={120}
         alt="avatar"

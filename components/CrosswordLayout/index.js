@@ -1,8 +1,7 @@
 import styled from "styled-components";
-
 import EntryForm from "../EntryForm/index.js";
-import { useState } from "react";
 import { columns, getGrid, rows } from "../../utils/utils.js";
+import useGlobalStore from "../../store/index.js";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -50,21 +49,27 @@ const StyledLi = styled.li`
     ${({ isSelected }) => (isSelected ? "var(--my-orange)" : "transparent")};
 `;
 
-export default function CrosswordLayout({
-  onCurrentClueId,
-  crosswordClues,
-  onData,
-  onChangeData,
-  currentClueId,
-  entryCharacterLength,
-}) {
-  const [countClick, setCountClick] = useState(0);
-  const [isActive, setIsActive] = useState(false);
+export default function CrosswordLayout({ onSolvedPuzzles }) {
+  const currentClueId = useGlobalStore((state) => state.currentClueId);
+  const pickCurrentClueId = useGlobalStore((state) => state.pickCurrentClueId);
+
+  const crosswordClues = useGlobalStore((state) => state.crosswordClues);
+
+  const countClickGrid = useGlobalStore((state) => state.countClickGrid);
+  const increaseCountClickGrid = useGlobalStore(
+    (state) => state.increaseCountClickGrid
+  );
+  const isActive = useGlobalStore((state) => state.isActive);
+  const toggleIsActive = useGlobalStore((state) => state.toggleIsActive);
 
   const grid = getGrid(crosswordClues);
 
+  function handleCurrentClueId(crosswordCluesId) {
+    pickCurrentClueId(crosswordCluesId);
+  }
+
   function handleToggleList() {
-    setIsActive(!isActive);
+    toggleIsActive();
   }
 
   return (
@@ -88,10 +93,12 @@ export default function CrosswordLayout({
                         }
                         disabled={grid[row][column] === -1}
                         onClick={() => {
-                          onCurrentClueId(
-                            grid[row][column].refernceCluesId[countClick % 2]
+                          handleCurrentClueId(
+                            grid[row][column].refernceCluesId[
+                              countClickGrid % 2
+                            ]
                           );
-                          setCountClick(countClick + 1);
+                          increaseCountClickGrid();
                         }}
                       >
                         <small>
@@ -109,12 +116,7 @@ export default function CrosswordLayout({
         </tbody>
       </StyledTable>
 
-      <EntryForm
-        onData={onData}
-        onChangeData={onChangeData}
-        currentClueId={currentClueId}
-        entryCharacterLength={entryCharacterLength}
-      />
+      <EntryForm onSolvedPuzzles={onSolvedPuzzles} />
 
       <StyledToggleList type="button" onClick={handleToggleList}>
         {isActive ? "Fragen verbergen" : "Fragen anzeigen"}
@@ -126,7 +128,7 @@ export default function CrosswordLayout({
             <StyledLi
               key={crosswordClue.id}
               isSelected={crosswordClue.id === currentClueId}
-              onClick={() => onCurrentClueId(crosswordClue.id)}
+              onClick={() => handleCurrentClueId(crosswordClue.id)}
             >
               {crosswordClue.question}
             </StyledLi>

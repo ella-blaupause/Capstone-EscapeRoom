@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import CrosswordLayout from "../components/CrosswordLayout";
-import { useState } from "react";
 import { initialCrosswordClues } from "../utils/utils";
 import Toast from "../components/Toast";
 import Header from "../components/Header";
 import EntryChatGPT from "../components/EntryChatGPT";
+import useGlobalStore from "../store";
 
 const Wrapper = styled.div`
   display: flex;
@@ -25,100 +25,10 @@ const StyledColorDiv1 = styled.div`
   background-color: ${(props) => props.color};
 `;
 
-let toastProperties;
-
-export default function Crossword({
-  randomColors,
-  randomSymbols,
-  onSolvedPuzzles,
-}) {
-  const [currentClueId, setCurrentClueId] = useState(null);
-  const [crosswordClues, setCrosswordClues] = useState(initialCrosswordClues);
-  const [toasts, setToasts] = useState([]);
-  const [countSubmits, setCountSubmits] = useState(0);
-  const [entryCharacterLength, setEntryCharacterLength] = useState(0);
-  const [countRightAnswer, setCountRightAnswer] = useState(0);
-
-  function handleData(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
-
-    checkAnswer(data);
-    setCountSubmits(countSubmits + 1);
-
-    event.target.reset();
-    setEntryCharacterLength(0);
-  }
-
-  function handleCurrentClueId(crosswordCluesId) {
-    setCurrentClueId(crosswordCluesId);
-  }
-
-  //Überprüft Antwort und gibt Toastmassege
-  function checkAnswer(data) {
-    if (currentClueId === null) {
-      toastProperties = {
-        id: 1,
-        title: "Frage auswählen",
-        emoji: "?",
-        ariaLabel: "",
-        borderColor: "grey",
-      };
-      return setToasts([toastProperties]);
-    }
-
-    const currentCrosswordClue = crosswordClues.find(
-      (clue) => clue.id === currentClueId
-    );
-    const correctAnswer = currentCrosswordClue.answer.toLowerCase();
-    const enteredAnswer = data.answer.toLowerCase();
-
-    if (
-      enteredAnswer === correctAnswer &&
-      crosswordClues[currentClueId - 1].isCorrectlyAnswered === false
-    ) {
-      toastProperties = {
-        id: 2,
-        title: "Richtig",
-        emoji: "✓",
-        ariaLabel: "Richtig Haken",
-        borderColor: "green",
-      };
-      setCrosswordClues((clues) =>
-        clues.map((clue) =>
-          clue.id === currentClueId
-            ? { ...clue, isCorrectlyAnswered: true }
-            : clue
-        )
-      );
-      setCountRightAnswer(countRightAnswer + 1);
-      console.log(countRightAnswer);
-      setToasts([toastProperties]);
-      if (countRightAnswer + 1 === initialCrosswordClues.length) {
-        onSolvedPuzzles(3);
-      }
-    } else if (enteredAnswer !== correctAnswer) {
-      toastProperties = {
-        id: 3,
-        title: "Falsch",
-        emoji: "✘",
-        ariaLabel: "Falsch Kreuz",
-        borderColor: "red",
-      };
-      setToasts([toastProperties]);
-    }
-  }
-
-  function handleDeleteToast() {
-    setToasts([]);
-  }
-
-  function handleChangeData(event) {
-    setEntryCharacterLength(event.target.value.length);
-  }
-
-  console.log();
+export default function Crossword({ onSolvedPuzzles }) {
+  const randomColors = useGlobalStore((state) => state.randomColors);
+  const randomSymbols = useGlobalStore((state) => state.randomSymbols);
+  const countRightAnswer = useGlobalStore((state) => state.countRightAnswer);
 
   if (countRightAnswer === initialCrosswordClues.length) {
     return (
@@ -137,20 +47,9 @@ export default function Crossword({
       <Header isBackArrow>Kreuzworträtsel</Header>
 
       <Wrapper>
-        <CrosswordLayout
-          onCurrentClueId={handleCurrentClueId}
-          crosswordClues={crosswordClues}
-          onData={handleData}
-          onChangeData={handleChangeData}
-          currentClueId={currentClueId}
-          entryCharacterLength={entryCharacterLength}
-        />
+        <CrosswordLayout onSolvedPuzzles={onSolvedPuzzles} />
 
-        <Toast
-          countSubmits={countSubmits}
-          toasts={toasts}
-          onDeleteToast={handleDeleteToast}
-        />
+        <Toast />
         <EntryChatGPT />
       </Wrapper>
     </>
