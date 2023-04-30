@@ -27,12 +27,10 @@ export default function UserName() {
     } else {
       console.error(response.status);
     }
-
-    chooseUserName(userData);
   }
 
   function handleClick() {
-    toggleUserEdit();
+    boolUserEdit(true);
   }
   console.log(userEdit);
   console.log(users.data.length);

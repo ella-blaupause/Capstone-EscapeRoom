@@ -126,7 +126,7 @@ const useGlobalStore = create((set) => ({
     set((state) => ({ countSubmits: state.countSubmits + 1 })),
   createToasts: (toastProperties) => set({ toasts: [toastProperties] }),
   deleteToasts: () => set({ toasts: [] }),
-  boolUserEdit: (bool) => set((state = { userEdit: bool })),
+  boolUserEdit: (bool) => set(() => ({ userEdit: bool })),
 }));
 
 export default useGlobalStore;
