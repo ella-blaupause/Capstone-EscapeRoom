@@ -1,6 +1,4 @@
-import useGlobalStore from "../../store";
 import useSWR from "swr";
-import EditUserName from "../EditUserName";
 import LogginButton from "../LogginButton";
 
 export default function UserName() {

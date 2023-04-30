@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import SelectAvatar from "../components/SelectAvatar";
 import UserName from "../components/UserName";
 import LogginButton from "../components/LogginButton";
+import Comments from "../components/Comments";
 
 const Wrapper = styled.div`
   display: grid;
@@ -20,8 +21,8 @@ export default function Profile({ isSolvedPuzzleSum }) {
         <SelectAvatar />
         <UserName />
       </Wrapper>
-
       <p>Du hast {isSolvedPuzzleSum}/4 Rätsel gelöst.</p>
+      <Comments />
     </>
   );
 }
