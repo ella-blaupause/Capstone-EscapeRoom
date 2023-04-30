@@ -1,4 +1,5 @@
 import useGlobalStore from "../../store";
+import useSWR from "swr";
 
 export default function UserName() {
   const users = useSWR("/api/users");
@@ -7,23 +8,41 @@ export default function UserName() {
   const chooseUserName = useGlobalStore((state) => state.chooseUserName);
   const resetUserName = useGlobalStore((state) => state.resetUserName);
 
-  function handleUserName(event) {
+  async function handleUserName(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
+    const userData = Object.fromEntries(formData);
 
-    chooseUserName(data);
+    const response = await fetch("/api/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+
+    if (response.ok) {
+      await response.json();
+      users.mutate();
+      event.target.reset();
+    } else {
+      console.error(response.status);
+    }
+
+    chooseUserName(userData);
   }
 
   function handleClick() {
     resetUserName();
   }
 
+  console.log(users.data);
+
   return (
     <>
       {userName ? (
         <div>
-          <h2>{userName.userName}</h2>
+          <h2>{users.data[0].userName}</h2>
           <button type="button" onClick={handleClick}>
             Name ändern
           </button>

@@ -1,6 +1,9 @@
 import GlobalStyle from "../styles";
 import Layout from "../components/Layout";
 import useGlobalStore from "../store";
+import { SWRConfig } from "swr";
+
+const fetcher = (url) => fetch(url).then((response) => response.json());
 
 export default function App({ Component, pageProps }) {
   const solvedPuzzles = useGlobalStore((state) => state.solvedPuzzles);
@@ -18,14 +21,16 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <Layout>
-        <Component
-          solvedPuzzles={solvedPuzzles}
-          onSolvedPuzzles={handleSolvedPuzzles}
-          isSolvedPuzzleSum={isSolvedPuzzleSum}
-          {...pageProps}
-        />
-      </Layout>
+      <SWRConfig value={{ fetcher }}>
+        <Layout>
+          <Component
+            solvedPuzzles={solvedPuzzles}
+            onSolvedPuzzles={handleSolvedPuzzles}
+            isSolvedPuzzleSum={isSolvedPuzzleSum}
+            {...pageProps}
+          />
+        </Layout>
+      </SWRConfig>
     </>
   );
 }
