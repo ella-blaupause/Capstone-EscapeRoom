@@ -4,9 +4,8 @@ import useSWR from "swr";
 export default function UserName() {
   const users = useSWR("/api/users");
 
-  const userName = useGlobalStore((state) => state.userName);
-  const chooseUserName = useGlobalStore((state) => state.chooseUserName);
-  const resetUserName = useGlobalStore((state) => state.resetUserName);
+  const userEdit = useGlobalStore((state) => state.userEdit);
+  const boolUserEdit = useGlobalStore((state) => state.boolUserEdit);
 
   async function handleUserName(event) {
     event.preventDefault();
@@ -33,12 +32,32 @@ export default function UserName() {
   }
 
   function handleClick() {
-    resetUserName();
+    toggleUserEdit();
+  }
+  console.log(userEdit);
+  console.log(users.data.length);
+
+  if (users.data.length === 0) {
+    return (
+      <form onSubmit={handleUserName}>
+        <label htmlFor="userName">Gebe deinen Spielername ein: </label>
+        <input name="userName" id="userName" required />
+        <button type="submit">Ok</button>
+      </form>
+    );
   }
 
-  console.log(users.data);
-
   return (
+    <div>
+      <h3>Spielername</h3>
+      <p>{users.data[0].userName}</p>
+      <button type="button" onClick={handleClick}>
+        Name ändern
+      </button>
+    </div>
+  );
+
+  /* return (
     <>
       {userName ? (
         <div>
@@ -55,5 +74,5 @@ export default function UserName() {
         </form>
       )}
     </>
-  );
+  ); */
 }

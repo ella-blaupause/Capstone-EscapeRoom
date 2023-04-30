@@ -32,12 +32,13 @@ const useGlobalStore = create((set) => ({
   questionInput: "",
   isAnswered: false,
   avatar: avatars[0],
-  userName: null,
+
   puzzlePieces: initialPuzzlePieces,
   countPieces: 0,
   solvedPuzzles: initialSolvedPuzzles,
   countSubmits: 0,
   toasts: [],
+  userEdit: false,
 
   switchLight: () => set((state) => ({ isOn: !state.isOn })),
   turnLight: () => set({ isOn: true }),
@@ -102,8 +103,6 @@ const useGlobalStore = create((set) => ({
   cacheQuestionInput: (event) => set({ questionInput: event.target.value }),
   setIsAnswered: (bool) => set({ isAnswered: bool }),
   chooseAvatar: (selectedAvatar) => set({ avatar: selectedAvatar }),
-  chooseUserName: (data) => set({ userName: data }),
-  resetUserName: () => set({ userName: null }),
   collectPuzzlePiece: (puzzlePieceId) =>
     set((state) => ({
       puzzlePieces: state.puzzlePieces.map((p) =>
@@ -127,6 +126,7 @@ const useGlobalStore = create((set) => ({
     set((state) => ({ countSubmits: state.countSubmits + 1 })),
   createToasts: (toastProperties) => set({ toasts: [toastProperties] }),
   deleteToasts: () => set({ toasts: [] }),
+  boolUserEdit: (bool) => set((state = { userEdit: bool })),
 }));
 
 export default useGlobalStore;
