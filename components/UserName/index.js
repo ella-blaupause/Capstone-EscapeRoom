@@ -1,6 +1,8 @@
 import useGlobalStore from "../../store";
 
 export default function UserName() {
+  const users = useSWR("/api/users");
+
   const userName = useGlobalStore((state) => state.userName);
   const chooseUserName = useGlobalStore((state) => state.chooseUserName);
   const resetUserName = useGlobalStore((state) => state.resetUserName);

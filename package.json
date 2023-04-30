@@ -1,5 +1,5 @@
 {
-  "name": "Capstone-EscapeRoom",
+  "name": "capstone-escaperoom",
   "version": "0.0.0-unreleased",
   "private": true,
   "scripts": {
@@ -13,7 +13,9 @@
     "@next/font": "^13.0.6",
     "eslint": "8.29.0",
     "eslint-config-next": "^13.2.4",
+    "mongoose": "^7.1.0",
     "next": "^13.2.4",
+    "next-auth": "^4.22.1",
     "openai": "^3.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -33,5 +35,17 @@
   "description": "Next.js (incl. Styled Components and Jest)",
   "nf": {
     "template": "next"
-  }
+  },
+  "main": "jest.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ella-blaupause/Capstone-EscapeRoom.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ella-blaupause/Capstone-EscapeRoom/issues"
+  },
+  "homepage": "https://github.com/ella-blaupause/Capstone-EscapeRoom#readme"
 }
