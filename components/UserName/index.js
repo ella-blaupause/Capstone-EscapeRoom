@@ -1,11 +1,12 @@
 import useGlobalStore from "../../store";
 import useSWR from "swr";
+import EditUserName from "../EditUserName";
 
 export default function UserName() {
-  const users = useSWR("/api/users");
-
-  const userEdit = useGlobalStore((state) => state.userEdit);
-  const boolUserEdit = useGlobalStore((state) => state.boolUserEdit);
+  const { data, isLoading } = useSWR("/api/users");
+  console.log(data);
+  const isUserEditMode = useGlobalStore((state) => state.isUserEditMode);
+  const setUserEditMode = useGlobalStore((state) => state.setUserEditMode);
 
   async function handleUserName(event) {
     event.preventDefault();
@@ -22,20 +23,36 @@ export default function UserName() {
 
     if (response.ok) {
       await response.json();
-      users.mutate();
+      data.mutate();
       event.target.reset();
     } else {
       console.error(response.status);
     }
   }
 
-  function handleClick() {
-    boolUserEdit(true);
+  if (isLoading) {
+    return <h1>Loading...</h1>;
   }
-  console.log(userEdit);
-  console.log(users.data.length);
 
-  if (users.data.length === 0) {
+  function handleEditMode() {
+    setUserEditMode(true);
+  }
+
+  if (isUserEditMode) {
+    return <EditUserName />;
+  }
+
+  if (data.length > 0) {
+    return (
+      <div>
+        <h3>Spielername</h3>
+        <p>{data[0].userName}</p>
+        <button type="button" onClick={handleEditMode}>
+          Name ändern
+        </button>
+      </div>
+    );
+  } else {
     return (
       <form onSubmit={handleUserName}>
         <label htmlFor="userName">Gebe deinen Spielername ein: </label>
@@ -44,33 +61,4 @@ export default function UserName() {
       </form>
     );
   }
-
-  return (
-    <div>
-      <h3>Spielername</h3>
-      <p>{users.data[0].userName}</p>
-      <button type="button" onClick={handleClick}>
-        Name ändern
-      </button>
-    </div>
-  );
-
-  /* return (
-    <>
-      {userName ? (
-        <div>
-          <h2>{users.data[0].userName}</h2>
-          <button type="button" onClick={handleClick}>
-            Name ändern
-          </button>
-        </div>
-      ) : (
-        <form onSubmit={handleUserName}>
-          <label htmlFor="userName">Gebe deinen Spielername ein: </label>
-          <input name="userName" id="userName" required />
-          <button type="submit">Ok</button>
-        </form>
-      )}
-    </>
-  ); */
 }

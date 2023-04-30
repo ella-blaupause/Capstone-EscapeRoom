@@ -22,7 +22,7 @@ export default async function handler(request, response) {
   }
 
   if (request.method === "PUT") {
-    await User.findByIdAndUpdate(id, { $set: request.body });
+    await User.updateMany({ $set: request.body });
     return response.status(200).json({ status: "User successfully updated." });
   }
 }

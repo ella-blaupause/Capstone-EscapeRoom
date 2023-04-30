@@ -38,7 +38,7 @@ const useGlobalStore = create((set) => ({
   solvedPuzzles: initialSolvedPuzzles,
   countSubmits: 0,
   toasts: [],
-  userEdit: false,
+  isUserEditMode: false,
 
   switchLight: () => set((state) => ({ isOn: !state.isOn })),
   turnLight: () => set({ isOn: true }),
@@ -126,7 +126,7 @@ const useGlobalStore = create((set) => ({
     set((state) => ({ countSubmits: state.countSubmits + 1 })),
   createToasts: (toastProperties) => set({ toasts: [toastProperties] }),
   deleteToasts: () => set({ toasts: [] }),
-  boolUserEdit: (bool) => set(() => ({ userEdit: bool })),
+  setUserEditMode: (bool) => set(() => ({ isUserEditMode: bool })),
 }));
 
 export default useGlobalStore;
