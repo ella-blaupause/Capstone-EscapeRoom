@@ -1,12 +1,11 @@
 import useGlobalStore from "../../store";
 import useSWR from "swr";
 import EditUserName from "../EditUserName";
+import LogginButton from "../LogginButton";
 
 export default function UserName() {
   const { data, isLoading } = useSWR("/api/users");
   console.log(data);
-  const isUserEditMode = useGlobalStore((state) => state.isUserEditMode);
-  const setUserEditMode = useGlobalStore((state) => state.setUserEditMode);
 
   async function handleUserName(event) {
     event.preventDefault();
@@ -34,31 +33,10 @@ export default function UserName() {
     return <h1>Loading...</h1>;
   }
 
-  function handleEditMode() {
-    setUserEditMode(true);
-  }
-
-  if (isUserEditMode) {
-    return <EditUserName />;
-  }
-
-  if (data.length > 0) {
-    return (
-      <div>
-        <h3>Spielername</h3>
-        <p>{data[0].userName}</p>
-        <button type="button" onClick={handleEditMode}>
-          Name ändern
-        </button>
-      </div>
-    );
-  } else {
-    return (
-      <form onSubmit={handleUserName}>
-        <label htmlFor="userName">Gebe deinen Spielername ein: </label>
-        <input name="userName" id="userName" required />
-        <button type="submit">Ok</button>
-      </form>
-    );
-  }
+  return (
+    <div>
+      <h3>Spielername</h3>
+      <LogginButton />
+    </div>
+  );
 }
