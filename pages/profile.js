@@ -16,6 +16,7 @@ const Wrapper = styled.div`
 
 export default function Profile({ isSolvedPuzzleSum }) {
   const inputCommentRef = useRef();
+
   return (
     <>
       <Header>Profil</Header>
@@ -23,6 +24,7 @@ export default function Profile({ isSolvedPuzzleSum }) {
         <SelectAvatar />
         <UserName />
       </Wrapper>
+
       <p>Du hast {isSolvedPuzzleSum}/4 Rätsel gelöst.</p>
       <CommentForm inputCommentRef={inputCommentRef} />
       <CommentsList inputCommentRef={inputCommentRef} />

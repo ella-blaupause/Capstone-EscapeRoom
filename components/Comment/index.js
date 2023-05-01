@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useSession } from "next-auth/react";
 
 const StyledSection = styled.section`
   display: flex;
@@ -24,10 +25,12 @@ const StyledCommentar = styled.p`
 `;
 
 export default function Comment({ children, onDelete, id }) {
+  const { data: session } = useSession();
   return (
     <StyledSection>
       <StyledCommentar>{children}</StyledCommentar>
       <StyledDeletButton
+        disabled={!session}
         type="button"
         onClick={() => {
           onDelete(id);

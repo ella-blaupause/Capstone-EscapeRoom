@@ -1,6 +1,13 @@
 import useSWR from "swr";
+import { useSession } from "next-auth/react";
+import styled from "styled-components";
+
+const StyledParagraph = styled.p`
+  margin: 0 45px;
+`;
 
 export default function CommentForm({ inputCommentRef }) {
+  const { data: session } = useSession();
   const comments = useSWR("/api/comments");
 
   async function handleCommentSubmint(event) {
@@ -26,12 +33,16 @@ export default function CommentForm({ inputCommentRef }) {
       console.error(response.status);
     }
   }
-  return (
+  return session ? (
     <form onSubmit={handleCommentSubmint}>
       <label htmlFor="comment">Gib mir ein Kommentar:</label>
       <br />
-      <input ref={inputCommentRef} name="comment" id="comment" required></input>
+      <input ref={inputCommentRef} name="comment" id="comment" required />
       <button type="submit">Ok</button>
     </form>
+  ) : (
+    <StyledParagraph>
+      Einloggen, um einen Kommentar zu hinterlassen.
+    </StyledParagraph>
   );
 }
