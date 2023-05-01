@@ -1,6 +1,6 @@
 import useSWR from "swr";
 
-export default function CommentForm() {
+export default function CommentForm({ inputCommentRef }) {
   const comments = useSWR("/api/comments");
 
   async function handleCommentSubmint(event) {
@@ -30,7 +30,7 @@ export default function CommentForm() {
     <form onSubmit={handleCommentSubmint}>
       <label htmlFor="comment">Gib mir ein Kommentar:</label>
       <br />
-      <input name="comment" id="comment" required></input>
+      <input ref={inputCommentRef} name="comment" id="comment" required></input>
       <button type="submit">Ok</button>
     </form>
   );

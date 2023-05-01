@@ -7,12 +7,11 @@ const StyledList = styled.ul`
   display: grid;
   gap: 1rem;
   justify-items: center;
-  padding: 0;
+  padding: 0 0 100px 0;
 `;
 
-export default function CommentsList() {
-  const { data, isLoading } = useSWR("/api/comments");
-  console.log(data);
+export default function CommentsList({ inputCommentRef }) {
+  const { data, isLoading, mutate } = useSWR("/api/comments");
 
   if (!data) return;
 
@@ -21,21 +20,26 @@ export default function CommentsList() {
   }
 
   async function handleDeleteComment(id) {
-    console.log(id);
     const response = await fetch(`/api/comments/${id}`, {
       method: "DELETE",
     });
 
     if (response.ok) {
       await response.json();
+      const newData = data.filter((comment) => comment._id !== id);
+
+      await mutate(newData, false);
     } else {
       console.error(`Error: ${response.status}`);
     }
+
+    inputCommentRef.current.focus();
   }
 
   return (
     <>
       <h4>Kommentare:</h4>
+
       <StyledList>
         {data.map((comment, index) => (
           <li key={comment._id}>
