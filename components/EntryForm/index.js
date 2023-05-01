@@ -11,7 +11,7 @@ const StyledForm = styled.form`
 let answerLength;
 let toastProperties;
 
-export default function EntryForm({ onSolvedPuzzles }) {
+export default function EntryForm({ onSolvedPuzzles, inputRef }) {
   const currentClueId = useGlobalStore((state) => state.currentClueId);
   const entryCharacterLength = useGlobalStore(
     (state) => state.entryCharacterLength
@@ -120,6 +120,7 @@ export default function EntryForm({ onSolvedPuzzles }) {
         </label>
         <br />
         <input
+          ref={inputRef}
           id="answer"
           type="text"
           name="answer"

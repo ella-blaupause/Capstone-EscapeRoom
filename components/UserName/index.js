@@ -1,38 +1,17 @@
-import useGlobalStore from "../../store";
+import useSWR from "swr";
+import LoginButton from "../LoginButton";
 
 export default function UserName() {
-  const userName = useGlobalStore((state) => state.userName);
-  const chooseUserName = useGlobalStore((state) => state.chooseUserName);
-  const resetUserName = useGlobalStore((state) => state.resetUserName);
+  const { data, isLoading } = useSWR("/api/users");
 
-  function handleUserName(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
-
-    chooseUserName(data);
-  }
-
-  function handleClick() {
-    resetUserName();
+  if (isLoading) {
+    return <h1>Loading...</h1>;
   }
 
   return (
-    <>
-      {userName ? (
-        <div>
-          <h2>{userName.userName}</h2>
-          <button type="button" onClick={handleClick}>
-            Name ändern
-          </button>
-        </div>
-      ) : (
-        <form onSubmit={handleUserName}>
-          <label htmlFor="userName">Gebe deinen Spielername ein: </label>
-          <input name="userName" id="userName" required />
-          <button type="submit">Ok</button>
-        </form>
-      )}
-    </>
+    <div>
+      <h3>Spieler</h3>
+      <LoginButton />
+    </div>
   );
 }

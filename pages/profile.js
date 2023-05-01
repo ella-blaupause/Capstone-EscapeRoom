@@ -2,6 +2,9 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import SelectAvatar from "../components/SelectAvatar";
 import UserName from "../components/UserName";
+import CommentForm from "../components/CommentForm";
+import CommentsList from "../components/CommentsList";
+import { useRef } from "react";
 
 const Wrapper = styled.div`
   display: grid;
@@ -12,6 +15,8 @@ const Wrapper = styled.div`
 `;
 
 export default function Profile({ isSolvedPuzzleSum }) {
+  const inputCommentRef = useRef();
+
   return (
     <>
       <Header>Profil</Header>
@@ -19,7 +24,10 @@ export default function Profile({ isSolvedPuzzleSum }) {
         <SelectAvatar />
         <UserName />
       </Wrapper>
+
       <p>Du hast {isSolvedPuzzleSum}/4 Rätsel gelöst.</p>
+      <CommentForm inputCommentRef={inputCommentRef} />
+      <CommentsList inputCommentRef={inputCommentRef} />
     </>
   );
 }
