@@ -42,7 +42,7 @@ export default function CommentForm({ inputCommentRef }) {
     </form>
   ) : (
     <StyledParagraph>
-      Einloggen, um einen Kommentar zu hinterlassen.
+      Einlogen, um einen Kommentar zu hinterlassen.
     </StyledParagraph>
   );
 }

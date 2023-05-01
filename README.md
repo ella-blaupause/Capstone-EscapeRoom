@@ -1,32 +1,38 @@
-# New Project
+# Code Breaker
 
-This project was created from the neue fische next template.
+## Finde den Code und entkomme!
 
-## Development
+In diesem Spiel findest du dich in einem Raum voller Puzzleteile und versteckter Hinweise wieder. Dein Ziel ist es, den Raum zu verlassen, indem du den Farbcode richtig eingibst.
 
-### CodeSandbox
+### Spielanleitung
 
-Select the "Browser" tab to view this project. If this project contains tests, select the "Tests" tab to check your progress.
+- Starte das Spiel, indem du auf den "Start"-Button klickst.
+- Untersuche den Raum auf Hinweise und Puzzleteile, die dir helfen werden, den Farbcode zu entschlüsseln.
+- Kombiniere die Hinweise und Puzzleteile, um den Farbcode zu finden.
+- Gib den Farbcode in das Eingabefeld ein
+- Wenn der Farbcode richtig ist, hast du das Spiel gewonnen und bist aus dem Raum entkommen.
 
-> 💡 Please note that Next.js support on CodeSandbox is not great.
+### Spiel starten
 
-### Local development
+Du kannst das Spiel auf deinem lokalen Computer ausführen, indem du das Repository klonst, die Abhängigkeiten mit `npm install` installierst und die Anwendung mit npm run dev startest. Öffne anschließend deinen bevorzugten Browser und navigiere zu http://localhost:3000.
 
-To run project commands locally, you need to install the dependencies using `npm i` first.
+```
+git clone git@github.com:ella-blaupause/Capstone-EscapeRoom.git
+cd Capstone-EscapeRoom
+npm install
+npm run dev
+```
 
-You can then use the following commands:
+Alternativ kannst du das Spiel auf dem Vercel deploymend spielen, indem du auf den folgenden Link klickst:
+[Escape Roo: Code Breaker](https://capstone-escape-room.vercel.app/)
 
-<<<<<<< HEAD
+### Technologien
 
-- `npm run start` to start the development server
-
-> # 💡 This project requires a bundler. You can use `npm run start` to start the development server. You can then view the project in the browser at `http://localhost:3000`. The Live Preview Extension for Visual Studio Code will **not** work for this project.
-
-- `npm run dev` to start the development server
-- `npm run build` to create a production build
-- `npm run start` to start the production build
-- `npm run test` to run the tests in watch mode (if available)
-
-> 💡 This project requires a bundler. You can use `npm run dev` to start the development server. You can then view the project in the browser at `http://localhost:3000`. The Live Preview Extension for Visual Studio Code will **not** work for this project.
->
-> > > > > > > d32d1a7 ( "initial commit")
+- Next.js
+- React
+- React Testing Library / Jest
+- Styled Components
+- node.js
+- OpenAIApi
+- MongoDB Atlas
+- Mongoose
