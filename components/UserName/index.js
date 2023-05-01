@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import LogginButton from "../LogginButton";
+import LoginButton from "../LoginButton";
 
 export default function UserName() {
   const { data, isLoading } = useSWR("/api/users");
@@ -11,7 +11,7 @@ export default function UserName() {
   return (
     <div>
       <h3>Spieler</h3>
-      <LogginButton />
+      <LoginButton />
     </div>
   );
 }
