@@ -2,8 +2,8 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import SelectAvatar from "../components/SelectAvatar";
 import UserName from "../components/UserName";
-import LogginButton from "../components/LogginButton";
-import Comments from "../components/Comments";
+import CommentForm from "../components/CommentForm";
+import CommentsList from "../components/CommentsList";
 
 const Wrapper = styled.div`
   display: grid;
@@ -22,7 +22,8 @@ export default function Profile({ isSolvedPuzzleSum }) {
         <UserName />
       </Wrapper>
       <p>Du hast {isSolvedPuzzleSum}/4 Rätsel gelöst.</p>
-      <Comments />
+      <CommentForm />
+      <CommentsList />
     </>
   );
 }

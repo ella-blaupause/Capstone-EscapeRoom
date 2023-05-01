@@ -3,7 +3,6 @@ import LogginButton from "../LogginButton";
 
 export default function UserName() {
   const { data, isLoading } = useSWR("/api/users");
-  console.log(data);
 
   async function handleUserName(event) {
     event.preventDefault();
