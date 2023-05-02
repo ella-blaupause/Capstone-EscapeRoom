@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import { SvgArrowUndoUpLeft } from "../../utils/icons";
 import Link from "next/link";
+import useGlobalStore from "../../store";
+import ThemeButton from "../ThemeButton";
+import { darkTheme, lightTheme } from "../../utils/utils";
 
 const StyledHeader = styled.header`
-  background-color: var(--my-blue);
+  background-color: ${({ isDarkMode }) =>
+    isDarkMode ? darkTheme.bar : lightTheme.bar};
   width: 375px;
   height: 68px;
   top: 0px;
@@ -12,6 +16,8 @@ const StyledHeader = styled.header`
   flex-direction: column;
   align-items: center;
   z-index: 1;
+  color: ${({ isDarkMode }) =>
+    isDarkMode ? darkTheme.text : "var(--my-yellow)"};
   @media (max-width: 414px) {
     width: 100%;
   }
@@ -21,7 +27,6 @@ const Title = styled.h1`
   position: absolute;
   top: 0px;
   font-size: 24px;
-  color: var(--my-yellow);
   text-shadow: 1px 0 10px black;
 `;
 
@@ -35,14 +40,17 @@ const StyledLink = styled(Link)`
 `;
 
 export default function Header({ children, isBackArrow }) {
+  const isDarkMode = useGlobalStore((state) => state.isDarkMode);
+
   return (
-    <StyledHeader>
+    <StyledHeader isDarkMode={isDarkMode}>
       {isBackArrow && (
         <StyledLink href={"/room"}>
-          <SvgArrowUndoUpLeft />
+          <SvgArrowUndoUpLeft isDarkMode={isDarkMode} />
         </StyledLink>
       )}
       <Title>{children}</Title>
+      <ThemeButton />
     </StyledHeader>
   );
 }

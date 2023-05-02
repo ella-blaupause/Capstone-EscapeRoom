@@ -7,6 +7,7 @@ import { SessionProvider } from "next-auth/react";
 const fetcher = (url) => fetch(url).then((response) => response.json());
 
 export default function App({ Component, pageProps }) {
+  const isDarkMode = useGlobalStore((state) => state.isDarkMode);
   const solvedPuzzles = useGlobalStore((state) => state.solvedPuzzles);
   const increaseSolvedPuzzles = useGlobalStore(
     (state) => state.increaseSolvedPuzzles
@@ -21,7 +22,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <GlobalStyle />
+      <GlobalStyle isDarkMode={isDarkMode} />
       <SessionProvider session={pageProps.session}>
         <SWRConfig value={{ fetcher }}>
           <Layout>

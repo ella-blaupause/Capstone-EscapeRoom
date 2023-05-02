@@ -401,3 +401,17 @@ export const initialSolvedPuzzles = [
   { id: 3, name: "crossword", isSolved: false },
   { id: 4, name: "color code", isSolved: false },
 ];
+
+export const lightTheme = {
+  background: "var(--my-beige)",
+  bar: "var(--my-blue)",
+  text: "initial",
+  highlight: "var(--my-orange)",
+};
+
+export const darkTheme = {
+  background: "var(--dark-background)",
+  bar: "var( --dark-bar)",
+  text: "var(--dark-font-color)",
+  highlight: "var(--dark-highlight-color)",
+};

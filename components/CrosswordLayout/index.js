@@ -1,6 +1,12 @@
 import styled from "styled-components";
 import EntryForm from "../EntryForm/index.js";
-import { columns, getGrid, rows } from "../../utils/utils.js";
+import {
+  columns,
+  darkTheme,
+  getGrid,
+  lightTheme,
+  rows,
+} from "../../utils/utils.js";
 import useGlobalStore from "../../store/index.js";
 import { useRef } from "react";
 
@@ -25,11 +31,13 @@ const Cell = styled.button`
   background-color: ${({ isBlack }) => isBlack && "black"};
   cursor: pointer;
   font-family: "Comic Sans MS", sans-serif;
+  color: inherit;
 `;
 
 const StyledToggleList = styled.button`
   padding: 10px 20px 10px 20px;
-  background: var(--my-orange);
+  background: ${(prop) =>
+    prop.isDarkMode ? darkTheme.highlight : lightTheme.highlight};
   border-radius: 6px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-color: black;
@@ -52,6 +60,7 @@ const StyledLi = styled.li`
 
 export default function CrosswordLayout({ onSolvedPuzzles }) {
   const inputRef = useRef();
+  const isDarkMode = useGlobalStore((state) => state.isDarkMode);
   const currentClueId = useGlobalStore((state) => state.currentClueId);
   const pickCurrentClueId = useGlobalStore((state) => state.pickCurrentClueId);
 
@@ -124,7 +133,11 @@ export default function CrosswordLayout({ onSolvedPuzzles }) {
 
       <EntryForm onSolvedPuzzles={onSolvedPuzzles} inputRef={inputRef} />
 
-      <StyledToggleList type="button" onClick={handleToggleList}>
+      <StyledToggleList
+        type="button"
+        onClick={handleToggleList}
+        isDarkMode={isDarkMode}
+      >
         {isActive ? "Fragen verbergen" : "Fragen anzeigen"}
       </StyledToggleList>
 

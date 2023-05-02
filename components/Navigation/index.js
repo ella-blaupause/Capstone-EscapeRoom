@@ -7,6 +7,7 @@ import {
   SvgUserCircleFilled,
 } from "../../utils/icons";
 import { useEffect, useState } from "react";
+import useGlobalStore from "../../store";
 
 const StyledNavigation = styled.nav`
   position: fixed;
@@ -31,7 +32,9 @@ const StyledLink = styled(Link)`
 `;
 
 export default function Navigation() {
+  const isDarkMode = useGlobalStore((state) => state.isDarkMode);
   const router = useRouter;
+
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
     setIsClient(true);
@@ -42,13 +45,16 @@ export default function Navigation() {
       {isClient && (
         <StyledNavigation>
           <StyledLink href="/">
-            <SvgHouse isFilled={router.pathname === "/" && "isFilled"} />
+            <SvgHouse
+              isFilled={router.pathname === "/" && "isFilled"}
+              isDarkMode={isDarkMode}
+            />
           </StyledLink>
           <StyledLink href="/profile">
             {router.pathname === "/profile" ? (
-              <SvgUserCircleFilled />
+              <SvgUserCircleFilled isDarkMode={isDarkMode} />
             ) : (
-              <SvgUserCircle />
+              <SvgUserCircle isDarkMode={isDarkMode} />
             )}
           </StyledLink>
         </StyledNavigation>

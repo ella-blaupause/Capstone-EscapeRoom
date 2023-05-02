@@ -11,6 +11,7 @@ const StyledFormChatGPT = styled.form`
 let toastProperties;
 
 export default function EntryChatGPT() {
+  const isDarkMode = useGlobalStore((state) => state.isDarkMode);
   const createToasts = useGlobalStore((state) => state.createToasts);
   const increaseCountSubmits = useGlobalStore(
     (state) => state.increaseCountSubmits
@@ -62,7 +63,7 @@ export default function EntryChatGPT() {
       <StyledFormChatGPT onSubmit={handleSubmit}>
         <fieldset>
           <legend>
-            <SvgChatGPT />
+            <SvgChatGPT isDarkMode={isDarkMode} />
           </legend>
           <>
             {isAnswered ? (

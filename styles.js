@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { Montserrat } from "@next/font/google";
+import { darkTheme, lightTheme } from "./utils/utils";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -22,6 +23,12 @@ export default createGlobalStyle`
 
     //Font styles 
     --font-family: ${montserrat.style.fontFamily};
+
+    //My dafk mode
+    --dark-background: #485C7A;
+    --dark-bar: #172e4f;
+    --dark-font-color: #d5d5d5;
+    --dark-highlight-color: #ffa07a;
   }
 
   body {
@@ -30,7 +37,9 @@ export default createGlobalStyle`
     flex-direction: column;
     align-items: center;
     font-family: var( --font-family);
-    background-color: var(--my-beige);
+    background-color: ${(props) =>
+      props.isDarkMode ? darkTheme.background : lightTheme.background};
+    color: ${(props) => (props.isDarkMode ? darkTheme.text : lightTheme.text)};
   }
 
  

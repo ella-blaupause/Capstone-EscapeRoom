@@ -7,6 +7,7 @@ const StyledToast = styled.div`
   top: 65vh;
   right: 0;
   background-color: white;
+  color: initial;
   overflow: hidden;
   padding: 20px 35px 20px 16px;
   box-shadow: 0 5px 10px grey;
@@ -38,6 +39,7 @@ const Progress = styled.div`
   left: 0;
   height: 3px;
   width: 100%;
+
   background: #ddd;
   &:before {
     content: "progress";

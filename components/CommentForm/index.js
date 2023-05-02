@@ -15,7 +15,6 @@ export default function CommentForm({ inputCommentRef }) {
 
     const formData = new FormData(event.target);
     const commentData = Object.fromEntries(formData);
-    console.log(commentData);
 
     const response = await fetch("/api/comments", {
       method: "POST",
