@@ -58,19 +58,6 @@ export default function ColorPuzzle({ onSolvedPuzzles }) {
     }
   }
 
-  console.log(
-    "erste: " +
-      (colors[colorCounts.firstDiv % colors.length] === randomColors[2])
-  );
-  console.log(
-    "zweite: " +
-      (colors[colorCounts.secondDiv % colors.length] === randomColors[0])
-  );
-
-  console.log(
-    "dritte: " +
-      (colors[colorCounts.thirdDiv % colors.length] === randomColors[1])
-  );
   return (
     <>
       <p>Gib den Code ein!</p>
