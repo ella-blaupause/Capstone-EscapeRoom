@@ -7,7 +7,7 @@ import { SvgContrast } from "../../utils/icons";
 const StyledThemeDiv = styled.div`
   position: absolute;
   top: 20px;
-  right: 0px;
+  right: 4px;
   margin: 0;
   background-color: inherit;
   width: 80px;
@@ -19,6 +19,7 @@ const StyledThemeButton = styled.button`
     isDarkMode ? darkTheme.highlight : lightTheme.highlight};
   border-style: none;
   padding: 0;
+  width: 100%;
   &:hover {
     transform: scale(1.1);
   }
@@ -45,12 +46,6 @@ const StyledLiButton = styled.button`
   }
 `;
 
-const SvgDiv = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 export default function ThemeButton() {
   const [isActive, setIsActive] = useState(false);
   const isDarkMode = useGlobalStore((state) => state.isDarkMode);
@@ -67,9 +62,7 @@ export default function ThemeButton() {
   return (
     <StyledThemeDiv>
       <StyledThemeButton onClick={handeleThemeButton} isDarkMode={isDarkMode}>
-        <SvgDiv>
-          <SvgContrast isDarkMode={isDarkMode} /> Theme
-        </SvgDiv>
+        <SvgContrast isDarkMode={isDarkMode} />
       </StyledThemeButton>
       {isActive && (
         <StyledThemeUl>
