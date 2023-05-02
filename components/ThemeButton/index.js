@@ -2,10 +2,11 @@ import { useState } from "react";
 import styled from "styled-components";
 import useGlobalStore from "../../store";
 import { darkTheme, lightTheme } from "../../utils/utils";
+import { SvgContrast } from "../../utils/icons";
 
 const StyledThemeDiv = styled.div`
   position: absolute;
-  top: 22px;
+  top: 20px;
   right: 0px;
   margin: 0;
   background-color: inherit;
@@ -44,6 +45,12 @@ const StyledLiButton = styled.button`
   }
 `;
 
+const SvgDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export default function ThemeButton() {
   const [isActive, setIsActive] = useState(false);
   const isDarkMode = useGlobalStore((state) => state.isDarkMode);
@@ -60,7 +67,9 @@ export default function ThemeButton() {
   return (
     <StyledThemeDiv>
       <StyledThemeButton onClick={handeleThemeButton} isDarkMode={isDarkMode}>
-        Theme
+        <SvgDiv>
+          <SvgContrast isDarkMode={isDarkMode} /> Theme
+        </SvgDiv>
       </StyledThemeButton>
       {isActive && (
         <StyledThemeUl>
