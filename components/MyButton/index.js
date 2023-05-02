@@ -5,9 +5,9 @@ import { darkTheme, lightTheme } from "../../utils/utils";
 
 const StyledButton = styled.button`
   padding: 10px 20px 10px 20px;
-  font-size: ${(prop) => prop.fontSize};
-  background: ${(prop) =>
-    prop.isDarkMode ? darkTheme.highlight : lightTheme.highlight};
+  font-size: ${(props) => props.fontSize};
+  background: ${(props) =>
+    props.isDarkMode ? darkTheme.highlight : lightTheme.highlight};
   border-radius: 6px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-color: black;

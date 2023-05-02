@@ -13,8 +13,8 @@ const StyledSection = styled.section`
 
 const StyledDeletButton = styled.button`
   border: none;
-  background-color: ${(prop) =>
-    prop.isDarkMode ? darkTheme.highlight : lightTheme.highlight};
+  background-color: ${(props) =>
+    props.isDarkMode ? darkTheme.highlight : lightTheme.highlight};
   border-radius: 999px;
   width: 2em;
   height: 2em;
