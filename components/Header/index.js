@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { SvgArrowUndoUpLeft } from "../../utils/icons";
 import Link from "next/link";
+import { osDefault } from "../../utils/utils";
+import useGlobalStore from "../../store";
+import ThemeButton from "../ThemeButton";
 
 const StyledHeader = styled.header`
   background-color: var(--my-blue);
@@ -12,6 +15,7 @@ const StyledHeader = styled.header`
   flex-direction: column;
   align-items: center;
   z-index: 1;
+  color: var(--my-yellow);
   @media (max-width: 414px) {
     width: 100%;
   }
@@ -21,7 +25,6 @@ const Title = styled.h1`
   position: absolute;
   top: 0px;
   font-size: 24px;
-  color: var(--my-yellow);
   text-shadow: 1px 0 10px black;
 `;
 
@@ -35,6 +38,8 @@ const StyledLink = styled(Link)`
 `;
 
 export default function Header({ children, isBackArrow }) {
+  const chooseIsDarkMode = useGlobalStore((state) => state.chooseIsDarkMode);
+
   return (
     <StyledHeader>
       {isBackArrow && (
@@ -43,6 +48,7 @@ export default function Header({ children, isBackArrow }) {
         </StyledLink>
       )}
       <Title>{children}</Title>
+      <ThemeButton />
     </StyledHeader>
   );
 }

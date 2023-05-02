@@ -32,12 +32,12 @@ const useGlobalStore = create((set) => ({
   questionInput: "",
   isAnswered: false,
   avatar: avatars[0],
-
   puzzlePieces: initialPuzzlePieces,
   countPieces: 0,
   solvedPuzzles: initialSolvedPuzzles,
   countSubmits: 0,
   toasts: [],
+  isDarkMode: true,
 
   switchLight: () => set((state) => ({ isOn: !state.isOn })),
   turnLight: () => set({ isOn: true }),
@@ -125,6 +125,7 @@ const useGlobalStore = create((set) => ({
     set((state) => ({ countSubmits: state.countSubmits + 1 })),
   createToasts: (toastProperties) => set({ toasts: [toastProperties] }),
   deleteToasts: () => set({ toasts: [] }),
+  chooseIsDarkMode: (bool) => set({ isDarkMode: bool }),
 }));
 
 export default useGlobalStore;

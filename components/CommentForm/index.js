@@ -15,7 +15,6 @@ export default function CommentForm({ inputCommentRef }) {
 
     const formData = new FormData(event.target);
     const commentData = Object.fromEntries(formData);
-    console.log(commentData);
 
     const response = await fetch("/api/comments", {
       method: "POST",
@@ -42,7 +41,7 @@ export default function CommentForm({ inputCommentRef }) {
     </form>
   ) : (
     <StyledParagraph>
-      Einlogen, um einen Kommentar zu hinterlassen.
+      Einloggen, um einen Kommentar zu hinterlassen.
     </StyledParagraph>
   );
 }
