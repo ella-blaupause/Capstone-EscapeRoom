@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import UserName from ".";
+import User from ".";
 
 test("form is rendered properly with the correct label and input field.", async () => {
-  render(<UserName />);
+  render(<User />);
 
   const labelElement = screen.getByLabelText("Gebe deinen Spielername ein:");
   expect(labelElement).toBeInTheDocument();

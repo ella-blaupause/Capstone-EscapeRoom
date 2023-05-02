@@ -50,7 +50,7 @@ export default function Header({ children, isBackArrow }) {
         </StyledLink>
       )}
       <Title>{children}</Title>
-      <ThemeButton />
+      <ThemeButton aria-label="theme" />
     </StyledHeader>
   );
 }

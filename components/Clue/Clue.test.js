@@ -1,19 +1,30 @@
 import { render, screen } from "@testing-library/react";
 import Clue from ".";
 
-test("displays two different symbols", async () => {
-  const randomColors = ["", "", "blue"];
-  const randomSymbols = ["", "", "B"];
-  render(<Clue randomColors={randomColors} randomSymbols={randomSymbols} />);
-  const Symbol = await screen.findByText("B");
+test("displays randomly provided color", async () => {
+  // Mock the global store's randomColors value
+  const mockColors = ["red", "green", "blue"];
+  jest.spyOn(require("../../store"), "default").mockReturnValue({
+    randomColors: mockColors,
+    randomSymbols: ["*", "@", "#"],
+  });
 
-  expect(Symbol).toBeInTheDocument();
+  // Render the Clue component
+  render(<Clue />);
+
+  // Ensure that the color div is rendered with the correct color
+  const colorDiv = await screen.findByTestId("color-div");
+  expect(colorDiv).toHaveStyle(`background-color: ${mockColors[2]}`);
 });
 
 test("displays randomly provided colors", () => {
-  const randomColors = ["", "red", "blue"];
-  const randomSymbols = ["", "A", "B"];
-  render(<Clue randomColors={randomColors} randomSymbols={randomSymbols} />);
+  const mockColors = ["red", "green", "blue"];
+  jest.spyOn(require("../../store"), "default").mockReturnValue({
+    randomColors: mockColors,
+    randomSymbols: ["*", "@", "#"],
+  });
+
+  render(<Clue />);
 
   // find all StyledColorDiv components and check their styles
   const colorDiv = screen.getAllByTestId("color-div");

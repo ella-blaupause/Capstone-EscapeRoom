@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import LoginButton from "../LoginButton";
 
-export default function UserName() {
+export default function User() {
   const { data, isLoading } = useSWR("/api/users");
 
   if (isLoading) {

@@ -22,8 +22,9 @@ test("if the text `Gib den Code ein!` is rendered", () => {
 
 test("onColorSwitch function is called with the correct parameter when a ColorDiv is clicked.", async () => {
   const onColorSwitch = jest.fn();
+  const onSolvedPuzzles = jest.fn();
   const colors = ["red", "blue", "green"];
-  const colorCounts = { first: 0, second: 1, third: 2 };
+  const colorCounts = { firstDiv: 0, secondDiv: 1, thirdDiv: 2 };
   const randomSymbols = ["A", "B", "C"];
 
   render(
@@ -32,26 +33,31 @@ test("onColorSwitch function is called with the correct parameter when a ColorDi
       colors={colors}
       colorCounts={colorCounts}
       randomSymbols={randomSymbols}
+      onSolvedPuzzles={onSolvedPuzzles}
     />
   );
 
-  const colorDiv1 = screen.getByTestId("color-div-0");
+  const colorDiv = screen.getByTestId("color-div-0");
   const colorDiv2 = screen.getByTestId("color-div-1");
   const colorDiv3 = screen.getByTestId("color-div-2");
 
-  await userEvent.click(colorDiv1);
-  expect(onColorSwitch).toHaveBeenCalledWith("first");
+  userEvent.click(colorDiv);
+  await waitFor(() => {
+    expect(onColorSwitch).toHaveBeenCalledWith("first");
+  });
 
-  await userEvent.click(colorDiv2);
-  expect(onColorSwitch).toHaveBeenCalledWith("second");
-
+   userEvent.click(colorDiv2);
+   await waitFor(() => {
+    expect(onColorSwitch).toHaveBeenCalledWith("second");
+  });
   await userEvent.click(colorDiv3);
-  expect(onColorSwitch).toHaveBeenCalledWith("third");
-});
+  await waitFor(() => {
+    expect(onColorSwitch).toHaveBeenCalledWith("third");
+  });
 
 test("ColorDiv component has the correct color prop value", () => {
   const colors = ["red", "green", "blue"];
-  const colorCounts = { first: 0, second: 1, third: 2 };
+  const colorCounts = { firstDiv: 0, secondDiv: 1, thirdDiv: 2 };
   const { rerender } = render(
     <ColorPuzzle
       onColorSwitch={() => {}}

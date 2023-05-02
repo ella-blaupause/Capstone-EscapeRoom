@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Header from "../components/Header";
 import SelectAvatar from "../components/SelectAvatar";
-import UserName from "../components/UserName";
+import User from "../components/User";
 import CommentForm from "../components/CommentForm";
 import CommentsList from "../components/CommentsList";
 import { useRef } from "react";
@@ -22,7 +22,7 @@ export default function Profile({ isSolvedPuzzleSum }) {
       <Header>Profil</Header>
       <Wrapper>
         <SelectAvatar />
-        <UserName />
+        <User />
       </Wrapper>
 
       <p>Du hast {isSolvedPuzzleSum}/4 Rätsel gelöst.</p>
