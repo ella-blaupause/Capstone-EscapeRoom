@@ -23,6 +23,7 @@ const StyledColorDiv1 = styled.div`
   font-size: 80px;
   place-items: center;
   background-color: ${(props) => props.color};
+  color: initial;
 `;
 
 export default function Crossword({ onSolvedPuzzles }) {

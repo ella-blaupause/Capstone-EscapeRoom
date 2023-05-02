@@ -5,6 +5,7 @@ import useGlobalStore from "../../store";
 const PuzzleDiv = styled.div`
   border: solid;
   background-color: #f5f4eb;
+  color: initial;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 20% 90%;

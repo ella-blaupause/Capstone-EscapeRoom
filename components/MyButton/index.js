@@ -1,11 +1,13 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import useGlobalStore from "../../store";
+import { darkTheme, lightTheme } from "../../utils/utils";
 
 const StyledButton = styled.button`
   padding: 10px 20px 10px 20px;
   font-size: ${(prop) => prop.fontSize};
-  background: var(--my-orange);
+  background: ${(prop) =>
+    prop.isDarkMode ? darkTheme.highlight : lightTheme.highlight};
   border-radius: 6px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-color: black;
@@ -15,6 +17,7 @@ const StyledButton = styled.button`
 `;
 
 export default function MyButton({ children, fontSize }) {
+  const isDarkMode = useGlobalStore((state) => state.isDarkMode);
   const turnLight = useGlobalStore((state) => state.turnLight);
   const resetPuzzlePieces = useGlobalStore((state) => state.resetPuzzlePieces);
   const resetCountPieces = useGlobalStore((state) => state.resetCountPieces);
@@ -58,6 +61,7 @@ export default function MyButton({ children, fontSize }) {
       type="button"
       fontSize={fontSize}
       onClick={() => handleNewGame()}
+      isDarkMode={isDarkMode}
     >
       {children}
     </StyledButton>

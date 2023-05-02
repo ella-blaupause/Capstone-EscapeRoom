@@ -10,6 +10,7 @@ const StyledColorDiv = styled.div`
   display: grid;
   place-items: center;
   background-color: ${(props) => props.color};
+  color: initial;
 `;
 
 export default function Clue() {

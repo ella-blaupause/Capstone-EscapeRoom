@@ -15,6 +15,7 @@ const Area = styled.div`
   justify-content: center;
   gap: 10px;
   box-shadow: inset 1px 1px 10px 1px var(--my-blue);
+  color: initial;
 `;
 
 const StyledColorDiv0 = styled.div`
@@ -23,6 +24,7 @@ const StyledColorDiv0 = styled.div`
   display: grid;
   place-items: center;
   background-color: ${(props) => props.color};
+  color: initial;
 `;
 
 export default function CollectingArea() {

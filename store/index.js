@@ -37,7 +37,7 @@ const useGlobalStore = create((set) => ({
   solvedPuzzles: initialSolvedPuzzles,
   countSubmits: 0,
   toasts: [],
-  isDarkMode: true,
+  isDarkMode: false,
 
   switchLight: () => set((state) => ({ isOn: !state.isOn })),
   turnLight: () => set({ isOn: true }),

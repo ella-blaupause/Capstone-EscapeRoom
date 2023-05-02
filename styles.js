@@ -1,19 +1,11 @@
 import { createGlobalStyle } from "styled-components";
 import { Montserrat } from "@next/font/google";
-import useGlobalStore from "./store";
+import { darkTheme, lightTheme } from "./utils/utils";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
   style: ["normal", "italic"],
 });
-
-const lightTheme = {
-  background: "var(--my-beige)",
-};
-
-const darkTheme = {
-  background: "var(--dark-background)",
-};
 
 export default createGlobalStyle`
   *,
@@ -33,7 +25,7 @@ export default createGlobalStyle`
     --font-family: ${montserrat.style.fontFamily};
 
     //My dafk mode
-    --dark-background: #5c769c;
+    --dark-background: #485C7A;
     --dark-bar: #172e4f;
     --dark-font-color: #d5d5d5;
     --dark-highlight-color: #ffa07a;
@@ -47,6 +39,7 @@ export default createGlobalStyle`
     font-family: var( --font-family);
     background-color: ${(props) =>
       props.isDarkMode ? darkTheme.background : lightTheme.background};
+    color: ${(props) => (props.isDarkMode ? darkTheme.text : lightTheme.text)};
   }
 
  
