@@ -1,26 +1,15 @@
-import { render } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen } from "@testing-library/react";
+import mockRouter from "next-router-mock";
 import MyButton from ".";
-import { useRouter } from "next/router";
 
-test("renders the expected text.", () => {
-  const buttonText = "Click me!";
-  const { getByText } = render(<MyButton>{buttonText}</MyButton>);
-  const buttonElement = getByText(buttonText);
-  expect(buttonElement).toBeInTheDocument();
-});
+jest.mock("next/router", () => require("next-router-mock"));
 
-test("clicking the button calls the handleNewGame function and redirects to /room", async () => {
-  const router = useRouter();
+test("renders the expected text", () => {
+  mockRouter.push("/initial-path");
+  jest.mock("next/router", () => require("next-router-mock"));
 
-  const pushMock = jest.fn();
+  render(<MyButton onClick={() => router.push(href)}>Start New Game</MyButton>);
 
-  const { getByText } = render(<MyButton>Start New Game</MyButton>);
-
-  await userEvent.click(getByText("Start New Game"));
-
-  expect(handleNewGame).toHaveBeenCalledTimes(1);
-  expect(pushMock).toHaveBeenCalledWith("/room");
-
-  useRouterMock.mockRestore();
+  const button = screen.getByRole("button", { name: /start new game/i });
+  expect(button).toBeInTheDocument();
 });

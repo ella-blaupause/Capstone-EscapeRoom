@@ -35,6 +35,7 @@ export default function ColorPuzzle({ onSolvedPuzzles }) {
     (state) => state.increaseThirdColorDiv
   );
   const defaultColorCode = useGlobalStore((state) => state.defaultColorCode);
+
   function handleColorSwitch(props) {
     if (props === "first") {
       increaseFirstColorDiv();

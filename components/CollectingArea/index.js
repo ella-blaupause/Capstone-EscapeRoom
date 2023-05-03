@@ -44,7 +44,7 @@ export default function CollectingArea() {
 
   return (
     <Area>
-      <SvgPuzzleElement alt="Grünes Pzzleteil" />
+      <SvgPuzzleElement alt="Grünes Puzzleteil" />
       <span>
         {countPieces}/{puzzlePieces.length}
       </span>

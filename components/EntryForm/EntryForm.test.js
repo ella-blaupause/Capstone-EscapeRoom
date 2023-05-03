@@ -1,23 +1,26 @@
 import { render, screen } from "@testing-library/react";
 import EntryForm from ".";
+import userEvent from "@testing-library/user-event";
 
-test("renders a label and an input with the correct attributes", () => {
-  const onData = jest.fn();
-  const currentClueId = 1;
+test("form has a label and input field", async () => {
+  const inputRef = jest.fn();
+  const onSolvedPuzzles = jest.fn();
 
-  render(
-    <EntryForm
-      onData={onData}
-      currentClueId={currentClueId}
-      name="answer"
-      labelText="Der Ort, an dem die Seelen der Verstorbenen hingelangen?"
-      placeholder="Antwort eingeben"
-    />
-  );
+  render(<EntryForm inputRef={inputRef} onSolvedPuzzles={onSolvedPuzzles} />);
 
-  const input = screen.getByLabelText(
-    /Der Ort, an dem die Seelen der Verstorbenen hingelangen?/i
-  );
-  expect(input).toHaveAttribute("placeholder", "Antwort eingeben");
-  expect(input).toHaveAttribute("name", "answer");
+  const label = screen.getByLabelText(/Wähle eine Frage aus/i);
+  const input = screen.getByPlaceholderText(/antwort eingeben/i);
+  const button = screen.getByRole("button", { name: /ok/i });
+
+  expect(label).toBeInTheDocument();
+  expect(input).toBeInTheDocument();
+  expect(button).toBeInTheDocument();
+
+  await userEvent.type(input, "test answer");
+  expect(input).toHaveValue("test answer");
+
+  userEvent.click(button);
+
+  expect(onSolvedPuzzles).not.toHaveBeenCalled();
+  expect(inputRef).toHaveBeenCalled();
 });
