@@ -28,7 +28,7 @@ const useGlobalStore = create((set) => ({
     symbols[randomNumbers[1]],
     symbols[randomNumbers[2]],
   ],
-  colorCounts: { firstDiv: 2, secondDiv: 2, thirdDiv: 2 },
+  colorCounts: { firstDiv: 0, secondDiv: 0, thirdDiv: 0 },
   questionInput: "",
   isAnswered: false,
   avatar: avatars[0],

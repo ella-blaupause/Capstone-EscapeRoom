@@ -8,6 +8,7 @@ import {
 } from "../../utils/icons";
 import { useEffect, useState } from "react";
 import useGlobalStore from "../../store";
+import { darkTheme, lightTheme } from "../../utils/utils";
 
 const StyledNavigation = styled.nav`
   position: fixed;
@@ -16,7 +17,8 @@ const StyledNavigation = styled.nav`
   justify-content: center;
   align-items: center;
   gap: 50px;
-  background-color: var(--my-blue);
+  background-color: ${({ isDarkMode }) =>
+    isDarkMode ? darkTheme.bar : lightTheme.bar};
   width: 375px;
   height: 86px;
   @media (max-width: 414px) {
@@ -43,7 +45,7 @@ export default function Navigation() {
   return (
     <>
       {isClient && (
-        <StyledNavigation>
+        <StyledNavigation isDarkMode={isDarkMode}>
           <StyledLink href="/">
             <SvgHouse
               isFilled={router.pathname === "/" && "isFilled"}

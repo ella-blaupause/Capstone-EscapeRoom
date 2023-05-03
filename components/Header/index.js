@@ -32,8 +32,8 @@ const Title = styled.h1`
 
 const StyledLink = styled(Link)`
   position: absolute;
-  top: 10px;
-  left: 15px;
+  top: 16px;
+  left: 25px;
   &:hover {
     transform: scale(1.1);
   }
@@ -50,7 +50,7 @@ export default function Header({ children, isBackArrow }) {
         </StyledLink>
       )}
       <Title>{children}</Title>
-      <ThemeButton />
+      <ThemeButton aria-label="theme" />
     </StyledHeader>
   );
 }

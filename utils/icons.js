@@ -4,8 +4,8 @@ export function SvgArrowUndoUpLeft({ isDarkMode }) {
   return (
     <>
       <svg
-        width="40"
-        height="40"
+        width="28"
+        height="28"
         viewBox="0 0 40 40"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -169,7 +169,7 @@ export function SvgContrast({ isDarkMode }) {
       fill="none"
       viewBox="0 0 24 24"
     >
-      <g clip-path="url(#a)">
+      <g clipPath="url(#a)">
         <path
           fill={isDarkMode ? darkTheme.highlight : lightTheme.highlight}
           d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10Zm0-2V4a8 8 0 1 0 0 16Z"

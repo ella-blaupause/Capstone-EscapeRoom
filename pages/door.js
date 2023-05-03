@@ -13,9 +13,9 @@ export default function Door({ onSolvedPuzzles }) {
   const randomColors = useGlobalStore((state) => state.randomColors);
 
   if (
-    colors[colorCounts.firstDiv] === randomColors[2] &&
-    colors[colorCounts.secondDiv] === randomColors[0] &&
-    colors[colorCounts.thirdDiv] === randomColors[1]
+    colors[colorCounts.firstDiv % colors.length] === randomColors[2] &&
+    colors[colorCounts.secondDiv % colors.length] === randomColors[0] &&
+    colors[colorCounts.thirdDiv % colors.length] === randomColors[1]
   ) {
     return (
       <>
