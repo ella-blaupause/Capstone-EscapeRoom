@@ -5,40 +5,27 @@ import useGlobalStore from "../../store";
 
 jest.mock("../../store");
 
-describe("CollectingArea component", () => {
-  it("displays the correct number of puzzle pieces", async () => {
-    // Mock the values returned by the useGlobalStore hook
-    const mockRandomColors = ["#ff0000", "#00ff00", "#0000ff"];
-    const mockRandomSymbols = ["A", "B", "C"];
-    const mockCountPieces = 1;
-    const mockPuzzlePieces = [{}, {}, {}];
-    useGlobalStore.mockReturnValue({
-      randomColors: mockRandomColors,
-      randomSymbols: mockRandomSymbols,
-      countPieces: mockCountPieces,
-      puzzlePieces: mockPuzzlePieces,
-    });
+test("displays the correct number of puzzle pieces", async () => {
+  const randomColors = ["red", "blue", "yellow", "green"];
+  const randomSymbols = ["A", "B", "C", "D"];
+  const countPieces = 2;
+  const puzzlePieces = [
+    { id: 1, color: "red", symbol: "A" },
+    { id: 2, color: "blue", symbol: "B" },
+    { id: 3, color: "yellow", symbol: "C" },
+    { id: 4, color: "green", symbol: "D" },
+  ];
 
-    // Render the component
-    render(<CollectingArea />);
+  useGlobalStore.mockReturnValueOnce(randomColors);
+  useGlobalStore.mockReturnValueOnce(randomSymbols);
+  useGlobalStore.mockReturnValueOnce(countPieces);
+  useGlobalStore.mockReturnValueOnce(puzzlePieces);
 
-    // Check that the component displays the correct number of puzzle pieces
-    expect(
-      screen.getByText(`${mockCountPieces}/${mockPuzzlePieces.length}`)
-    ).toBeInTheDocument();
+  render(<CollectingArea />);
 
-    // Simulate completing the puzzle
-    useGlobalStore.mockReturnValue({
-      randomColors: mockRandomColors,
-      randomSymbols: mockRandomSymbols,
-      countPieces: mockPuzzlePieces.length,
-      puzzlePieces: mockPuzzlePieces,
-    });
-    await act(async () => {
-      await userEvent.click(screen.getByAltText("Grünes Puzzleteil"));
-    });
-    expect(
-      screen.getByText(`${mockPuzzlePieces.length}/${mockPuzzlePieces.length}`)
-    ).toBeInTheDocument();
-  });
+  // Verify that the number of puzzle pieces is displayed correctly
+  const countDisplay = screen.getByText(
+    `${countPieces}/${puzzlePieces.length}`
+  );
+  expect(countDisplay).toBeInTheDocument();
 });

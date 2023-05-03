@@ -1,10 +1,15 @@
 import { render, screen } from "@testing-library/react";
 import Clue from ".";
+import useGlobalStore from "../../store";
 
-test("if the component renders the correct color", async () => {
-  const randomColors = ["", "", "rgb(56, 92, 255)"];
+test("renders the correct color", () => {
+  const randomColors = ["red", "green", "blue"];
+  const randomSymbols = ["A", "B", "C"];
+
+  useGlobalStore.setState({ randomSymbols, randomColors });
 
   render(<Clue />);
-  const colorDiv = await screen.findByTestId("color-div");
-  expect(colorDiv).toHaveStyle(`background-color: ${randomColors[2]}`);
+
+  const colorDiv = screen.getByTestId("color-div");
+  expect(colorDiv).toHaveStyle({ backgroundColor: "blue" });
 });

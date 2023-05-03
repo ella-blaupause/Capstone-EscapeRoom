@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import Toast from ".";
+import useGlobalStore from "../../store";
 
 test("each toast's emoji, title are displayed correctly.", async () => {
   const toasts = [
@@ -7,12 +8,9 @@ test("each toast's emoji, title are displayed correctly.", async () => {
     { id: 2, emoji: "🍳", title: "Toast 2", borderColor: "blue" },
     { id: 3, emoji: "🥓", title: "Toast 3", borderColor: "green" },
   ];
-  const onDeleteToast = jest.fn();
-  const isSubmit = false;
+  useGlobalStore.setState({ toasts });
 
-  render(
-    <Toast toasts={toasts} onDeleteToast={onDeleteToast} isSubmit={isSubmit} />
-  );
+  render(<Toast />);
 
   // Verify that each toast's emoji, title are displayed correctly
   toasts.forEach((toast) => {
