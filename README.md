@@ -24,7 +24,7 @@ npm run dev
 ```
 
 Alternativ kannst du das Spiel auf dem Vercel deploymend spielen, indem du auf den folgenden Link klickst:
-[Escape Roo: Code Breaker](https://capstone-escape-room.vercel.app/)
+[Escape Room: Code Breaker](https://capstone-escape-room.vercel.app/)
 
 ### Technologien
 
