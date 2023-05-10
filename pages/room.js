@@ -19,14 +19,13 @@ const GridContainer = styled.div`
   height: 83vh;
   margin: 0 0 8vh 0;
   position: relative;
-  @media (max-width: 414px) {
-    width: 100%;
-  }
+  
 `;
 
 const StyledDoor = styled(Link)`
-  grid-column: 12 / span 3;
-  grid-row: 7 / span 4;
+  position: absolute;
+  right: 7px;
+  top: 150px;
   z-index: 1;
   text-decoration: none;
   cursor: default;
@@ -35,7 +34,7 @@ const StyledDoor = styled(Link)`
 const DoorDiv = styled.div`
   margin: 0 10px 0 10px;
   width: 120px;
-  height: 280px;
+  height: 240px;
 `;
 
 const StyledLightButton = styled.button`

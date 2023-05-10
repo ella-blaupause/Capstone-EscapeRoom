@@ -6,8 +6,9 @@ const Area = styled.div`
   width: 100px;
   height: 100px;
   border: black solid;
-  grid-column: 14 / span 4;
-  grid-row: 1 / span 3;
+  position: absolute;
+  top: 0;
+  right: 0;
   display: ${(props) => (props.countPieces ? "grid" : null)};
   background-color: #f5f4eb;
   display: flex;

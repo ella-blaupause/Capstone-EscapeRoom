@@ -109,7 +109,7 @@ export function SvgPuzzleElement() {
       xmlns="http://www.w3.org/2000/svg"
       width="19"
       height="16"
-      fill="none"
+      fill="#23DB35"
       viewBox="0 0 19 16"
     >
       <mask id="b" fill="#fff">

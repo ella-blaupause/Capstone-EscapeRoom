@@ -43,9 +43,9 @@ export default function PuzzlePieces({ onSolvedPuzzles }) {
           }}
           position={puzzlePiece.position}
         >
-          {puzzlePiece.isCollected ? null : (
+          {!puzzlePiece.isCollected &&
             <SvgPuzzleElement alt="Grünes Puzzleteil" />
-          )}
+          }
         </PuzzlePiece>
       ))}
     </>
