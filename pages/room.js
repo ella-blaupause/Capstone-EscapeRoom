@@ -15,10 +15,12 @@ const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(15, 1fr);
   grid-template-rows: repeat(22, 1fr);
-  width: 375px;
+  width: 500px;
   height: 83vh;
-  margin: 0 0 8vh 0;
   position: relative;
+  @media (max-width: 500px) {
+    width: 100%;
+  }
   
 `;
 

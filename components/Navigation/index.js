@@ -19,9 +19,9 @@ const StyledNavigation = styled.nav`
   gap: 50px;
   background-color: ${({ isDarkMode }) =>
     isDarkMode ? darkTheme.bar : lightTheme.bar};
-  width: 375px;
+  width: 500px;
   height: 86px;
-  @media (max-width: 414px) {
+  @media (max-width: 500px) {
     width: 100%;
   }
 `;

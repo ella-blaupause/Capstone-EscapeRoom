@@ -13,12 +13,12 @@ const Wrapper = styled.div`
 
 const Main = styled.main`
   position: absolute;
-  width: 375px;
+  width: 500px;
   top: 67px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media (max-width: 414px) {
+  @media (max-width: 500px) {
     width: 100%;
   }
 `;

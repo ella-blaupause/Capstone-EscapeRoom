@@ -8,7 +8,7 @@ import { darkTheme, lightTheme } from "../../utils/utils";
 const StyledHeader = styled.header`
   background-color: ${({ isDarkMode }) =>
     isDarkMode ? darkTheme.bar : lightTheme.bar};
-  width: 375px;
+  width: 500px;
   height: 68px;
   top: 0px;
   display: flex;
@@ -18,7 +18,7 @@ const StyledHeader = styled.header`
   z-index: 1;
   color: ${({ isDarkMode }) =>
     isDarkMode ? darkTheme.text : "var(--my-yellow)"};
-  @media (max-width: 414px) {
+  @media (max-width: 500px) {
     width: 100%;
   }
 `;
